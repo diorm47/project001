@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Rubik", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #191d3e;
+}
+
+a {
+  text-decoration: none;
+}
+
+.modal_overlay {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 111;
+  background: #00000098;
+}
+
+a,
+p,
+div,
+img,
+h1,
+span {
+  -webkit-tap-highlight-color: transparent;
+}

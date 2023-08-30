@@ -1,0 +1,42 @@
+.live_drop_item {
+  padding: 10px 5px;
+  border-radius: 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100px;
+  height: 94px;
+  margin-right: 4px;
+}
+.live_drop_items_list {
+  display: flex;
+  align-items: center;
+}
+
+.item_1 {
+  background: linear-gradient(180deg, #4255cf 0%, #2336b7 53.65%, #313970 100%);
+}
+.item_2 {
+  background: linear-gradient(180deg, #b556ff 0%, #833dd9 53.65%, #4b3cb5 100%);
+}
+.item_3 {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 210, 95, 0.9) 0%,
+    rgba(203, 168, 28, 0.72) 39.58%,
+    rgba(187, 160, 55, 0.38) 100%
+  );
+}
+.live_drop_items_list p {
+
+  margin-top: -10px;
+  white-space: nowrap;
+  padding: 0 5px;
+  overflow: hidden;
+  color: #eaefff;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-family: Rubik;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+}
