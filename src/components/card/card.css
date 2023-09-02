@@ -1,0 +1,49 @@
+.card_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+
+  padding: 8px;
+}
+.card_description {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #3e395f;
+  width: 100%;
+}
+
+.card_name p {
+  margin-top: 8px;
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 123.077% */
+  margin-bottom: 10px;
+}
+
+.card_prices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.item_real_price {
+  color: var(--Positive, #69dd89);
+
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 117.647% */
+  margin-right: 5px;
+}
+
+.item_discount_price {
+  color: #625f78;
+  text-decoration: line-through;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15.6px; /* 111.429% */
+}

@@ -1,0 +1,87 @@
+footer {
+  width: 100%;
+}
+
+.footer_top_stats_wrapper {
+  width: 100%;
+  padding: 40px 0;
+  background: #10162c;
+}
+
+.footer_top_stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer_stat {
+  text-align: center;
+}
+
+.footer_stat p {
+  color: #fff;
+
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 117.647% */
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.footer_stat span {
+  color: #7f8bad;
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 123.077% */
+}
+
+.crystals_stat div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.crystals_stat div p {
+  margin: 0;
+}
+
+.main_footer_wrapper {
+  background: #0d1120;
+  padding: 22px 0;
+}
+
+.footer_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer_menu {
+  display: flex;
+  align-items: center;
+}
+.footer_menu_item {
+  margin: 0 12px;
+}
+.footer_menu_item p {
+  color: #7f8bad;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+  transition: all 0.4s ease;
+}
+
+.footer_menu_item p:hover {
+  transition: all 0.4s ease;
+  color: #f7a34d;
+}
+
+.footer_socials {
+    display: flex;
+    align-items: center;
+}
+.footer_socials a {
+    margin-left: 20px;
+}

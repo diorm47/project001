@@ -1,0 +1,27 @@
+import React from "react";
+import "./card.css";
+
+function Card({ data }) {
+  return (
+    <div className="card_wrapper">
+      <div className="card_image">
+        <img src={data.image} alt="" />
+      </div>
+      <div className="card_description">
+        <div className="card_name">
+          <p>{data.name}</p>
+        </div>
+        <div className="card_prices">
+          <p className="item_real_price">{data.real_price}₽</p>
+          {data.discount_price ? (
+            <p className="item_discount_price">{data.discount_price} ₽</p>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Card;

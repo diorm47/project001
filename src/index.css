@@ -31,3 +31,8 @@ h1,
 span {
   -webkit-tap-highlight-color: transparent;
 }
+
+.page_template {
+  width: 1200px;
+  margin: 0 auto;
+}
