@@ -1,0 +1,86 @@
+.history_item {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #191d3e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.history_item_img img {
+  width: 50px;
+  margin-right: 12px;
+}
+
+.ticket_number {
+  color: #fff;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 120% */
+  margin-bottom: 3px;
+}
+
+.history_item_descr {
+  color: #7f8bad;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px; /* 100% */
+}
+
+.df_aic_jcsb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.history_price {
+  color: #fff;
+
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 120% */
+}
+
+.history_price {
+  text-align: right;
+}
+.history_status {
+  display: flex;
+  align-items: center;
+}
+.history_status p {
+  margin-right: 4px;
+  font-family: Rubik;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px; /* 100% */
+}
+
+.status1 {
+  color: var(--Positive, #69dd89);
+}
+.status2 {
+  color: #e1a3ff;
+}
+.status2 svg * {
+  fill: #e1a3ff;
+}
+
+.status3 {
+    color: var(--Red, #FF6767);
+}
+.status3 svg * {
+    fill: #FF6767;
+}
+.status4 {
+    color: #5D6685;
+}
+.status4 svg * {
+    fill: #5D6685;
+}

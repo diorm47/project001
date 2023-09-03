@@ -1,0 +1,98 @@
+.ref_block_title h3 {
+  text-align: center;
+  color: #b5c2e5;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 122.222% */
+  margin-bottom: 22px;
+}
+
+.ref_link_block {
+  display: flex;
+  width: 400px;
+  padding: 6px 12px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  background: #12152e;
+  margin: 0 auto;
+  margin-bottom: 18px;
+}
+
+.ref_link p {
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+}
+
+.ref_actions svg {
+  width: 16px;
+}
+.ref_card {
+  display: flex;
+  max-width: 158px;
+  padding: 16px 20px 16px 10px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #191d3e;
+}
+.ref_card p {
+  color: #fff;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 120% */
+}
+.ref_card span {
+  color: #7f8bad;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px; /* 92.857% */
+}
+.ref_card svg {
+  margin-right: 12px;
+  width: 32px;
+}
+.ref_description_cards {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ref_get_cash {
+  background: #fbae21;
+  cursor: pointer;
+}
+.ref_get_cash p {
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px; /* 128.571% */
+}
+
+.ref_descriptions {
+  text-align: center;
+  padding: 0 30px;
+  margin-top: 18px;
+}
+
+.ref_descriptions p {
+  color: #ebe8e8;
+  text-align: center;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 19.6px */
+}
+
+.ref_descriptions p:first-child {
+  margin-bottom: 18px;
+}

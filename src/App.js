@@ -6,6 +6,8 @@ import LoginAuth from "./components/login-auth/login-auth";
 import { Route, Routes } from "react-router-dom";
 import MainPage from "./pages/main-page/main-page";
 import Footer from "./components/footer/footer";
+import ProfilePage from "./pages/profile-page/profile-page";
+import Topup from "./pages/topup/topup";
 
 function App() {
   const [loginModal, setLoginModal] = useState(false);
@@ -29,6 +31,8 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/home" element={<MainPage />} />
+            <Route path="/topup" element={<Topup />} />
+            <Route path="/profile/*" element={<ProfilePage />} />
 
             {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>

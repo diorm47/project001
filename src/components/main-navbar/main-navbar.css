@@ -39,6 +39,12 @@ nav {
   font-weight: 400;
   line-height: 18px; /* 105.882% */
 }
+.nav_profile {
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
 
 .nav_auth_btns {
   display: flex;

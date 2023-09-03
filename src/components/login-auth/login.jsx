@@ -1,20 +1,19 @@
-import React, { useState } from "react";
-import "./login-auth.css";
-import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
-import { ReactComponent as YandexIcon } from "../../assets/icons/auth-icons/yandex-login.svg";
+import {
+  GoogleLogin,
+  GoogleOAuthProvider
+} from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
+import React from "react";
 import { ReactComponent as TgIcon } from "../../assets/icons/auth-icons/tg-login.svg";
+import { ReactComponent as YandexIcon } from "../../assets/icons/auth-icons/yandex-login.svg";
+import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
+import "./login-auth.css";
 
-import google_icon from "../../assets/icons/auth-icons/google-icon.png";
-import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
-import telegram_icon from "../../assets/icons/auth-icons/tg-icon.png";
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
-import yandex_icon from "../../assets/icons/auth-icons/yandex-icon.png";
-import x_icon from "../../assets/icons/auth-icons/x-icon.png";
+import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 
 function LoginModal({ setLoginModal, setAuthModalType }) {
-  const [authTypeToggle, setAuthType] = useState("email");
-  const [activePromocode, setActivePromocode] = useState(false);
-  const [checkedPolicy, setCheckedPolicy] = useState(false);
+
 
   return (
     <div className="modal_wrapper_template">
@@ -29,7 +28,21 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
         <div className="auth_wrapper">
           <div className="auth_content">
             <div className="auth_socials">
-              <img src={google_icon} alt="google_icon" />
+              <GoogleOAuthProvider clientId="43928678507-s47ggc38cmfabet21l25g2b8s11ljiv0.apps.googleusercontent.com">
+                <GoogleLogin
+                  onSuccess={(credentialResponse) => {
+                    var decoded = jwt_decode(credentialResponse.credential);
+                    console.log(decoded);
+                  }}
+                  type="icon"
+                  shape="square"
+                  width='100'
+                  size='large'
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                />
+              </GoogleOAuthProvider>
               <img src={vk_icon} alt="vk_icon" />
 
               <TgIcon />
