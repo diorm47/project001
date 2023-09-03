@@ -10,6 +10,7 @@ import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 import telegram_icon from "../../assets/icons/auth-icons/tg-icon.png";
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 import x_icon from "../../assets/icons/auth-icons/x-icon.png";
+import TelegramLoginButton from "telegram-login-button";
 import yandex_icon from "../../assets/icons/auth-icons/yandex-icon.png";
 
 function AuthorizationModal({ setLoginModal, setAuthModalType }) {
@@ -76,7 +77,12 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                 />
               </GoogleOAuthProvider>
               <img src={vk_icon} alt="vk_icon" />
-              <img src={telegram_icon} alt="telegram_icon" />
+              <TelegramLoginButton
+                botName="GGLegadropbot"
+                buttonSize="medium"
+                cornerRadius='4px'
+                dataOnauth={(user) => console.log(user)}
+              />
               <img src={mail_icon} alt="mail_icon" />
               <img src={yandex_icon} alt="yandex_icon" />
               <img src={x_icon} alt="x_icon" />
