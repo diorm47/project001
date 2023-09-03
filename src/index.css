@@ -36,3 +36,9 @@ span {
   width: 1200px;
   margin: 0 auto;
 }
+.tgme_widget_login.large button.tgme_widget_login_button {
+  font-size: 0px !important;
+  line-height: 0px !important;
+  width: 44px !important;
+  height: 43px !important;
+}
