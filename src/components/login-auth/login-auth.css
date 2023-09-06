@@ -282,18 +282,10 @@
   line-height: 14px; /* 107.692% */
 }
 
-.tgme_widget_login.medium button.tgme_widget_login_button {
+.tgme_widget_login.large button.tgme_widget_login_button {
   font-size: 0px !important;
   line-height: 0px !important;
+  padding: 0 !important;
   width: 44px !important;
-  height: 43px !important;
-}
-.auth_socials div:nth-child(3) {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.auth_socials body {
-  font-size: 0px !important;
+  height: 44px !important;
 }

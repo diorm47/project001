@@ -6,8 +6,7 @@ import { ReactComponent as PromocodeIcon } from "../../assets/icons/auth-icons/p
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import "./login-auth.css";
 
-// import TelegramLoginButton from "telegram-login-button";
-import { TLoginButton, TLoginButtonSize } from 'react-telegram-auth';
+import { TLoginButton, TLoginButtonSize } from "react-telegram-auth";
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 import x_icon from "../../assets/icons/auth-icons/x-icon.png";
@@ -79,10 +78,10 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
               <img src={vk_icon} alt="vk_icon" />
               <TLoginButton
                 botName="GGLegadropbot"
-                buttonSize={TLoginButtonSize.Medium}
+                buttonSize={TLoginButtonSize.Large}
                 lang="en"
                 usePic={false}
-                cornerRadius={10}
+                cornerRadius={5}
                 onAuthCallback={(user) => {
                   console.log("Hello, user!", user);
                 }}

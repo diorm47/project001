@@ -4,9 +4,7 @@ import React from "react";
 import { ReactComponent as YandexIcon } from "../../assets/icons/auth-icons/yandex-login.svg";
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import "./login-auth.css";
-
-// import TelegramLoginButton from "telegram-login-button";
-import { TLoginButton, TLoginButtonSize } from 'react-telegram-auth';
+import { TLoginButton, TLoginButtonSize } from "react-telegram-auth";
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 
@@ -41,17 +39,12 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
               </GoogleOAuthProvider>
               <img src={vk_icon} alt="vk_icon" />
 
-              {/* <TelegramLoginButton
-                botName="GGLegadropbot"
-                cornerRadius="4px"
-                dataOnauth={(user) => console.log(user)}
-              /> */}
               <TLoginButton
                 botName="GGLegadropbot"
                 buttonSize={TLoginButtonSize.Large}
                 lang="en"
                 usePic={false}
-                cornerRadius={20}
+                cornerRadius={5}
                 onAuthCallback={(user) => {
                   console.log("Hello, user!", user);
                 }}
