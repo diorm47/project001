@@ -1,21 +1,39 @@
-import React, { Suspense, useState } from "react";
-import TopNavbar from "./components/top-navbar/top-navbar";
-import LiveLength from "./components/live-length/live-length";
-import MainNavbar from "./components/main-navbar/main-navbar";
-import LoginAuth from "./components/login-auth/login-auth";
+import React, { Suspense, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import MainPage from "./pages/main-page/main-page";
 import Footer from "./components/footer/footer";
+import LiveLength from "./components/live-length/live-length";
+import LoginAuth from "./components/login-auth/login-auth";
+import MainNavbar from "./components/main-navbar/main-navbar";
+import TopNavbar from "./components/top-navbar/top-navbar";
+import { mainApi } from "./components/utils/main-api";
+import MainPage from "./pages/main-page/main-page";
 import ProfilePage from "./pages/profile-page/profile-page";
 import Topup from "./pages/topup/topup";
+import { loginUserAction } from "./redux/user-reducer";
 
 function App() {
   const [loginModal, setLoginModal] = useState(false);
+  const usersData = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+
   const closeModals = () => {
     setLoginModal(false);
   };
 
-  
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      mainApi
+        .reEnter()
+        .then((res) => {
+          console.log(res);
+          dispatch(loginUserAction(res));
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
+    }
+  }, [localStorage.getItem("token")]);
   return (
     <>
       {loginModal ? (

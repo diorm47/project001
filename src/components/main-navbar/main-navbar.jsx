@@ -7,8 +7,11 @@ import { ReactComponent as CasesIcon } from "../../assets/icons/main-nav-icons/c
 import { ReactComponent as UpgradeIcon } from "../../assets/icons/main-nav-icons/upgrade.svg";
 import { ReactComponent as StoreIcon } from "../../assets/icons/main-nav-icons/store.svg";
 import { ReactComponent as GivingIcon } from "../../assets/icons/main-nav-icons/giving.svg";
+import profile_avatar from "../../assets/images/profile-avatar.png";
+import { useSelector } from "react-redux";
 
 function MainNavbar({ setLoginModal }) {
+  const userData = useSelector((state) => state.user.user);
   return (
     <nav>
       <div className="main_nav_bar">
@@ -44,9 +47,29 @@ function MainNavbar({ setLoginModal }) {
           </NavLink>
         </div>
         <div className="nav_profile">
-          <button className="nav_auth_btns not_logined_btn" onClick={() => setLoginModal(true)}>
-            Войти
-          </button>
+          {userData && userData.is_logged ? (
+            <div className="logged_user_profile">
+              <div className="nav_topup">
+                <p>0 ₽</p>
+                <NavLink to="/topup">
+                  <button>ПОПОЛНИТЬ</button>
+                </NavLink>
+              </div>
+
+              <div className="nav_logged_user" title="Профиль">
+                <NavLink to="/profile">
+                  <img src={profile_avatar} alt="" />
+                </NavLink>
+              </div>
+            </div>
+          ) : (
+            <button
+              className="nav_auth_btns not_logined_btn"
+              onClick={() => setLoginModal(true)}
+            >
+              Войти
+            </button>
+          )}
         </div>
       </div>
     </nav>

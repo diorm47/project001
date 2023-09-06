@@ -6,17 +6,59 @@ import { ReactComponent as PromocodeIcon } from "../../assets/icons/auth-icons/p
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import "./login-auth.css";
 
-import { TLoginButton, TLoginButtonSize } from "react-telegram-auth";
+import TelegramLoginButton from "react-telegram-login";
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 import x_icon from "../../assets/icons/auth-icons/x-icon.png";
 import yandex_icon from "../../assets/icons/auth-icons/yandex-icon.png";
+import { mainApi } from "../utils/main-api";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUserAction } from "../../redux/user-reducer";
 
 function AuthorizationModal({ setLoginModal, setAuthModalType }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [authTypeToggle, setAuthType] = useState("email");
   const [activePromocode, setActivePromocode] = useState(false);
   const [checkedPolicy, setCheckedPolicy] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userPassword, setPassword] = useState("");
+  const handleTelegramResponse = (response) => {
+    console.log(response);
+  };
 
+  const user = {
+    username: userName,
+    password: userPassword,
+  };
+  const loginUser = () => {
+    if (userPassword && userName) {
+      mainApi
+        .signup(user)
+        .then((userData) => {
+          localStorage.setItem("token", userData.access_token);
+          const user = {
+            is_logged: true,
+          };
+          dispatch(loginUserAction(user));
+          mainApi
+            .reEnter()
+            .then((res) => {
+              dispatch(loginUserAction(res));
+              setLoginModal(false);
+              navigate("/profile");
+            })
+            .catch(() => {
+              console.log("error");
+            });
+        })
+        .catch((error) => {
+          console.log("error: ", error);
+        });
+    }
+  };
   return (
     <div className="modal_template authorization_modal">
       <div className="modal_header">
@@ -51,11 +93,15 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                 type="text"
                 className="aouth_login_input"
                 placeholder="Email / Логин"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
               />
               <input
                 type="text"
                 className="aouth_login_input"
                 placeholder="Пароль"
+                value={userPassword}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           ) : (
@@ -76,18 +122,14 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                 />
               </GoogleOAuthProvider>
               <img src={vk_icon} alt="vk_icon" />
-              <TLoginButton
-                botName="GGLegadropbot"
-                buttonSize={TLoginButtonSize.Large}
-                lang="en"
-                usePic={false}
-                cornerRadius={5}
-                onAuthCallback={(user) => {
-                  console.log("Hello, user!", user);
-                }}
-                requestAccess={"write"}
-                additionalClasses={"css-class-for-wrapper"}
-              />
+              <div className="tg_login_button">
+                <TelegramLoginButton
+                  dataOnauth={handleTelegramResponse}
+                  id="tg_login_button"
+                  botName="GGLegadropbot"
+                />
+              </div>
+
               <img src={mail_icon} alt="mail_icon" />
               <img src={yandex_icon} alt="yandex_icon" />
               <img src={x_icon} alt="x_icon" />
@@ -125,7 +167,9 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
             <a href="#">Условиями Соглашения об использовании сайта</a>
           </p>
         </div>
-        <button className="submit_btn">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+        <button className="submit_btn" onClick={loginUser}>
+          ЗАРЕГИСТРИРОВАТЬСЯ
+        </button>
         <div className="auth_types">
           <p>
             Уже есть аккаунт?{" "}

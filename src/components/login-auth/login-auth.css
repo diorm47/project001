@@ -281,10 +281,6 @@
   font-weight: 400;
   line-height: 14px; /* 107.692% */
 }
-.tg_log_button {
-  font-size: 0px !important;
-  line-height: 0px !important;
-  padding: 0 !important;
-  width: 44px !important;
-  height: 44px !important;
+.tg_login_button div #telegram-login-GGLegadropbot {
+  font-size: 0 !important;
 }

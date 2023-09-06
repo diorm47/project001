@@ -25,6 +25,7 @@
 }
 .user_descriptions {
   display: flex;
+  align-items: start;
 }
 .user_moneys {
   display: flex;
@@ -42,6 +43,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 22px; /* 122.222% */
+  margin-bottom: 6px;
 }
 
 .user_moneys p {

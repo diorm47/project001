@@ -38,6 +38,10 @@
   background: #1f2542fa;
   transition: all 0.4s ease;
 }
+.active_topup_filter {
+  background: #1f2542fa;
+  transition: all 0.4s ease;
+}
 .topup_content {
   display: flex;
   align-items: start;
@@ -85,12 +89,14 @@
 .topuping_content {
   width: 40%;
   margin-left: 20px;
+  margin-bottom: 120px;
 }
 
 .bonus_promocode_topup {
   padding: 24px 22px;
   border-radius: 15px;
   background: #252d55;
+  position: relative;
 }
 
 .topup_bonus {
@@ -100,4 +106,90 @@
   padding: 12px 16px;
   align-items: center;
   justify-content: center;
+}
+
+.topup_bonus_png {
+  position: absolute;
+  right: 0;
+}
+.topup_block {
+  margin-top: 24px;
+  padding: 22px;
+  border-radius: 15px;
+  background: #12152e;
+}
+
+.topup_block_title p {
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px; /* 128.571% */
+  margin-bottom: 20px;
+}
+
+.topup_amount {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #202446;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.topup_amount input {
+  margin-left: 12px;
+
+  width: 100%;
+  height: 30px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: "Rubik", sans-serif;
+  color: #7f8bad;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+.price_with_bonuses p {
+  color: #7f8bad;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 114.286% */
+}
+.price_with_bonuses span {
+  color: #fbae21;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 114.286% */
+}
+
+.topup_btn {
+  width: 100%;
+  margin-top: 32px;
+  border-radius: 8px;
+  background: #f7a34d;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #191d3e;
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 125% */
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.topup_btn svg {
+  margin-left: 10px;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./profile-page.css";
 import user_avatar from "../../assets/images/profile-avatar.png";
 import money from "../../assets/icons/user-money.png";
@@ -10,33 +10,51 @@ import { ReactComponent as HistoryIcon } from "../../assets/icons/profile-icons/
 import { ReactComponent as UpgradeIcon } from "../../assets/icons/profile-icons/upgrade.svg";
 import { ReactComponent as PartnersIcon } from "../../assets/icons/profile-icons/partners-icon.svg";
 import { ReactComponent as SettingsIcon } from "../../assets/icons/profile-icons/settings-icon.svg";
-import { NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Items from "./profile-menu-pages/items/items";
 import History from "./profile-menu-pages/history/history";
 import Upgrade from "./profile-menu-pages/upgrades/upgrades";
 import AffiliateProgram from "./profile-menu-pages/affiliate-program/affiliate-program";
 import Settings from "./profile-menu-pages/settings/settings";
+import { useSelector } from "react-redux";
 
 function ProfilePage() {
+  const [userData, setUserData] = useState({});
+  const usersData = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    setUserData(usersData);
+  }, [usersData]);
+  useEffect(() => {
+    if (!usersData.is_logged) {
+      navigate("/");
+    }
+  }, [navigate, usersData]);
   return (
     <div className="page_template profile_page">
       <div className="profile_menu">
         <div className="user_profile">
           <div className="user_descriptions">
             <div className="user_avatar">
-              <img src={user_avatar} alt="user avatar" />
+              <NavLink to="/profile">
+                <img src={user_avatar} alt="user avatar" />
+              </NavLink>
             </div>
             <div className="user_descr">
-              <p className="user_name">Alina Fontaine</p>
+              <p className="user_name">
+                {userData && userData.username ? userData.username : ""}
+              </p>
               <div className="user_moneys">
                 <img src={money} alt="" />
-                <p>1 200 ₽</p>
+                <p>0 ₽</p>
               </div>
             </div>
           </div>
-          <div className="replenish_wallet">
-            <Wallet />
-          </div>
+          <NavLink to="/topup">
+            <div className="replenish_wallet" title="Пополнение баланса">
+              <Wallet />
+            </div>
+          </NavLink>
         </div>
         <div className="user_id">
           <div className="user_id_input">
@@ -45,10 +63,10 @@ function ProfilePage() {
             <span>741936326</span>
           </div>
           <div className="user_id_actions">
-            <div>
+            <div title="Изменить UID">
               <EditIcon />
             </div>
-            <div>
+            <div title="Скопировать UID">
               <CopyIcon />
             </div>
           </div>

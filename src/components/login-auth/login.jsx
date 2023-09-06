@@ -1,14 +1,55 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as YandexIcon } from "../../assets/icons/auth-icons/yandex-login.svg";
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import "./login-auth.css";
-import { TLoginButton, TLoginButtonSize } from "react-telegram-auth";
+import TelegramLoginButton from "react-telegram-login";
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
+import { useDispatch, useSelector } from "react-redux";
+import { mainApi } from "../utils/main-api";
+import { loginUserAction } from "../../redux/user-reducer";
+import { useNavigate } from "react-router-dom";
 
 function LoginModal({ setLoginModal, setAuthModalType }) {
+  const [userName, setUserName] = useState("");
+  const [userPassword, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = {
+    username: userName,
+    password: userPassword,
+  };
+  const handleTelegramResponse = (response) => {
+    console.log(response);
+  };
+  const loginUser = () => {
+    if (userName && userPassword) {
+      mainApi
+        .signin(user)
+        .then((userData) => {
+          localStorage.setItem("token", userData.access_token);
+          const user = {
+            is_logged: true,
+          };
+          dispatch(loginUserAction(user));
+          mainApi
+            .reEnter()
+            .then((res) => {
+              setLoginModal(false);
+              navigate("/profile");
+              dispatch(loginUserAction(res));
+            })
+            .catch(() => {
+              console.log("error");
+            });
+        })
+        .catch((error) => {
+          console.log("error: ", error);
+        });
+    }
+  };
   return (
     <div className="modal_wrapper_template">
       <div className="modal_template login_modal">
@@ -39,17 +80,9 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
               </GoogleOAuthProvider>
               <img src={vk_icon} alt="vk_icon" />
 
-              <TLoginButton
+              <TelegramLoginButton
+                dataOnauth={handleTelegramResponse}
                 botName="GGLegadropbot"
-                buttonSize={TLoginButtonSize.Large}
-                lang="en"
-                usePic={false}
-                cornerRadius={5}
-                onAuthCallback={(user) => {
-                  console.log("Hello, user!", user);
-                }}
-                requestAccess={"write"}
-                additionalClasses={"tg_log_button"}
               />
               <img src={mail_icon} alt="mail_icon" />
               <YandexIcon />
@@ -64,11 +97,15 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
                 type="text"
                 className="aouth_login_input"
                 placeholder="Email / Логин"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
               />
               <input
                 type="text"
                 className="aouth_login_input"
                 placeholder="Пароль"
+                value={userPassword}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>
@@ -76,7 +113,9 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
             <p>Забыли пароль?</p>
           </div>
 
-          <button className="submit_btn">ВОЙТИ</button>
+          <button className="submit_btn" onClick={loginUser}>
+            ВОЙТИ
+          </button>
           <div className="auth_types">
             <p>
               Еще нет аккаунта?{" "}

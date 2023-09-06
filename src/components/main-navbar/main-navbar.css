@@ -64,3 +64,54 @@ nav {
   line-height: 20px; /* 125% */
   text-transform: uppercase;
 }
+
+.logged_user_profile {
+  display: flex;
+  align-items: center;
+}
+.nav_topup {
+  display: flex;
+  padding: 6px 6px 6px 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  margin-right: 8px;
+  background: linear-gradient(91deg, #223251 -0.17%, #275560 131.37%);
+}
+
+.nav_topup button {
+  border-radius: 6px;
+  background: #69dd89;
+  width: 86px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  margin-left: 10px;
+  color: #223251;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 14px; /* 127.273% */
+}
+
+.nav_topup p {
+  color: var(--Positive, #69dd89);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+}
+.nav_logged_user {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  border: 2px solid #233452;
+  cursor: pointer;
+}
+
+.nav_logged_user img {
+  width: 100%;
+  object-fit: cover;
+}
