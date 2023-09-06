@@ -6,7 +6,8 @@ import { ReactComponent as PromocodeIcon } from "../../assets/icons/auth-icons/p
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import "./login-auth.css";
 
-import TelegramLoginButton from "telegram-login-button";
+// import TelegramLoginButton from "telegram-login-button";
+import { TLoginButton, TLoginButtonSize } from 'react-telegram-auth';
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 import x_icon from "../../assets/icons/auth-icons/x-icon.png";
@@ -76,11 +77,17 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                 />
               </GoogleOAuthProvider>
               <img src={vk_icon} alt="vk_icon" />
-              <TelegramLoginButton
+              <TLoginButton
                 botName="GGLegadropbot"
-      
-                cornerRadius='4px'
-                dataOnauth={(user) => console.log(user)}
+                buttonSize={TLoginButtonSize.Medium}
+                lang="en"
+                usePic={false}
+                cornerRadius={10}
+                onAuthCallback={(user) => {
+                  console.log("Hello, user!", user);
+                }}
+                requestAccess={"write"}
+                additionalClasses={"css-class-for-wrapper"}
               />
               <img src={mail_icon} alt="mail_icon" />
               <img src={yandex_icon} alt="yandex_icon" />

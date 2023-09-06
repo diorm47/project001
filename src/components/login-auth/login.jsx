@@ -1,20 +1,16 @@
-import {
-  GoogleLogin,
-  GoogleOAuthProvider
-} from "@react-oauth/google";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import React from "react";
-import { ReactComponent as TgIcon } from "../../assets/icons/auth-icons/tg-login.svg";
 import { ReactComponent as YandexIcon } from "../../assets/icons/auth-icons/yandex-login.svg";
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import "./login-auth.css";
 
+// import TelegramLoginButton from "telegram-login-button";
+import { TLoginButton, TLoginButtonSize } from 'react-telegram-auth';
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 
 function LoginModal({ setLoginModal, setAuthModalType }) {
-
-
   return (
     <div className="modal_wrapper_template">
       <div className="modal_template login_modal">
@@ -36,8 +32,8 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
                   }}
                   type="icon"
                   shape="square"
-                  width='100'
-                  size='large'
+                  width="100"
+                  size="large"
                   onError={() => {
                     console.log("Login Failed");
                   }}
@@ -45,8 +41,23 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
               </GoogleOAuthProvider>
               <img src={vk_icon} alt="vk_icon" />
 
-              <TgIcon />
-
+              {/* <TelegramLoginButton
+                botName="GGLegadropbot"
+                cornerRadius="4px"
+                dataOnauth={(user) => console.log(user)}
+              /> */}
+              <TLoginButton
+                botName="GGLegadropbot"
+                buttonSize={TLoginButtonSize.Large}
+                lang="en"
+                usePic={false}
+                cornerRadius={20}
+                onAuthCallback={(user) => {
+                  console.log("Hello, user!", user);
+                }}
+                requestAccess={"write"}
+                additionalClasses={"css-class-for-wrapper"}
+              />
               <img src={mail_icon} alt="mail_icon" />
               <YandexIcon />
             </div>

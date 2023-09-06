@@ -293,3 +293,7 @@
   align-items: center !important;
   justify-content: center !important;
 }
+
+.auth_socials body {
+  font-size: 0px !important;
+}

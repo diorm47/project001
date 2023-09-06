@@ -14,6 +14,8 @@ function App() {
   const closeModals = () => {
     setLoginModal(false);
   };
+
+  
   return (
     <>
       {loginModal ? (
