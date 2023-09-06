@@ -281,8 +281,7 @@
   font-weight: 400;
   line-height: 14px; /* 107.692% */
 }
-
-.tgme_widget_login.large button.tgme_widget_login_button {
+.tg_log_button {
   font-size: 0px !important;
   line-height: 0px !important;
   padding: 0 !important;

@@ -49,7 +49,7 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
                   console.log("Hello, user!", user);
                 }}
                 requestAccess={"write"}
-                additionalClasses={"css-class-for-wrapper"}
+                additionalClasses={"tg_log_button"}
               />
               <img src={mail_icon} alt="mail_icon" />
               <YandexIcon />
