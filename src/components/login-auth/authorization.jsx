@@ -161,8 +161,40 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
         });
     }
   }, [dispatch, navigate, setLoginModal, vkData]);
+  useEffect(() => {
+    if (TGData && TGData.id) {
+      setVkOpen(false);
+      const user = {
+        auth_type: "telegram",
+        username: TGData.username,
+        telegram_id: TGData.id,
+        image: TGData.photo_url,
+      };
 
-  console.log(TGData);
+      mainApi
+        .signup(user)
+        .then((userData) => {
+          localStorage.setItem("token", userData.access_token);
+          const user = {
+            is_logged: true,
+          };
+          dispatch(loginUserAction(user));
+          mainApi
+            .reEnter()
+            .then((res) => {
+              setLoginModal(false);
+              navigate("/profile");
+              dispatch(loginUserAction(res));
+            })
+            .catch(() => {
+              console.log("error");
+            });
+        })
+        .catch((error) => {
+          console.log("error: ", error);
+        });
+    }
+  }, [dispatch, navigate, setLoginModal, TGData]);
 
   return (
     <div className="modal_template authorization_modal">
