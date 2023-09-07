@@ -295,6 +295,10 @@
   align-items: center;
   justify-content: center;
 }
+.tlogin-button #telegram-login-GGLegadropbot {
+  width: 45px !important;
+  font-size:  0 !important;
+}
 .tlogin-button #telegram-login-GGLegadropbot body{
   font-size:  0 !important;
 }

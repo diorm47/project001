@@ -16,7 +16,7 @@ function TelegramAuthButton({
   lang = "en",
   additionalClasses = "",
 }) {
-  const containerRef = useRef(null);
+  // const containerRef = useRef(null);
 
   useEffect(() => {
     if (onAuthCallback != null) {
@@ -43,13 +43,13 @@ function TelegramAuthButton({
       script.setAttribute("data-request-access", requestAccess);
     }
 
-    containerRef.current.appendChild(script);
+    // containerRef.current.appendChild(script);
 
-    return () => {
-      if (containerRef.current) {
-        containerRef.current.removeChild(script);
-      }
-    };
+    // return () => {
+    //   if (containerRef.current) {
+    //     containerRef.current.removeChild(script);
+    //   }
+    // };
   }, [
     botName,
     buttonSize,
@@ -62,7 +62,7 @@ function TelegramAuthButton({
   ]);
 
   return (
-    <div className={`tlogin-button`} ref={containerRef} />
+    <div className={`tlogin-button`} onclick="return TWidgetLogin.auth();" />
   );
 }
 
