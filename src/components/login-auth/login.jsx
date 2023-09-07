@@ -162,7 +162,7 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
       };
 
       mainApi
-        .signup(user)
+        .signin(user)
         .then((userData) => {
           localStorage.setItem("token", userData.access_token);
           const user = {
