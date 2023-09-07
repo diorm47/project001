@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import "../login-auth/login-auth.css"
+
 export const TLoginButtonSize = {
   Large: "large",
   Medium: "medium",
   Small: "small",
 };
+
 
 function TelegramAuthButton({
   botName,
@@ -17,7 +19,7 @@ function TelegramAuthButton({
   lang = "en",
   additionalClasses = "",
 }) {
-  // const containerRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     if (onAuthCallback != null) {
@@ -44,13 +46,13 @@ function TelegramAuthButton({
       script.setAttribute("data-request-access", requestAccess);
     }
 
-    // containerRef.current.appendChild(script);
+    containerRef.current.appendChild(script);
 
-    // return () => {
-    //   if (containerRef.current) {
-    //     containerRef.current.removeChild(script);
-    //   }
-    // };
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.removeChild(script);
+      }
+    };
   }, [
     botName,
     buttonSize,
@@ -63,7 +65,7 @@ function TelegramAuthButton({
   ]);
 
   return (
-    <div className={`tlogin-button`} onclick="return TWidgetLogin.auth();" />
+    <div className={`tlogin-button`}  ref={containerRef} />
   );
 }
 
