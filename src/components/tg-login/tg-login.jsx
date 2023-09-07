@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import "../login-auth/login-auth.css"
 export const TLoginButtonSize = {
   Large: "large",
   Medium: "medium",

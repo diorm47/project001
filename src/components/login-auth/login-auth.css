@@ -297,8 +297,21 @@
 }
 .tlogin-button #telegram-login-GGLegadropbot {
   width: 45px !important;
-  font-size:  0 !important;
+  font-size: 0 !important;
 }
-.tlogin-button #telegram-login-GGLegadropbot body{
-  font-size:  0 !important;
+.tlogin-button #telegram-login-GGLegadropbot body {
+  font-size: 0 !important;
+}
+#telegram-login-GGLegadropbot {
+  width: 44px !important;
+  height: 43px !important;
+  background: #54a9eb !important;
+  border-radius: 5px !important;
+  padding-top: 5px !important;
+  padding-left: 1px !important;
+}
+.tgme_widget_login.large button.tgme_widget_login_button {
+  font-size: 0px !important;
+  line-height: 20px !important;
+  border-radius: 0px !important;
 }
