@@ -1,20 +1,24 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import React, { useState } from "react";
-import { ReactComponent as YandexIcon } from "../../assets/icons/auth-icons/yandex-login.svg";
-import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
-import "./login-auth.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import TelegramLoginButton from "react-telegram-login";
+import TGLogin from "../tg-login/tg-login";
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
-import { useDispatch, useSelector } from "react-redux";
-import { mainApi } from "../utils/main-api";
+import { ReactComponent as YandexIcon } from "../../assets/icons/auth-icons/yandex-login.svg";
+import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import { loginUserAction } from "../../redux/user-reducer";
-import { useNavigate } from "react-router-dom";
+import { mainApi } from "../utils/main-api";
+import VKFloatingLoginComponent from "../vk-login/vk-login";
+import "./login-auth.css";
 
 function LoginModal({ setLoginModal, setAuthModalType }) {
   const [userName, setUserName] = useState("");
   const [userPassword, setPassword] = useState("");
+  const [vkData, setVkData] = useState({});
+  const [vkOpen, setVkOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = {
@@ -50,12 +54,38 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
         });
     }
   };
+
+  const authGoogle = (sub) => {
+    mainApi
+      .loginGoogle(sub)
+      .then((res) => {
+        localStorage.setItem("token", res.access_token);
+        const user = {
+          is_logged: true,
+        };
+        dispatch(loginUserAction(user));
+        mainApi
+          .reEnter()
+          .then((res) => {
+            dispatch(loginUserAction(res));
+            setLoginModal(false);
+            navigate("/profile");
+          })
+          .catch((error) => {
+            console.log("error0", error);
+          });
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
+
   return (
     <div className="modal_wrapper_template">
       <div className="modal_template login_modal">
         <div className="modal_header">
           <p className="modal_title">Вход</p>
-          <button className="modal_closer" onClick={() => setLoginModal(false)}>
+          <button className="modal_closer">
             <ExitIcon />
           </button>
         </div>
@@ -67,7 +97,7 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
                 <GoogleLogin
                   onSuccess={(credentialResponse) => {
                     var decoded = jwt_decode(credentialResponse.credential);
-                    console.log(decoded);
+                    authGoogle(decoded.sub);
                   }}
                   type="icon"
                   shape="square"
@@ -78,15 +108,22 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
                   }}
                 />
               </GoogleOAuthProvider>
-              <img src={vk_icon} alt="vk_icon" />
+              <img
+                src={vk_icon}
+                alt="vk_icon"
+                onClick={() => setVkOpen(true)}
+              />
 
-              <TelegramLoginButton
+              {/* <TelegramLoginButton
                 dataOnauth={handleTelegramResponse}
                 botName="GGLegadropbot"
-              />
+              /> */}
+              <TGLogin />
               <img src={mail_icon} alt="mail_icon" />
               <YandexIcon />
             </div>
+            {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}
+
             <div className="login_selection">
               <div className="or_line"></div>
               <p>ИЛИ</p>

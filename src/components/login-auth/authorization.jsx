@@ -5,6 +5,7 @@ import { ReactComponent as PolicyIcon } from "../../assets/icons/auth-icons/poli
 import { ReactComponent as PromocodeIcon } from "../../assets/icons/auth-icons/promocode-icon.svg";
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import "./login-auth.css";
+import VKFloatingLoginComponent from "../vk-login/vk-login";
 
 import TelegramLoginButton from "react-telegram-login";
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
@@ -19,12 +20,14 @@ import { loginUserAction } from "../../redux/user-reducer";
 function AuthorizationModal({ setLoginModal, setAuthModalType }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [vkData, setVkData] = useState({});
+  const [vkOpen, setVkOpen] = useState(false);
   const [authTypeToggle, setAuthType] = useState("email");
   const [activePromocode, setActivePromocode] = useState(false);
   const [checkedPolicy, setCheckedPolicy] = useState(false);
   const [userName, setUserName] = useState("");
   const [userPassword, setPassword] = useState("");
+
   const handleTelegramResponse = (response) => {
     console.log(response);
   };
@@ -58,6 +61,31 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
           console.log("error: ", error);
         });
     }
+  };
+
+  const authGoogle = (sub) => {
+    mainApi
+      .loginGoogle(sub)
+      .then((res) => {
+        localStorage.setItem("token", res.access_token);
+        const user = {
+          is_logged: true,
+        };
+        dispatch(loginUserAction(user));
+        mainApi
+          .reEnter()
+          .then((res) => {
+            dispatch(loginUserAction(res));
+            setLoginModal(false);
+            navigate("/profile");
+          })
+          .catch((error) => {
+            console.log("error0", error);
+          });
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
   return (
     <div className="modal_template authorization_modal">
@@ -110,7 +138,7 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                 <GoogleLogin
                   onSuccess={(credentialResponse) => {
                     var decoded = jwt_decode(credentialResponse.credential);
-                    console.log(decoded);
+                    authGoogle(decoded.sub);
                   }}
                   type="icon"
                   shape="square"
@@ -121,7 +149,11 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                   }}
                 />
               </GoogleOAuthProvider>
-              <img src={vk_icon} alt="vk_icon" />
+              <img
+                src={vk_icon}
+                alt="vk_icon"
+                onClick={() => setVkOpen(true)}
+              />
               <div className="tg_login_button">
                 <TelegramLoginButton
                   dataOnauth={handleTelegramResponse}
@@ -136,7 +168,7 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
             </div>
           )}
         </div>
-
+        {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}
         <div className="promocode_block">
           {!activePromocode ? (
             <div onClick={() => setActivePromocode(true)}>

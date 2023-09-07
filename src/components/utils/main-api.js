@@ -54,6 +54,13 @@ class MainApi {
       body: userData,
     });
   }
+  async loginGoogle(userData) {
+    return this._sendRequest({
+      endpoint: "/register/google",
+      method: "POST",
+      body: userData,
+    });
+  }
 
   async reEnter() {
     return this._sendRequest({

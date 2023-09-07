@@ -42,7 +42,7 @@ function ProfilePage() {
             </div>
             <div className="user_descr">
               <p className="user_name">
-                {userData && userData.username ? userData.username : ""}
+                {userData && userData.username ? userData.username : "user"}
               </p>
               <div className="user_moneys">
                 <img src={money} alt="" />

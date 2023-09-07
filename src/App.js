@@ -14,7 +14,6 @@ import { loginUserAction } from "./redux/user-reducer";
 
 function App() {
   const [loginModal, setLoginModal] = useState(false);
-  const usersData = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
   const closeModals = () => {
@@ -26,7 +25,6 @@ function App() {
       mainApi
         .reEnter()
         .then((res) => {
-          console.log(res);
           dispatch(loginUserAction(res));
         })
         .catch((error) => {

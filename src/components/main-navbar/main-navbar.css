@@ -109,6 +109,7 @@ nav {
   border-radius: 8px;
   border: 2px solid #233452;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .nav_logged_user img {
