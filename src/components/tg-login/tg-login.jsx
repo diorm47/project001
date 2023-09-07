@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import "../login-auth/login-auth.css"
+import "../login-auth/login-auth.css";
 
 export const TLoginButtonSize = {
   Large: "large",
   Medium: "medium",
   Small: "small",
 };
-
 
 function TelegramAuthButton({
   botName,
@@ -28,7 +27,6 @@ function TelegramAuthButton({
 
     const script = document.createElement("script");
     script.src = "https://telegram.org/js/telegram-widget.js?21";
-
 
     script.async = true;
     script.setAttribute("data-telegram-login", botName);
@@ -64,12 +62,10 @@ function TelegramAuthButton({
     lang,
   ]);
 
-  return (
-    <div className={`tlogin-button`}  ref={containerRef} />
-  );
+  return <div className={`tlogin-button`} ref={containerRef} />;
 }
 
-function TGLogin() {
+function TGLogin({ setTgData }) {
   return (
     <TelegramAuthButton
       botName="GGLegadropbot"
@@ -78,7 +74,7 @@ function TGLogin() {
       usePic={false}
       cornerRadius={20}
       onAuthCallback={(user) => {
-        console.log("Hello, user!", user);
+        setTgData(user);
       }}
       requestAccess={"write"}
       additionalClasses={"css-class-for-wrapper"}

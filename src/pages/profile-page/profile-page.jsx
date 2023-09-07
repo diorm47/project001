@@ -37,7 +37,12 @@ function ProfilePage() {
           <div className="user_descriptions">
             <div className="user_avatar">
               <NavLink to="/profile">
-                <img src={user_avatar} alt="user avatar" />
+                <img
+                  src={
+                    userData && userData.image ? userData.image : user_avatar
+                  }
+                  alt="user avatar"
+                />
               </NavLink>
             </div>
             <div className="user_descr">
@@ -46,7 +51,7 @@ function ProfilePage() {
               </p>
               <div className="user_moneys">
                 <img src={money} alt="" />
-                <p>0 ₽</p>
+                <p>{userData & userData.balance ? userData.balance : 0} ₽</p>
               </div>
             </div>
           </div>

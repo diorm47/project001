@@ -1,9 +1,16 @@
 import React from "react";
 import "./card.css";
+import { useNavigate } from "react-router-dom";
 
 function Card({ data }) {
+  const navigate = useNavigate();
+
+  const aboutItem = (item) => {
+    navigate(`/case/${item.item_name}`);
+  };
+
   return (
-    <div className="card_wrapper">
+    <div className="card_wrapper" onClick={() => aboutItem(data)}>
       <div className="card_image">
         <img src={data.image} alt="" />
       </div>

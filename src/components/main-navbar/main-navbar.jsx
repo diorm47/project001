@@ -50,7 +50,7 @@ function MainNavbar({ setLoginModal }) {
           {userData && userData.is_logged ? (
             <div className="logged_user_profile">
               <div className="nav_topup">
-                <p>0 ₽</p>
+                <p>{userData & userData.balance ? userData.balance : 0} ₽</p>
                 <NavLink to="/topup">
                   <button>ПОПОЛНИТЬ</button>
                 </NavLink>
@@ -58,7 +58,14 @@ function MainNavbar({ setLoginModal }) {
 
               <div className="nav_logged_user" title="Профиль">
                 <NavLink to="/profile">
-                  <img src={profile_avatar} alt="" />
+                  <img
+                    src={
+                      userData && userData.image
+                        ? userData.image
+                        : profile_avatar
+                    }
+                    alt=""
+                  />
                 </NavLink>
               </div>
             </div>

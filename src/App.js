@@ -11,6 +11,7 @@ import MainPage from "./pages/main-page/main-page";
 import ProfilePage from "./pages/profile-page/profile-page";
 import Topup from "./pages/topup/topup";
 import { loginUserAction } from "./redux/user-reducer";
+import CasePage from "./pages/case-page/case-page";
 
 function App() {
   const [loginModal, setLoginModal] = useState(false);
@@ -51,6 +52,10 @@ function App() {
             <Route path="/home" element={<MainPage />} />
             <Route path="/topup" element={<Topup />} />
             <Route path="/profile/*" element={<ProfilePage />} />
+            <Route
+              path="/case/:name"
+              element={<CasePage setLoginModal={setLoginModal} />}
+            />
 
             {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>

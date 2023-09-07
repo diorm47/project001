@@ -295,10 +295,7 @@
   align-items: center;
   justify-content: center;
 }
-.tlogin-button #telegram-login-GGLegadropbot {
-  width: 45px !important;
-  font-size: 0 !important;
-}
+
 .tlogin-button #telegram-login-GGLegadropbot body {
   font-size: 0 !important;
 }
@@ -318,4 +315,11 @@
 
 button.tgme_widget_login_button {
   padding-left: 18px !important;
+}
+.tgme_widget_login.large
+  button.tgme_widget_login_button
+  .tgme_widget_login_button_icon {
+  width: 24px;
+  height: 24px;
+  margin: 0 136px -2px -10px !important;
 }

@@ -31,6 +31,7 @@
   width: 46px;
   height: 46px;
   overflow: hidden;
+  border-radius: 10px;
 }
 .user_avatar img {
   width: 100%;

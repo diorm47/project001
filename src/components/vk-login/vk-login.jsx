@@ -24,7 +24,7 @@ function VKFloatingLoginComponent({ setVkData }) {
 
         switch (type) {
           case ConnectEvents.OneTapAuthEventsSDK.LOGIN_SUCCESS:
-            return setVkData(event);
+            return setVkData(event.payload.user);
           default:
           // Обработка остальных событий.
         }

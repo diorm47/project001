@@ -41,7 +41,7 @@ class MainApi {
 
   async signup(userData) {
     return this._sendRequest({
-      endpoint: "/register/",
+      endpoint: "/signup",
       method: "POST",
       body: userData,
     });
@@ -49,7 +49,7 @@ class MainApi {
 
   async signin(userData) {
     return this._sendRequest({
-      endpoint: "/token",
+      endpoint: "/signin",
       method: "POST",
       body: userData,
     });
@@ -64,7 +64,7 @@ class MainApi {
 
   async reEnter() {
     return this._sendRequest({
-      endpoint: "/users/me",
+      endpoint: "/user/me",
       requiresToken: true,
     });
   }

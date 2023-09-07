@@ -1,0 +1,27 @@
+.case_item {
+  padding: 2px 15px 0px 17px;
+  border-radius: 8.3px;
+  background: #242c54;
+  max-width: 183px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.case_item p {
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 123.077% */
+}
+.case_item span {
+  color: var(--Positive, #69dd89);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 117.647% */
+  margin-bottom: 10px;
+  margin-top: 5px;
+}

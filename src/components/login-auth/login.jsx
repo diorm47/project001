@@ -1,32 +1,33 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import TelegramLoginButton from "react-telegram-login";
-import TGLogin from "../tg-login/tg-login";
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
-import { ReactComponent as YandexIcon } from "../../assets/icons/auth-icons/yandex-login.svg";
+
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import { loginUserAction } from "../../redux/user-reducer";
+import TGLogin from "../tg-login/tg-login";
 import { mainApi } from "../utils/main-api";
 import VKFloatingLoginComponent from "../vk-login/vk-login";
 import "./login-auth.css";
+import YandexAuthButton from "../yandex-login/yandex-login";
 
 function LoginModal({ setLoginModal, setAuthModalType }) {
   const [userName, setUserName] = useState("");
   const [userPassword, setPassword] = useState("");
+
   const [vkData, setVkData] = useState({});
+  const [yandexData, setYandexData] = useState({});
+  const [TGData, setTgData] = useState({});
+
   const [vkOpen, setVkOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = {
     username: userName,
     password: userPassword,
-  };
-  const handleTelegramResponse = (response) => {
-    console.log(response);
   };
   const loginUser = () => {
     if (userName && userPassword) {
@@ -55,9 +56,14 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
     }
   };
 
-  const authGoogle = (sub) => {
+  const authGoogle = (userData) => {
+    const data = {
+      auth_type: "google",
+      email: userData.email,
+      google_sub: userData.sub,
+    };
     mainApi
-      .loginGoogle(sub)
+      .signin(data)
       .then((res) => {
         localStorage.setItem("token", res.access_token);
         const user = {
@@ -80,12 +86,79 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
       });
   };
 
+  useEffect(() => {
+    if (yandexData && yandexData.id) {
+      const user = {
+        auth_type: "yandex",
+        yandex_id: yandexData.id,
+        email: yandexData.default_email,
+      };
+
+      mainApi
+        .signin(user)
+        .then((userData) => {
+          localStorage.setItem("token", userData.access_token);
+          const user = {
+            is_logged: true,
+          };
+          dispatch(loginUserAction(user));
+          mainApi
+            .reEnter()
+            .then((res) => {
+              setLoginModal(false);
+              navigate("/profile");
+              dispatch(loginUserAction(res));
+            })
+            .catch(() => {
+              console.log("error");
+            });
+        })
+        .catch((error) => {
+          console.log("error: ", error);
+        });
+    }
+  }, [dispatch, navigate, setLoginModal, yandexData]);
+  useEffect(() => {
+    if (vkData && vkData.id) {
+      setVkOpen(false);
+      const user = {
+        auth_type: "vk",
+        username: vkData.first_name,
+        vkontakte_id: vkData.id,
+      };
+
+      mainApi
+        .signin(user)
+        .then((userData) => {
+          localStorage.setItem("token", userData.access_token);
+          const user = {
+            is_logged: true,
+          };
+          dispatch(loginUserAction(user));
+          mainApi
+            .reEnter()
+            .then((res) => {
+              setLoginModal(false);
+              navigate("/profile");
+              dispatch(loginUserAction(res));
+            })
+            .catch(() => {
+              console.log("error");
+            });
+        })
+        .catch((error) => {
+          console.log("error: ", error);
+        });
+    }
+  }, [dispatch, navigate, setLoginModal, vkData]);
+
+  console.log(TGData);
   return (
     <div className="modal_wrapper_template">
       <div className="modal_template login_modal">
         <div className="modal_header">
           <p className="modal_title">Вход</p>
-          <button className="modal_closer">
+          <button className="modal_closer" onClick={() => setLoginModal(false)}>
             <ExitIcon />
           </button>
         </div>
@@ -97,7 +170,7 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
                 <GoogleLogin
                   onSuccess={(credentialResponse) => {
                     var decoded = jwt_decode(credentialResponse.credential);
-                    authGoogle(decoded.sub);
+                    authGoogle(decoded);
                   }}
                   type="icon"
                   shape="square"
@@ -113,14 +186,9 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
                 alt="vk_icon"
                 onClick={() => setVkOpen(true)}
               />
-
-              {/* <TelegramLoginButton
-                dataOnauth={handleTelegramResponse}
-                botName="GGLegadropbot"
-              /> */}
-              <TGLogin />
+              <TGLogin setTgData={setTgData} />
               <img src={mail_icon} alt="mail_icon" />
-              <YandexIcon />
+              <YandexAuthButton setYandexData={setYandexData} />
             </div>
             {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}
 
