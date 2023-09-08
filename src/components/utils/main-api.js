@@ -1,5 +1,7 @@
 const mainApiOptions = {
-  baseUrl: "https://legadrop.org",
+  // baseUrl: "https://legadrop.org",
+  baseUrl: "http://192.168.1.4:8000",
+
   headers: {
     "Content-Type": "application/json",
   },

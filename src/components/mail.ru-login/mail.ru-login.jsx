@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 
 const MailRuOAuth = () => {
   const [userData, setUserData] = useState(null);
@@ -63,11 +64,7 @@ const MailRuOAuth = () => {
     }
   }, []);
   console.log(userData);
-  return (
-    <div>
-      <button onClick={handleLogin}>Войти через Mail.ru</button>
-    </div>
-  );
+  return <img src={mail_icon} alt="mail_icon" onClick={handleLogin} />;
 };
 
 export default MailRuOAuth;

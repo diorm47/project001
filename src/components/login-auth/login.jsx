@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
+
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
@@ -223,12 +223,12 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
                 onClick={() => setVkOpen(true)}
               />
               <TGLogin setTgData={setTgData} />
-              <img src={mail_icon} alt="mail_icon" />
+
+              <MailRuOAuth />
               <YandexAuthButton setYandexData={setYandexData} />
             </div>
             {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}
 
-            <MailRuOAuth />
             <div className="login_selection">
               <div className="or_line"></div>
               <p>ИЛИ</p>

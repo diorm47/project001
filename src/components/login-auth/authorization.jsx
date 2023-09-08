@@ -16,6 +16,7 @@ import { mainApi } from "../utils/main-api";
 import VKFloatingLoginComponent from "../vk-login/vk-login";
 import "./login-auth.css";
 import YandexAuthButton from "../yandex-login/yandex-login";
+import MailRuOAuth from "../mail.ru-login/mail.ru-login";
 
 function AuthorizationModal({ setLoginModal, setAuthModalType }) {
   const dispatch = useDispatch();
@@ -265,7 +266,8 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                 onClick={() => setVkOpen(true)}
               />
               <TGLogin setTgData={setTgData} />
-              <img src={mail_icon} alt="mail_icon" />
+
+              <MailRuOAuth />
               <YandexAuthButton setYandexData={setYandexData} />
               <img src={x_icon} alt="x_icon" />
             </div>
