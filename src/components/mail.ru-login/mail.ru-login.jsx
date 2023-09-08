@@ -63,7 +63,7 @@ const MailRuOAuth = () => {
       localStorage.removeItem("oauth_state");
     }
   }, []);
-  console.log(userData);
+  // console.log(userData);
   return <img src={mail_icon} alt="mail_icon" onClick={handleLogin} />;
 };
 
