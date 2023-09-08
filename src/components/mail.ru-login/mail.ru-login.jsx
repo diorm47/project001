@@ -13,13 +13,20 @@ const MailRuOAuth = () => {
 
   const handleTokenExchange = async (code) => {
     try {
-      const response = await axios.post("https://oauth.mail.ru/token", {
-        client_id: "d522b20741184886a90d9a82ca94212c",
-        client_secret: "c5a202c4cf64471ebbf3a42622e6eb01",
-        grant_type: "authorization_code",
-        code: code,
-        redirect_uri: "https://legadrop.vercel.app",
+      const headersList = {
+        Accept: "*/*",
+        "Content-Type": "application/x-www-form-urlencoded",
+      };
+      const bodyContent = `client_id=d522b20741184886a90d9a82ca94212c&client_secret=c5a202c4cf64471ebbf3a42622e6eb01&code=${code}&grant_type=authorization_code&redirect_uri=https://legadrop.vercel.app`;
+      const response = await fetch("https://oauth.mail.ru/token", {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
       });
+
+      const data = await response.json();
+      console.log(data);
+
       return response.data.access_token;
     } catch (error) {
       console.error("Error during token exchange:", error);
