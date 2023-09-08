@@ -81,3 +81,38 @@ function App() {
 }
 
 export default App;
+
+
+// import React, { useEffect } from "react";
+
+// function VKFloatingLoginComponent({ setVkData }) {
+//   useEffect(() => {
+//     if (window.VK) {
+//       window.VK.init({ apiId: 51740472 });
+//       document.getElementById("vk_auth").innerHTML = "";
+//       window.VK.Widgets.Auth("vk_auth", {
+//         width: 200,
+//         onAuth: function (data) {
+//           setVkData(data);
+//           alert(
+//             "Пользователь " +
+//               data["first_name"] +
+//               " " +
+//               data["last_name"] +
+//               " (ID: " +
+//               data["uid"] +
+//               ") авторизовался"
+//           );
+//         },
+//         authUrl: "https://legadrop.vercel.app",
+//       });
+//     }
+//   }, []);
+//   return (
+//     <>
+//       <div id="vk_auth"></div>
+//     </>
+//   );
+// }
+
+// export default VKFloatingLoginComponent;
