@@ -13,6 +13,7 @@ import { mainApi } from "../utils/main-api";
 import VKFloatingLoginComponent from "../vk-login/vk-login";
 import "./login-auth.css";
 import YandexAuthButton from "../yandex-login/yandex-login";
+import MailRuOAuth from "../mail.ru-login/mail.ru-login";
 
 function LoginModal({ setLoginModal, setAuthModalType }) {
   const [userName, setUserName] = useState("");
@@ -25,12 +26,15 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
   const [vkOpen, setVkOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = {
-    username: userName,
-    password: userPassword,
-  };
+
   const loginUser = () => {
     if (userName && userPassword) {
+      const user = {
+        auth_type: "legadrop",
+        username: userName,
+        password: userPassword,
+      };
+
       mainApi
         .signin(user)
         .then((userData) => {
@@ -224,6 +228,7 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
             </div>
             {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}
 
+            <MailRuOAuth />
             <div className="login_selection">
               <div className="or_line"></div>
               <p>ИЛИ</p>

@@ -30,12 +30,13 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
   const [userName, setUserName] = useState("");
   const [userPassword, setPassword] = useState("");
 
-  const user = {
-    username: userName,
-    password: userPassword,
-  };
   const loginUser = () => {
     if (userPassword && userName) {
+      const user = {
+        auth_type: "legadrop",
+        username: userName,
+        password: userPassword,
+      };
       mainApi
         .signup(user)
         .then((userData) => {

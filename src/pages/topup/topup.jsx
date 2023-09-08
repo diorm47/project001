@@ -27,6 +27,9 @@ function Topup() {
   const navigate = useNavigate();
   const usersData = useSelector((state) => state.user.user);
 
+  React.useEffect(() => {
+    document.title = `Пополнение баланса - Legadrop`;
+  }, []);
   useEffect(() => {
     if (!usersData.is_logged) {
       navigate("/");

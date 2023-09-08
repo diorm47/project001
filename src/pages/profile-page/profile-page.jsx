@@ -21,6 +21,9 @@ import { useSelector } from "react-redux";
 function ProfilePage() {
   const [userData, setUserData] = useState({});
   const usersData = useSelector((state) => state.user.user);
+  React.useEffect(() => {
+    document.title = `Профиль ${usersData.username} | Legadrop - Рулетка для геншина`;
+  }, []);
   const navigate = useNavigate();
   useEffect(() => {
     setUserData(usersData);

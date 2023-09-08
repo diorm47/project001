@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./case-page.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { data } from "../../components/data";
@@ -6,13 +6,15 @@ import { ReactComponent as BackIcon } from "../../assets/icons/back-icon.svg";
 import CaseItem from "../../components/case-item/case-item";
 
 function CasePage({ setLoginModal }) {
-  //   React.useEffect(() => {
-  //     document.title = `${item.type} - ${item.name}`;
-  //   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const navigate = useNavigate();
   const params = useParams();
   const item = data.find((i) => i.item_name === params.name);
-
+  React.useEffect(() => {
+    document.title = `${item.item_name} - ${item.name} - Legadrop`;
+  }, []);
   return (
     <div className="page_template case_page">
       <div className="case_title">
@@ -44,6 +46,23 @@ function CasePage({ setLoginModal }) {
       <div className="case_items_block">
         <h3>СОДЕРЖИМОЕ КЕЙСА</h3>
         <div className="case_items_content">
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
+          <CaseItem />
           <CaseItem />
         </div>
       </div>
