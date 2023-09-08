@@ -54,17 +54,38 @@ function VKFloatingLoginComponent({ setVkData }) {
   // }, []);
 
   useEffect(() => {
-    window.VK.init({ apiId: 51744107 });
-    window.VK.Widgets.Auth("vk_auth", {
-      onAuth: function (data) {
-        // alert("user " + data["uid"] + " authorized");
-        console.log(data);
-      },
-    });
+    // Проверяем, существует ли глобальный объект VK
+    if (window.VK) {
+      // Инициализация VK API с вашим API ID
+      window.VK.init({ apiId: 51740472 });
+
+      // Удаляем предыдущий виджет, если он существует
+      document.getElementById("vk_auth").innerHTML = "";
+
+      // Инициализация виджета авторизации
+      window.VK.Widgets.Auth("vk_auth", {
+        width: 200, // Ширина виджета
+        onAuth: function (data) {
+          // Действия после успешной авторизации
+          alert(
+            "Пользователь " +
+              data["first_name"] +
+              " " +
+              data["last_name"] +
+              " (ID: " +
+              data["uid"] +
+              ") авторизовался"
+          );
+          // Здесь вы можете добавить дополнительный код для работы с данными пользователя, например, передать их в родительский компонент или в Redux store
+        },
+        // Если вы хотите использовать перенаправление, то добавьте строку ниже и замените URL на ваш
+        authUrl: "https://legadrop.vercel.app",
+      });
+    }
   }, []);
   return (
     <>
-      <div id="vk-floating-login-container"></div>
+      {/* <div id="vk-floating-login-container"></div> */}
       <div id="vk_auth"></div>
     </>
   );
