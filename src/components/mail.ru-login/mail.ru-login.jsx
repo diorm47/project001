@@ -7,7 +7,7 @@ const MailRuOAuth = () => {
   const handleLogin = () => {
     const state = Math.random().toString(36).substring(7);
     localStorage.setItem("oauth_state", state);
-    const authURL = `https://oauth.mail.ru/login?client_id=d522b20741184886a90d9a82ca94212c&response_type=code&redirect_uri=http://legadrop.vercel.app&state=${state}`;
+    const authURL = `https://oauth.mail.ru/login?client_id=d522b20741184886a90d9a82ca94212c&response_type=code&redirect_uri=https://legadrop.vercel.app&state=${state}`;
     window.location.href = authURL;
   };
 
@@ -18,7 +18,7 @@ const MailRuOAuth = () => {
         client_secret: "c5a202c4cf64471ebbf3a42622e6eb01",
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: "http://legadrop.vercel.app",
+        redirect_uri: "https://legadrop.vercel.app",
       });
       return response.data.access_token;
     } catch (error) {
