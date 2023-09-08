@@ -296,19 +296,38 @@
   justify-content: center;
 }
 
-.tlogin-button #telegram-login-GGLegadropbot body {
-  font-size: 0 !important;
-}
 .tg_login_btn {
-  width: 44px !important;
-  height: 43px !important;
-  background: #54a9eb !important;
+  width: 44px;
+  height: 43px;
+  background: #54a9eb;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px !important;
+  border-radius: 8px;
   overflow: hidden;
 }
+.google_auth_btn {
+  width: 38px;
+  height: 36px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.google_auth_btn_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 43px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
 #telegram-login-GGLegadropbot {
   width: 52px !important;
   height: 43px !important;

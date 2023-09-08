@@ -245,21 +245,24 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
             </div>
           ) : (
             <div className="auth_socials">
-              <GoogleOAuthProvider clientId="43928678507-s47ggc38cmfabet21l25g2b8s11ljiv0.apps.googleusercontent.com">
-                <GoogleLogin
-                  onSuccess={(credentialResponse) => {
-                    var decoded = jwt_decode(credentialResponse.credential);
-                    authGoogle(decoded);
-                  }}
-                  type="icon"
-                  shape="square"
-                  width="100"
-                  size="large"
-                  onError={() => {
-                    console.log("Login Failed");
-                  }}
-                />
-              </GoogleOAuthProvider>
+              <div className="google_auth_btn_wrapper">
+                <div className="google_auth_btn">
+                  <GoogleOAuthProvider clientId="43928678507-s47ggc38cmfabet21l25g2b8s11ljiv0.apps.googleusercontent.com">
+                    <GoogleLogin
+                      onSuccess={(credentialResponse) => {
+                        var decoded = jwt_decode(credentialResponse.credential);
+                        authGoogle(decoded);
+                      }}
+                      type="icon"
+                      shape="square"
+                      size="large"
+                      onError={() => {
+                        console.log("Login Failed");
+                      }}
+                    />
+                  </GoogleOAuthProvider>
+                </div>
+              </div>
               <img
                 src={vk_icon}
                 alt="vk_icon"
