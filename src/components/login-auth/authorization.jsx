@@ -272,9 +272,9 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                 <TGLogin setTgData={setTgData} />
               </div>
 
-              <MailRuOAuth />
+              {/* <MailRuOAuth /> */}
               <YandexAuthButton setYandexData={setYandexData} />
-              <img src={x_icon} alt="x_icon" />
+              {/* <img src={x_icon} alt="x_icon" /> */}
             </div>
           )}
         </div>

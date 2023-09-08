@@ -230,7 +230,7 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
                 <TGLogin setTgData={setTgData} />
               </div>
 
-              <MailRuOAuth />
+              {/* <MailRuOAuth /> */}
               <YandexAuthButton setYandexData={setYandexData} />
             </div>
             {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}
