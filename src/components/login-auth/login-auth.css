@@ -299,8 +299,18 @@
 .tlogin-button #telegram-login-GGLegadropbot body {
   font-size: 0 !important;
 }
-#telegram-login-GGLegadropbot {
+.tg_login_btn {
   width: 44px !important;
+  height: 43px !important;
+  background: #54a9eb !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+#telegram-login-GGLegadropbot {
+  width: 52px !important;
   height: 43px !important;
   background: #54a9eb !important;
   border-radius: 8px !important;

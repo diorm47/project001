@@ -265,7 +265,9 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                 alt="vk_icon"
                 onClick={() => setVkOpen(true)}
               />
-              <TGLogin setTgData={setTgData} />
+              <div className="tg_login_btn">
+                <TGLogin setTgData={setTgData} />
+              </div>
 
               <MailRuOAuth />
               <YandexAuthButton setYandexData={setYandexData} />

@@ -33,6 +33,15 @@ function App() {
         });
     }
   }, [localStorage.getItem("token")]);
+
+  // useEffect(() => {
+  //   var password = prompt("Введите пароль:");
+
+  //   if (password === "121212") {
+  //     alert("Доступ разрешен!");
+  //   }
+  // });
+
   return (
     <>
       {loginModal ? (
