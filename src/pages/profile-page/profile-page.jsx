@@ -33,6 +33,12 @@ function ProfilePage() {
       navigate("/");
     }
   }, [navigate, usersData]);
+
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+    window.location.reload()
+  };
   return (
     <div className="page_template profile_page">
       <div className="profile_menu">
@@ -114,6 +120,7 @@ function ProfilePage() {
               <p>Настройки</p>
             </div>
           </NavLink>
+          <button onClick={logout}>Выйти</button>
         </div>
       </div>
       <div className="profile_content">

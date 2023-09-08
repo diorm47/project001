@@ -5,7 +5,9 @@ function VKFloatingLoginComponent({ setVkData }) {
   useEffect(() => {
     Config.init({
       appId: 51744107, // Замените на ваш ID приложения.
-
+      oauthDomain: "https://legadrop.vercel.app",
+      connectDomain: "https://legadrop.vercel.app",
+      loginDomain: "https://legadrop.vercel.app",
       appSettings: {
         agreements: "",
         promo: "",
