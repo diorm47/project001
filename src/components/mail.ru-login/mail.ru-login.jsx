@@ -25,6 +25,7 @@ const MailRuOAuth = ({ setMailRuData }) => {
 
         {
           method: "POST",
+          mode: "no-cors",
           body: bodyContent,
           headers: headersList,
         }
