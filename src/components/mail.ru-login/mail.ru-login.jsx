@@ -28,33 +28,6 @@ const MailRuOAuth = ({ setMailRuData }) => {
   };
 
   const handleTokenExchange = async (code) => {
-    // try {
-
-    //   const headersList = {
-    //     Accept: "*/*",
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //   };
-    //   const bodyContent = `client_id=d522b20741184886a90d9a82ca94212c&client_secret=c5a202c4cf64471ebbf3a42622e6eb01&code=${code}&grant_type=authorization_code&redirect_uri=${redirect_url}`;
-    //   const response = await fetch(
-    //     "https://cors.bridged.cc/https://oauth.mail.ru/token",
-    //     // "https://oauth.mail.ru/token",
-
-    //     {
-    //       method: "POST",
-    //       // mode: "no-cors",
-    //       body: bodyContent,
-    //       headers: headersList,
-    //     }
-    //   );
-
-    //   const data = await response.json();
-
-    //   return data.access_token;
-    // } catch (error) {
-    //   console.error("Error during token exchange:", error);
-    //   return null;
-    // }
-
     mainApi
       .getToken(code)
       .then((userData) => {
@@ -73,7 +46,7 @@ const MailRuOAuth = ({ setMailRuData }) => {
     const returnedState = urlParams.get("state");
     const savedState = localStorage.getItem("oauth_state");
 
-    if (code && returnedState === savedState) {
+    if (returnedState === savedState) {
       (async () => {
         const accessToken = await handleTokenExchange(code);
         console.log(accessToken);
