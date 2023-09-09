@@ -11,35 +11,23 @@ function VKRedirectLoginComponent({ setVkData }) {
       fetchTokenAndUserData(authCode);
     }
   }, []);
-  const getUserData = async (access_token) => {
-    mainApi
-      .getVKUser(access_token)
-      .then((userData) => {
-        console.log("getVKUser", userData);
-        setVkData(userData.response[0]);
-      })
-      .catch((error) => {
-        console.log("data", error);
-      });
-  };
 
   const fetchTokenAndUserData = async (code) => {
     mainApi
       .getTokenVK(code)
       .then((userData) => {
-        console.log(userData);
-        console.log(userData.access_token);
         mainApi
           .getVKUser(userData.access_token)
           .then((userData) => {
+            console.log("asfvsdfvsfvsdvd", userData);
             setVkData(userData.response[0]);
           })
           .catch((error) => {
             console.log("data", error);
           });
       })
-      .catch(() => {
-        return "";
+      .catch((error) => {
+        console.log("data", error);
       });
   };
 
