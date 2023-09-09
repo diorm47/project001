@@ -38,11 +38,7 @@ function VKRedirectLoginComponent({ setVkData }) {
     window.location.href = vkAuthUrl;
   };
 
-  return (
-    <>
-      <img src={vk_icon} onClick={handleLogin} alt="vk_icon" />
-    </>
-  );
+  return <img src={vk_icon} onClick={handleLogin} alt="vk_icon" />;
 }
 
 export default VKRedirectLoginComponent;

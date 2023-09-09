@@ -44,12 +44,10 @@ const MailRuOAuth = ({ setMailRuData }) => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
     const returnedState = urlParams.get("state");
-    const savedState = localStorage.getItem("oauth_state");
 
-    if (returnedState === savedState) {
+    if (returnedState) {
       (async () => {
         const accessToken = await handleTokenExchange(code);
-        console.log(accessToken);
         if (accessToken) {
           fetchUserData(accessToken);
         }
