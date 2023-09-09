@@ -358,3 +358,7 @@ button.tgme_widget_login_button {
   align-items: center;
   justify-content: center;
 }
+
+#vk-floating-login-container {
+  position: absolute;
+}

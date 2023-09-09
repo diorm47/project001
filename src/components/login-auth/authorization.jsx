@@ -408,7 +408,12 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                   </GoogleOAuthProvider>
                 </div>
               </div>
-              <VKFloatingLoginComponent setVkData={setVkData} />
+              <img
+                src={vk_icon}
+                alt="vk_icon"
+                onClick={() => setVkOpen(true)}
+              />
+              {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}
               <div className="tg_login_btn">
                 <TGLogin setTgData={setTgData} />
               </div>
