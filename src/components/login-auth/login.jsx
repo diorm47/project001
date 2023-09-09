@@ -167,8 +167,9 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
       setVkOpen(false);
       const user = {
         auth_type: "vk",
-        username: vkData.first_name,
+        username: `${vkData.first_name} ${vkData.last_name}`,
         vkontakte_id: vkData.id,
+        image: vkData.photo_400_orig,
       };
 
       mainApi

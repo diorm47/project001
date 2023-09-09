@@ -70,6 +70,13 @@ class MainApi {
       body: userData,
     });
   }
+  async getVKUser(userData) {
+    return this._sendRequest({
+      endpoint: `/get-vk-user/?access_token=${userData}`,
+      method: "POST",
+      body: userData,
+    });
+  }
   async loginGoogle(userData) {
     return this._sendRequest({
       endpoint: "/register/google",
