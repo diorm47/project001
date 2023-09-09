@@ -408,11 +408,7 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                   </GoogleOAuthProvider>
                 </div>
               </div>
-              <img
-                src={vk_icon}
-                alt="vk_icon"
-                onClick={() => setVkOpen(true)}
-              />
+              <VKFloatingLoginComponent setVkData={setVkData} />
               <div className="tg_login_btn">
                 <TGLogin setTgData={setTgData} />
               </div>
@@ -426,7 +422,7 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
             </div>
           )}
         </div>
-        {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}
+
         <div className="promocode_block">
           {!activePromocode ? (
             <div onClick={() => setActivePromocode(true)}>

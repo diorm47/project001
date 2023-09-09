@@ -58,7 +58,14 @@ class MainApi {
   }
   async getToken(userData) {
     return this._sendRequest({
-      endpoint: `/get-token/?code=${userData}`,
+      endpoint: `/get-mailru-token/?code=${userData}`,
+      method: "POST",
+      body: userData,
+    });
+  }
+  async getTokenVK(userData) {
+    return this._sendRequest({
+      endpoint: `/get-vk-token/?code=${userData}`,
       method: "POST",
       body: userData,
     });

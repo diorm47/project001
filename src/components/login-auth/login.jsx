@@ -4,8 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
-
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import { loginUserAction } from "../../redux/user-reducer";
 import MailRuOAuth from "../mail.ru-login/mail.ru-login";
@@ -363,12 +361,7 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
                   </GoogleOAuthProvider>
                 </div>
               </div>
-
-              <img
-                src={vk_icon}
-                alt="vk_icon"
-                onClick={() => setVkOpen(true)}
-              />
+              <VKFloatingLoginComponent setVkData={setVkData} />
               <div className="tg_login_btn">
                 <TGLogin setTgData={setTgData} />
               </div>
@@ -376,7 +369,6 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
               <MailRuOAuth setMailRuData={setMailRuData} />
               <YandexAuthButton setYandexData={setYandexData} />
             </div>
-            {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}
 
             <div className="login_selection">
               <div className="or_line"></div>
