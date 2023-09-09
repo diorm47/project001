@@ -89,7 +89,28 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
           });
       })
       .catch((error) => {
-        console.log("error", error);
+        mainApi
+          .signin(data)
+          .then((res) => {
+            localStorage.setItem("token", res.access_token);
+            const user = {
+              is_logged: true,
+            };
+            dispatch(loginUserAction(user));
+            mainApi
+              .reEnter()
+              .then((res) => {
+                dispatch(loginUserAction(res));
+                setLoginModal(false);
+                navigate("/profile");
+              })
+              .catch((error) => {
+                console.log("error0", error);
+              });
+          })
+          .catch((error) => {
+            console.log("error", error);
+          });
       });
   };
 
@@ -123,7 +144,28 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
             });
         })
         .catch((error) => {
-          console.log("error: ", error);
+          mainApi
+            .signin(user)
+            .then((userData) => {
+              localStorage.setItem("token", userData.access_token);
+              const user = {
+                is_logged: true,
+              };
+              dispatch(loginUserAction(user));
+              mainApi
+                .reEnter()
+                .then((res) => {
+                  setLoginModal(false);
+                  navigate("/profile");
+                  dispatch(loginUserAction(res));
+                })
+                .catch(() => {
+                  console.log("error");
+                });
+            })
+            .catch((error) => {
+              console.log("error: ", error);
+            });
         });
     }
   }, [dispatch, navigate, setLoginModal, yandexData]);
@@ -157,7 +199,28 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
             });
         })
         .catch((error) => {
-          console.log("error: ", error);
+          mainApi
+            .signin(user)
+            .then((userData) => {
+              localStorage.setItem("token", userData.access_token);
+              const user = {
+                is_logged: true,
+              };
+              dispatch(loginUserAction(user));
+              mainApi
+                .reEnter()
+                .then((res) => {
+                  setLoginModal(false);
+                  navigate("/profile");
+                  dispatch(loginUserAction(res));
+                })
+                .catch(() => {
+                  console.log("error");
+                });
+            })
+            .catch((error) => {
+              console.log("error: ", error);
+            });
         });
     }
   }, [dispatch, navigate, setLoginModal, vkData]);
@@ -191,7 +254,28 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
             });
         })
         .catch((error) => {
-          console.log("error: ", error);
+          mainApi
+            .signin(user)
+            .then((userData) => {
+              localStorage.setItem("token", userData.access_token);
+              const user = {
+                is_logged: true,
+              };
+              dispatch(loginUserAction(user));
+              mainApi
+                .reEnter()
+                .then((res) => {
+                  setLoginModal(false);
+                  navigate("/profile");
+                  dispatch(loginUserAction(res));
+                })
+                .catch(() => {
+                  console.log("error");
+                });
+            })
+            .catch((error) => {
+              console.log("error: ", error);
+            });
         });
     }
   }, [dispatch, navigate, setLoginModal, TGData]);
@@ -207,30 +291,61 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
         email: MailRuData.email,
       };
 
-      mainApi
-        .signup(user)
-        .then((userData) => {
-          localStorage.setItem("token", userData.access_token);
-          const user = {
-            is_logged: true,
-          };
-          dispatch(loginUserAction(user));
-          mainApi
-            .reEnter()
-            .then((res) => {
-              setLoginModal(false);
-              navigate("/profile");
-              dispatch(loginUserAction(res));
-            })
-            .catch(() => {
-              console.log("error");
-            });
-        })
-        .catch((error) => {
-          console.log("error: ", error);
-        });
+      if (sessionStorage.getItem("setAuthMail")) {
+        mainApi
+          .signup(user)
+          .then((userData) => {
+            localStorage.setItem("token", userData.access_token);
+            const user = {
+              is_logged: true,
+            };
+            dispatch(loginUserAction(user));
+            mainApi
+              .reEnter()
+              .then((res) => {
+                setLoginModal(false);
+                navigate("/profile");
+                dispatch(loginUserAction(res));
+                sessionStorage.removeItem("setAuthMail");
+              })
+              .catch(() => {
+                console.log("error");
+              });
+          })
+          .catch((error) => {
+            console.log("error: ", error);
+          });
+      } else {
+        mainApi
+          .signin(user)
+          .then((userData) => {
+            localStorage.setItem("token", userData.access_token);
+            const user = {
+              is_logged: true,
+            };
+            dispatch(loginUserAction(user));
+            mainApi
+              .reEnter()
+              .then((res) => {
+                setLoginModal(false);
+                navigate("/profile");
+                dispatch(loginUserAction(res));
+                sessionStorage.removeItem("setAuthMail");
+              })
+              .catch(() => {
+                console.log("error");
+              });
+          })
+          .catch((error) => {
+            console.log("error: ", error);
+          });
+      }
     }
   }, [dispatch, navigate, setLoginModal, MailRuData]);
+
+  const setAuthMail = () => {
+    sessionStorage.setItem("setAuthMail", "auth_mail");
+  };
 
   return (
     <div className="modal_template authorization_modal">
@@ -306,7 +421,10 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                 <TGLogin setTgData={setTgData} />
               </div>
 
-              <MailRuOAuth setMailRuData={setMailRuData} />
+              <div className="mail_ru_btn" onClick={() => setAuthMail(true)}>
+                <MailRuOAuth setMailRuData={setMailRuData} />
+              </div>
+
               <YandexAuthButton setYandexData={setYandexData} />
               {/* <img src={x_icon} alt="x_icon" /> */}
             </div>

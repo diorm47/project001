@@ -352,3 +352,9 @@ button.tgme_widget_login_button {
   height: 24px;
   margin: 0 136px -2px -10px !important;
 }
+
+.mail_ru_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
