@@ -73,7 +73,7 @@ class MainApi {
   async getVKUser(userData) {
     return this._sendRequest({
       endpoint: `/get-vk-user/?access_token=${userData}`,
-      method: "POST",
+      method: "GET",
       body: userData,
     });
   }
