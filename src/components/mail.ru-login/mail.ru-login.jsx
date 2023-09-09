@@ -20,12 +20,12 @@ const MailRuOAuth = ({ setMailRuData }) => {
       };
       const bodyContent = `client_id=d522b20741184886a90d9a82ca94212c&client_secret=c5a202c4cf64471ebbf3a42622e6eb01&code=${code}&grant_type=authorization_code&redirect_uri=${redirect_url}`;
       const response = await fetch(
-        // "https://cors.bridged.cc/https://oauth.mail.ru/token",
-        "https://oauth.mail.ru/token",
+        "https://cors.bridged.cc/https://oauth.mail.ru/token",
+        // "https://oauth.mail.ru/token",
 
         {
           method: "POST",
-          mode: "no-cors",
+          // mode: "no-cors",
           body: bodyContent,
           headers: headersList,
         }
