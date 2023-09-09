@@ -27,7 +27,16 @@ function VKRedirectLoginComponent({ setVkData }) {
     mainApi
       .getTokenVK(code)
       .then((userData) => {
-        getUserData(userData.access_token);
+        console.log(userData);
+        console.log(userData.access_token);
+        mainApi
+          .getVKUser(userData.access_token)
+          .then((userData) => {
+            setVkData(userData.response[0]);
+          })
+          .catch((error) => {
+            console.log("data", error);
+          });
       })
       .catch(() => {
         return "";
