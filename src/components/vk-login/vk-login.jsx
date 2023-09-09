@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 // import { mainApi } from "../utils/main-api";
 
@@ -45,6 +45,7 @@ import React, { useEffect } from "react";
 import { Config, Connect, ConnectEvents } from "@vkontakte/superappkit";
 
 function VKFloatingLoginComponent({ setVkData }) {
+  const [buttonVisible, setButtonVisible] = useState(false);
   useEffect(() => {
     Config.init({
       appId: 51740472,
@@ -68,8 +69,7 @@ function VKFloatingLoginComponent({ setVkData }) {
         switch (type) {
           case ConnectEvents.OneTapAuthEventsSDK.LOGIN_SUCCESS:
             return setVkData(event.payload.user);
-          case ConnectEvents.OneTapAuthEventsSDK.LOGIN_FAILED:
-            return console.log(event, "failed");
+
           default:
         }
 
@@ -85,7 +85,11 @@ function VKFloatingLoginComponent({ setVkData }) {
 
     if (oneTapButton) {
       document.body.appendChild(oneTapButton.getFrame());
+      setButtonVisible(true);
+    } else {
+      setButtonVisible(false); // Если кнопка не существует, устанавливаем в false
     }
+    console.log(buttonVisible);
 
     return () => {
       if (oneTapButton) {
