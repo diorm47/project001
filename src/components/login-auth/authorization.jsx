@@ -284,7 +284,7 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
   useEffect(() => {
     if (MailRuData && MailRuData.id) {
       const user = {
-        auth_type: "mail_ru",
+        auth_type: "mailru",
         username: MailRuData.nickname,
         mail_ru: MailRuData.id,
         image: MailRuData.image,
