@@ -10,6 +10,7 @@ import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import { loginUserAction } from "../../redux/user-reducer";
 import TGLogin from "../tg-login/tg-login";
 import { mainApi } from "../utils/main-api";
+import MailRuOAuth from "../mail.ru-login/mail.ru-login";
 import VKFloatingLoginComponent from "../vk-login/vk-login";
 import YandexAuthButton from "../yandex-login/yandex-login";
 import "./login-auth.css";
@@ -26,6 +27,7 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
   const [checkedPolicy, setCheckedPolicy] = useState(false);
   const [userName, setUserName] = useState("");
   const [userPassword, setPassword] = useState("");
+  const [MailRuData, setMailRuData] = useState({});
   // https://cors.sh
   const loginUser = () => {
     if (userPassword && userName) {
@@ -194,6 +196,42 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
     }
   }, [dispatch, navigate, setLoginModal, TGData]);
 
+  // Mail.ru
+  useEffect(() => {
+    if (MailRuData && MailRuData.id) {
+      const user = {
+        auth_type: "mail_ru",
+        username: MailRuData.nickname,
+        mail_ru: MailRuData.id,
+        image: MailRuData.image,
+        email: MailRuData.email,
+      };
+
+      mainApi
+        .signup(user)
+        .then((userData) => {
+          localStorage.setItem("token", userData.access_token);
+          const user = {
+            is_logged: true,
+          };
+          dispatch(loginUserAction(user));
+          mainApi
+            .reEnter()
+            .then((res) => {
+              setLoginModal(false);
+              navigate("/profile");
+              dispatch(loginUserAction(res));
+            })
+            .catch(() => {
+              console.log("error");
+            });
+        })
+        .catch((error) => {
+          console.log("error: ", error);
+        });
+    }
+  }, [dispatch, navigate, setLoginModal, MailRuData]);
+
   return (
     <div className="modal_template authorization_modal">
       <div className="modal_header">
@@ -268,7 +306,7 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
                 <TGLogin setTgData={setTgData} />
               </div>
 
-              {/* <MailRuOAuth /> */}
+              <MailRuOAuth setMailRuData={setMailRuData} />
               <YandexAuthButton setYandexData={setYandexData} />
               {/* <img src={x_icon} alt="x_icon" /> */}
             </div>

@@ -36,6 +36,7 @@ function ProfilePage() {
 
   const logout = () => {
     localStorage.clear();
+    sessionStorage.clear()
     navigate("/");
     window.location.reload()
   };

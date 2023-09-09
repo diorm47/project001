@@ -191,6 +191,42 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
         });
     }
   }, [dispatch, navigate, setLoginModal, TGData]);
+
+  useEffect(() => {
+    if (MailRuData && MailRuData.id) {
+      const user = {
+        auth_type: "mail_ru",
+        username: MailRuData.nickname,
+        mail_ru: MailRuData.id,
+        image: MailRuData.image,
+        email: MailRuData.email,
+      };
+
+      mainApi
+        .signup(user)
+        .then((userData) => {
+          localStorage.setItem("token", userData.access_token);
+          const user = {
+            is_logged: true,
+          };
+          dispatch(loginUserAction(user));
+          mainApi
+            .reEnter()
+            .then((res) => {
+              setLoginModal(false);
+              navigate("/profile");
+              dispatch(loginUserAction(res));
+            })
+            .catch(() => {
+              console.log("error");
+            });
+        })
+        .catch((error) => {
+          console.log("error: ", error);
+        });
+    }
+  }, [dispatch, navigate, setLoginModal, MailRuData]);
+
   return (
     <div className="modal_wrapper_template">
       <div className="modal_template login_modal">

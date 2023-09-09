@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 
 const MailRuOAuth = ({ setMailRuData }) => {
-  // const redirect_url = `http://localhost:3000`;
-  const redirect_url = `https://legadrop.vercel.app`
+  const redirect_url = `https://legadrop.vercel.app`;
   const handleLogin = () => {
     const state = Math.random().toString(36).substring(7);
     localStorage.setItem("oauth_state", state);

@@ -15,6 +15,7 @@ import CasePage from "./pages/case-page/case-page";
 
 function App() {
   const [loginModal, setLoginModal] = useState(false);
+  const [open, setOpen] = useState(sessionStorage.getItem("open"));
   const dispatch = useDispatch();
 
   const closeModals = () => {
@@ -35,47 +36,62 @@ function App() {
   }, [localStorage.getItem("token")]);
 
   useEffect(() => {
-    if (!localStorage.getItem("open")) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get("code");
+    if (code) {
+      setLoginModal(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("open")) {
       var password = prompt("Введите пароль:");
 
       if (password === "121212") {
         alert("Доступ разрешен!");
-        localStorage.setItem("open", "opened");
+        setOpen(true);
+        sessionStorage.setItem("open", "opened");
       }
     }
-  }, [localStorage.getItem("open")]);
+  }, [sessionStorage.getItem("open")]);
 
   return (
     <>
-      {loginModal ? (
-        <div className="modal_overlay" onClick={() => closeModals()}></div>
+      {open ? (
+        <>
+          {loginModal ? (
+            <div className="modal_overlay" onClick={() => closeModals()}></div>
+          ) : (
+            ""
+          )}
+
+          <div className="app_content">
+            <TopNavbar />
+            <LiveLength />
+            <MainNavbar setLoginModal={setLoginModal} />
+
+            <Suspense fallback={"loading....."}>
+              <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/home" element={<MainPage />} />
+                <Route path="/topup" element={<Topup />} />
+                <Route path="/profile/*" element={<ProfilePage />} />
+                <Route
+                  path="/case/:name"
+                  element={<CasePage setLoginModal={setLoginModal} />}
+                />
+
+                {/* <Route path="*" element={<NotFound />} /> */}
+              </Routes>
+            </Suspense>
+
+            <Footer />
+          </div>
+          {loginModal ? <LoginAuth setLoginModal={setLoginModal} /> : ""}
+        </>
       ) : (
         ""
       )}
-
-      <div className="app_content">
-        <TopNavbar />
-        <LiveLength />
-        <MainNavbar setLoginModal={setLoginModal} />
-
-        <Suspense fallback={"loading....."}>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/home" element={<MainPage />} />
-            <Route path="/topup" element={<Topup />} />
-            <Route path="/profile/*" element={<ProfilePage />} />
-            <Route
-              path="/case/:name"
-              element={<CasePage setLoginModal={setLoginModal} />}
-            />
-
-            {/* <Route path="*" element={<NotFound />} /> */}
-          </Routes>
-        </Suspense>
-
-        <Footer />
-      </div>
-      {loginModal ? <LoginAuth setLoginModal={setLoginModal} /> : ""}
     </>
   );
 }
