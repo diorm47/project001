@@ -194,7 +194,7 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
         })
         .catch((error) => {
           mainApi
-            .signin(user)
+            .signup(user)
             .then((userData) => {
               localStorage.setItem("token", userData.access_token);
               const user = {
@@ -279,7 +279,7 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
       const user = {
         auth_type: "mail_ru",
         username: MailRuData.nickname,
-        mail_ru: MailRuData.id,
+        mailru_id: MailRuData.id,
         email: MailRuData.email,
       };
       if (!sessionStorage.getItem("setAuthMail")) {
