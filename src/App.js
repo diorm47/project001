@@ -34,16 +34,16 @@ function App() {
     }
   }, [localStorage.getItem("token")]);
 
-  useEffect(() => {
-    if (!localStorage.getItem("open")) {
-      var password = prompt("Введите пароль:");
+  // useEffect(() => {
+  //   if (!localStorage.getItem("open")) {
+  //     var password = prompt("Введите пароль:");
 
-      if (password === "121212") {
-        alert("Доступ разрешен!");
-        localStorage.setItem("open", "opened");
-      }
-    }
-  }, [localStorage.getItem("open")]);
+  //     if (password === "121212") {
+  //       alert("Доступ разрешен!");
+  //       localStorage.setItem("open", "opened");
+  //     }
+  //   }
+  // }, [localStorage.getItem("open")]);
 
   return (
     <>

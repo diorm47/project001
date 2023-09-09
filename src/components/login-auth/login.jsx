@@ -8,13 +8,12 @@ import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import { loginUserAction } from "../../redux/user-reducer";
+import MailRuOAuth from "../mail.ru-login/mail.ru-login";
 import TGLogin from "../tg-login/tg-login";
 import { mainApi } from "../utils/main-api";
 import VKFloatingLoginComponent from "../vk-login/vk-login";
-import "./login-auth.css";
 import YandexAuthButton from "../yandex-login/yandex-login";
-import MailRuOAuth from "../mail.ru-login/mail.ru-login";
-import XLogin from "../auth-socials/x-login.jsx/x-login";
+import "./login-auth.css";
 
 function LoginModal({ setLoginModal, setAuthModalType }) {
   const [userName, setUserName] = useState("");
@@ -23,6 +22,8 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
   const [vkData, setVkData] = useState({});
   const [yandexData, setYandexData] = useState({});
   const [TGData, setTgData] = useState({});
+  const [MailRuData, setMailRuData] = useState({});
+  console.log(MailRuData);
 
   const [vkOpen, setVkOpen] = useState(false);
   const dispatch = useDispatch();
@@ -230,8 +231,8 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
               <div className="tg_login_btn">
                 <TGLogin setTgData={setTgData} />
               </div>
-              <XLogin />
-              {/* <MailRuOAuth /> */}
+
+              <MailRuOAuth setMailRuData={setMailRuData} />
               <YandexAuthButton setYandexData={setYandexData} />
             </div>
             {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}

@@ -3,20 +3,16 @@ import jwt_decode from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
 import { ReactComponent as PolicyIcon } from "../../assets/icons/auth-icons/policy-checkbox.svg";
 import { ReactComponent as PromocodeIcon } from "../../assets/icons/auth-icons/promocode-icon.svg";
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
-import x_icon from "../../assets/icons/auth-icons/x-icon.png";
-import yandex_icon from "../../assets/icons/auth-icons/yandex-icon.png";
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import { loginUserAction } from "../../redux/user-reducer";
 import TGLogin from "../tg-login/tg-login";
 import { mainApi } from "../utils/main-api";
 import VKFloatingLoginComponent from "../vk-login/vk-login";
-import "./login-auth.css";
 import YandexAuthButton from "../yandex-login/yandex-login";
-import MailRuOAuth from "../mail.ru-login/mail.ru-login";
+import "./login-auth.css";
 
 function AuthorizationModal({ setLoginModal, setAuthModalType }) {
   const dispatch = useDispatch();
@@ -30,7 +26,7 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
   const [checkedPolicy, setCheckedPolicy] = useState(false);
   const [userName, setUserName] = useState("");
   const [userPassword, setPassword] = useState("");
-
+  // https://cors.sh
   const loginUser = () => {
     if (userPassword && userName) {
       const user = {
