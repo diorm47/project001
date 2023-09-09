@@ -11,6 +11,17 @@ function VKRedirectLoginComponent({ setVkData }) {
       fetchTokenAndUserData(authCode);
     }
   }, []);
+  const getUserData = async (access_token) => {
+    mainApi
+      .getVKUser(access_token)
+      .then((userData) => {
+        console.log("getVKUser", userData);
+        setVkData(userData.response[0]);
+      })
+      .catch((error) => {
+        console.log("data", error);
+      });
+  };
 
   const fetchTokenAndUserData = async (code) => {
     mainApi
@@ -23,16 +34,6 @@ function VKRedirectLoginComponent({ setVkData }) {
       });
   };
 
-  const getUserData = async (access_token) => {
-    mainApi
-      .getVKUser(access_token)
-      .then((userData) => {
-        setVkData(userData.response[0]);
-      })
-      .catch(() => {
-        return "";
-      });
-  };
   const handleLogin = () => {
     const vkAuthUrl = `https://oauth.vk.com/authorize?client_id=51740472&redirect_uri=${window.location.origin}&response_type=code&v=5.52`;
     window.location.href = vkAuthUrl;
