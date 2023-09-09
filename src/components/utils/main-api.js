@@ -56,6 +56,13 @@ class MainApi {
       body: userData,
     });
   }
+  async getToken(userData) {
+    return this._sendRequest({
+      endpoint: `/get-token/?code=${userData}`,
+      method: "POST",
+      body: userData,
+    });
+  }
   async loginGoogle(userData) {
     return this._sendRequest({
       endpoint: "/register/google",
