@@ -14,6 +14,7 @@ import VKFloatingLoginComponent from "../vk-login/vk-login";
 import "./login-auth.css";
 import YandexAuthButton from "../yandex-login/yandex-login";
 import MailRuOAuth from "../mail.ru-login/mail.ru-login";
+import XLogin from "../auth-socials/x-login.jsx/x-login";
 
 function LoginModal({ setLoginModal, setAuthModalType }) {
   const [userName, setUserName] = useState("");
@@ -229,7 +230,7 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
               <div className="tg_login_btn">
                 <TGLogin setTgData={setTgData} />
               </div>
-
+              <XLogin />
               {/* <MailRuOAuth /> */}
               <YandexAuthButton setYandexData={setYandexData} />
             </div>
