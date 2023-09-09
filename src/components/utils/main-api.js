@@ -74,7 +74,6 @@ class MainApi {
     return this._sendRequest({
       endpoint: `/get-vk-user/?access_token=${userData}`,
       method: "GET",
-      body: userData,
     });
   }
   async loginGoogle(userData) {
