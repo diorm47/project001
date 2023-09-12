@@ -21,25 +21,25 @@ function MainNavbar({ setLoginModal }) {
           </NavLink>
         </div>
         <div className="main_nav_menu">
-          <NavLink to="/">
+          <NavLink to="/cases">
             <div className="main_nav_menu_item">
               <CasesIcon />
               <p>Кейсы</p>
             </div>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/upgrade">
             <div className="main_nav_menu_item">
               <UpgradeIcon />
               <p>Апгрейд</p>
             </div>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/shop">
             <div className="main_nav_menu_item">
               <StoreIcon />
               <p>Магазин</p>
             </div>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/giveaway">
             <div className="main_nav_menu_item">
               <GivingIcon />
               <p>Раздача</p>
@@ -51,7 +51,7 @@ function MainNavbar({ setLoginModal }) {
             <div className="logged_user_profile">
               <div className="nav_topup">
                 <p>{userData & userData.balance ? userData.balance : 0} ₽</p>
-                <NavLink to="/topup">
+                <NavLink to="/deposit">
                   <button>ПОПОЛНИТЬ</button>
                 </NavLink>
               </div>

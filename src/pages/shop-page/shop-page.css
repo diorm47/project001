@@ -1,0 +1,27 @@
+.shop_page_title h1 {
+  margin-top: 48px;
+  margin-bottom: 32px;
+  color: #fff;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 118.182% */
+  text-align: center;
+}
+
+.shop_page_wrapper .cases_block_title {
+  display: none;
+}
+
+.about_shop_page {
+  margin-top: 40px;
+  margin-bottom: 60px;
+  width: 700px;
+}
+.about_shop_page p {
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 20.8px */
+}

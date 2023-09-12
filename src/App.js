@@ -12,6 +12,7 @@ import ProfilePage from "./pages/profile-page/profile-page";
 import Topup from "./pages/topup/topup";
 import { loginUserAction } from "./redux/user-reducer";
 import CasePage from "./pages/case-page/case-page";
+import ShopPage from "./pages/shop-page/shop-page";
 
 function App() {
   const [loginModal, setLoginModal] = useState(false);
@@ -74,12 +75,13 @@ function App() {
               <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/home" element={<MainPage />} />
-                <Route path="/topup" element={<Topup />} />
+                <Route path="/deposit" element={<Topup />} />
                 <Route path="/profile/*" element={<ProfilePage />} />
                 <Route
                   path="/case/:name"
                   element={<CasePage setLoginModal={setLoginModal} />}
                 />
+                <Route path="/shop" element={<ShopPage />} />
 
                 {/* <Route path="*" element={<NotFound />} /> */}
               </Routes>
@@ -97,45 +99,3 @@ function App() {
 }
 
 export default App;
-// import React, { useEffect } from "react";
-// import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
-// import { mainApi } from "../utils/main-api";
-
-// function VKRedirectLoginComponent({ setVkData }) {
-//   useEffect(() => {
-//     const urlParams = new URLSearchParams(window.location.search);
-//     const authCode = urlParams.get("code");
-
-//     if (authCode) {
-//       fetchTokenAndUserData(authCode);
-//     }
-//   }, []);
-
-//   const fetchTokenAndUserData = async (code) => {
-//     mainApi
-//       .getTokenVK(code)
-//       .then((userData) => {
-//         mainApi
-//           .getVKUser(userData.access_token)
-//           .then((userData) => {
-//             console.log("asfvsdfvsfvsdvd", userData);
-//             setVkData(userData.response[0]);
-//           })
-//           .catch((error) => {
-//             console.log("data", error);
-//           });
-//       })
-//       .catch((error) => {
-//         console.log("data", error);
-//       });
-//   };
-
-//   const handleLogin = () => {
-//     const vkAuthUrl = `https://oauth.vk.com/authorize?client_id=51740472&redirect_uri=${window.location.origin}&response_type=code&v=5.52`;
-//     window.location.href = vkAuthUrl;
-//   };
-
-//   return <img src={vk_icon} onClick={handleLogin} alt="vk_icon" />;
-// }
-
-// export default VKRedirectLoginComponent;

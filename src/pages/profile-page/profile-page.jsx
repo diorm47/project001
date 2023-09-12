@@ -65,7 +65,7 @@ function ProfilePage() {
               </div>
             </div>
           </div>
-          <NavLink to="/topup">
+          <NavLink to="/deposit">
             <div className="replenish_wallet" title="Пополнение баланса">
               <Wallet />
             </div>
