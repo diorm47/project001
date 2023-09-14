@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as YandexIcon } from "../../assets/icons/auth-icons/yandex-login.svg";
+import { ReactComponent as YandexIcon } from "../../../assets/icons/auth-icons/yandex-login.svg";
 
 const clientID = "5049f78cbe0b451d9a1beaa01cfc04b3";
 function extractTokenAndSendMessage() {

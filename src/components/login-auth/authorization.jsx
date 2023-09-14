@@ -1,5 +1,3 @@
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import jwt_decode from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,11 +6,12 @@ import { ReactComponent as PromocodeIcon } from "../../assets/icons/auth-icons/p
 import vk_icon from "../../assets/icons/auth-icons/vk-icon.png";
 import { ReactComponent as ExitIcon } from "../../assets/icons/close-icon.svg";
 import { loginUserAction } from "../../redux/user-reducer";
-import TGLogin from "../tg-login/tg-login";
+import GoogleLoginModal from "../auth-socials/google-login/google-login";
+import TGLogin from "../auth-socials/tg-login/tg-login";
+import VKFloatingLoginComponent from "../auth-socials/vk-login/vk-login";
+import MailRuOAuth from "../auth-socials/mail.ru-login/mail.ru-login";
 import { mainApi } from "../utils/main-api";
-import MailRuOAuth from "../mail.ru-login/mail.ru-login";
-import VKFloatingLoginComponent from "../vk-login/vk-login";
-import YandexAuthButton from "../yandex-login/yandex-login";
+import YandexAuthButton from "../auth-socials/yandex-login/yandex-login";
 import "./login-auth.css";
 
 function AuthorizationModal({ setLoginModal, setAuthModalType }) {
@@ -21,14 +20,13 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
   const [vkData, setVkData] = useState({});
   const [yandexData, setYandexData] = useState({});
   const [TGData, setTgData] = useState({});
-  const [vkOpen, setVkOpen] = useState(false);
   const [authTypeToggle, setAuthType] = useState("email");
   const [activePromocode, setActivePromocode] = useState(false);
   const [checkedPolicy, setCheckedPolicy] = useState(false);
   const [userName, setUserName] = useState("");
   const [userPassword, setPassword] = useState("");
   const [MailRuData, setMailRuData] = useState({});
-  // https://cors.sh
+
   const loginUser = () => {
     if (userPassword && userName) {
       const user = {
@@ -171,7 +169,6 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
   }, [dispatch, navigate, setLoginModal, yandexData]);
   useEffect(() => {
     if (vkData && vkData.id) {
-      setVkOpen(false);
       const user = {
         auth_type: "vk",
         username: `${vkData.first_name} ${vkData.last_name}`,
@@ -226,7 +223,6 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
   }, [dispatch, navigate, setLoginModal, vkData]);
   useEffect(() => {
     if (TGData && TGData.id) {
-      setVkOpen(false);
       const user = {
         auth_type: "telegram",
         username: TGData.username,
@@ -392,28 +388,11 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
             <div className="auth_socials">
               <div className="google_auth_btn_wrapper">
                 <div className="google_auth_btn">
-                  <GoogleOAuthProvider clientId="43928678507-s47ggc38cmfabet21l25g2b8s11ljiv0.apps.googleusercontent.com">
-                    <GoogleLogin
-                      onSuccess={(credentialResponse) => {
-                        var decoded = jwt_decode(credentialResponse.credential);
-                        authGoogle(decoded);
-                      }}
-                      type="icon"
-                      shape="square"
-                      size="large"
-                      onError={() => {
-                        console.log("Login Failed");
-                      }}
-                    />
-                  </GoogleOAuthProvider>
+                  <GoogleLoginModal authGoogle={authGoogle} />
                 </div>
               </div>
-              <img
-                src={vk_icon}
-                alt="vk_icon"
-                onClick={() => setVkOpen(true)}
-              />
-              {vkOpen ? <VKFloatingLoginComponent setVkData={setVkData} /> : ""}
+
+              <VKFloatingLoginComponent setVkData={setVkData} />
               <div className="tg_login_btn">
                 <TGLogin setTgData={setTgData} />
               </div>

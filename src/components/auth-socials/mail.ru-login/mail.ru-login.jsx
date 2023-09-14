@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import mail_icon from "../../assets/icons/auth-icons/mail-icon.png";
-import { mainApi } from "../utils/main-api";
+import mail_icon from "../../../assets/icons/auth-icons/mail-icon.png";
+import { mainApi } from "../../utils/main-api";
 
 const MailRuOAuth = ({ setMailRuData }) => {
   const redirect_url = `https://legadrop.vercel.app`;

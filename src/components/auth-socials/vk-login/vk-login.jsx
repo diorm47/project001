@@ -1,6 +1,8 @@
 import { Config, Connect, ConnectEvents } from "@vkontakte/superappkit";
 import React, { useEffect } from "react";
-import { mainApi } from "../utils/main-api";
+import { mainApi } from "../../utils/main-api";
+import vk_icon from "../../../assets/icons/auth-icons/vk-icon.png";
+
 function VKFloatingLoginComponent({ setVkData }) {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -34,9 +36,11 @@ function VKFloatingLoginComponent({ setVkData }) {
 
     window.location.href = vkAuthUrl;
   };
-  useEffect(() => {
+
+  const initVkWidget = () => {
     Config.init({
-      appId: 51744107, // Замените на ваш ID приложения.
+      appId: 51744107,
+      // appId: 51740472,
 
       appSettings: {
         agreements: "",
@@ -58,7 +62,6 @@ function VKFloatingLoginComponent({ setVkData }) {
           case ConnectEvents.OneTapAuthEventsSDK.LOGIN_SUCCESS:
             return setVkData(event.payload.user);
           default:
-          // Обработка остальных событий.
         }
 
         return;
@@ -86,11 +89,13 @@ function VKFloatingLoginComponent({ setVkData }) {
         oneTapButton.destroy();
       }
     };
-  }, []);
+  };
 
   return (
     <>
-      <div id="vk-floating-login-container"></div>
+      <div id="vk-floating-login-container" onClick={initVkWidget}>
+        <img src={vk_icon} alt="" />
+      </div>
     </>
   );
 }

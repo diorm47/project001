@@ -360,5 +360,17 @@ button.tgme_widget_login_button {
 }
 
 #vk-floating-login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google_fake {
+  width: 18px;
+  margin-left: 1px;
   position: absolute;
+  z-index: 111;
+}
+.display_none {
+  display: none;
 }
