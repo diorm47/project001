@@ -2,6 +2,7 @@
   display: flex;
   align-items: start;
   justify-content: space-between;
+  min-height: 90vh;
 }
 
 .profile_menu {

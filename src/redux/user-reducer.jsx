@@ -6,7 +6,7 @@ const initialState = {
     password: "",
     is_logged: false,
     email: "",
-    image: "",
+    picture: "",
     email_verified: "",
   },
 };

@@ -59,56 +59,21 @@ function AuthorizationModal({ setLoginModal, setAuthModalType }) {
     }
   };
 
-  const authGoogle = (userData) => {
-    const data = {
-      auth_type: "google",
-      email: userData.email,
-      username: userData.name,
-      image: userData.picture,
-      google_sub: userData.sub,
-    };
+  const authGoogle = (data) => {
     mainApi
-      .signup(data)
+      .authGoogleAction(data)
       .then((res) => {
         localStorage.setItem("token", res.access_token);
-        const user = {
+        const is_logged = {
           is_logged: true,
         };
-        dispatch(loginUserAction(user));
-        mainApi
-          .reEnter()
-          .then((res) => {
-            dispatch(loginUserAction(res));
-            setLoginModal(false);
-            navigate("/profile");
-          })
-          .catch((error) => {
-            console.log("error0", error);
-          });
+
+        dispatch(loginUserAction(is_logged));
+        dispatch(loginUserAction(res.user));
+        setLoginModal(false);
       })
       .catch((error) => {
-        mainApi
-          .signin(data)
-          .then((res) => {
-            localStorage.setItem("token", res.access_token);
-            const user = {
-              is_logged: true,
-            };
-            dispatch(loginUserAction(user));
-            mainApi
-              .reEnter()
-              .then((res) => {
-                dispatch(loginUserAction(res));
-                setLoginModal(false);
-                navigate("/profile");
-              })
-              .catch((error) => {
-                console.log("error0", error);
-              });
-          })
-          .catch((error) => {
-            console.log("error", error);
-          });
+        console.log("google error");
       });
   };
 

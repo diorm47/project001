@@ -1,0 +1,21 @@
+.snackbar_wrapper {
+  position: fixed;
+
+  height: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  border-radius: 8px;
+  background: #3d4ac0;
+  bottom: 20px;
+  left: 20px;
+}
+
+.snackbar_wrapper p {
+  color: #fff;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}

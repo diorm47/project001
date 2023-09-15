@@ -3,6 +3,7 @@ const mainApiOptions = {
   baseUrl: "http://192.168.1.4:8000",
 
   headers: {
+    Accept: "*/*",
     "Content-Type": "application/json",
   },
 };
@@ -35,7 +36,6 @@ class MainApi {
       method,
       headers,
       body: JSON.stringify(body),
-      credentials: "include",
     });
 
     return this._checkResponseStatus(res);
@@ -58,7 +58,14 @@ class MainApi {
   }
   async authGoogleAction(userData) {
     return this._sendRequest({
-      endpoint: `/auth/google/`,
+      endpoint: `/auth/google`,
+      method: "POST",
+      body: userData,
+    });
+  }
+  async authVKAction(userData) {
+    return this._sendRequest({
+      endpoint: `/auth/vk`,
       method: "POST",
       body: userData,
     });

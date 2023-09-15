@@ -22,23 +22,23 @@ function ProfilePage() {
   const [userData, setUserData] = useState({});
   const usersData = useSelector((state) => state.user.user);
   React.useEffect(() => {
-    document.title = `Профиль ${usersData.username} | Legadrop - Рулетка для геншина`;
+    document.title = `Профиль ${usersData.name} | Legadrop - Рулетка для геншина`;
   }, []);
   const navigate = useNavigate();
   useEffect(() => {
     setUserData(usersData);
   }, [usersData]);
-  useEffect(() => {
-    if (!usersData.is_logged) {
-      navigate("/");
-    }
-  }, [navigate, usersData]);
+  // useEffect(() => {
+  //   if (!usersData.is_logged) {
+  //     navigate("/");
+  //   }
+  // }, [navigate, usersData]);
 
   const logout = () => {
     localStorage.clear();
-    sessionStorage.clear()
+    sessionStorage.clear();
     navigate("/");
-    window.location.reload()
+    window.location.reload();
   };
   return (
     <div className="page_template profile_page">
@@ -49,7 +49,9 @@ function ProfilePage() {
               <NavLink to="/profile">
                 <img
                   src={
-                    userData && userData.image ? userData.image : user_avatar
+                    userData && userData.picture
+                      ? userData.picture
+                      : user_avatar
                   }
                   alt="user avatar"
                 />
@@ -57,7 +59,9 @@ function ProfilePage() {
             </div>
             <div className="user_descr">
               <p className="user_name">
-                {userData && userData.username ? userData.username : "user"}
+                {userData && userData.username
+                  ? userData.username
+                  : userData.name}
               </p>
               <div className="user_moneys">
                 <img src={money} alt="" />

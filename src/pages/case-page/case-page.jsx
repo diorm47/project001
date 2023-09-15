@@ -35,7 +35,7 @@ function CasePage({ setLoginModal }) {
         <div className="about_item_content">
           <img src={item.image} alt="" />
           <div className="unauthorized_message_wrapper">
-            {/* {!isLogged ? (
+            {!isLogged ? (
               <>
                 <div className="unauthorized_message">
                   <p>Вы не авторизованы!</p>
@@ -50,8 +50,8 @@ function CasePage({ setLoginModal }) {
               </>
             ) : (
               ""
-            )} */}
-            {/* {!isLogged ? (
+            )}
+            {isLogged ? (
               <>
                 <div className="unauthorized_message">
                   <p>
@@ -68,9 +68,9 @@ function CasePage({ setLoginModal }) {
               </>
             ) : (
               ""
-            )} */}
+            )}
 
-            {!isLogged ? (
+            {/* {!isLogged ? (
               <div className="open_case_block">
                 <div className="upgade_chances">
                   <div className="upgade_chances_items">
@@ -98,7 +98,7 @@ function CasePage({ setLoginModal }) {
               </div>
             ) : (
               ""
-            )}
+            )} */}
           </div>
         </div>
       </div>

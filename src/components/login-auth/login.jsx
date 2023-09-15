@@ -69,26 +69,42 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
       .authGoogleAction(data)
       .then((res) => {
         localStorage.setItem("token", res.access_token);
-        const user = {
+        const is_logged = {
           is_logged: true,
         };
 
-        dispatch(loginUserAction(user));
-        mainApi
-          .reEnter()
-          .then((res) => {
-            dispatch(loginUserAction(res));
-            setLoginModal(false);
-            navigate("/profile");
-          })
-          .catch((error) => {
-            console.log("error0", error);
-          });
+        dispatch(loginUserAction(is_logged));
+        dispatch(loginUserAction(res.user));
+        setLoginModal(false);
       })
       .catch((error) => {
         console.log("google error");
       });
   };
+  useEffect(() => {
+    if (vkData && vkData.id) {
+      const user = {
+        username: `${vkData.first_name} ${vkData.last_name}`,
+        vkontakte_id: vkData.id,
+        picture: vkData.avatar,
+      };
+
+      mainApi
+        .authVKAction(user)
+        .then((userData) => {
+          localStorage.setItem("token", userData.access_token);
+          const is_logged = {
+            is_logged: true,
+          };
+          dispatch(loginUserAction(is_logged));
+          dispatch(loginUserAction(userData.user));
+          setLoginModal(false);
+        })
+        .catch(() => {
+          console.log("error");
+        });
+    }
+  }, [dispatch, navigate, setLoginModal, vkData]);
 
   useEffect(() => {
     if (yandexData && yandexData.id) {
@@ -143,60 +159,6 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
         });
     }
   }, [dispatch, navigate, setLoginModal, yandexData]);
-  useEffect(() => {
-    if (vkData && vkData.id) {
-      const user = {
-        auth_type: "vk",
-        username: `${vkData.first_name} ${vkData.last_name}`,
-        vkontakte_id: vkData.id,
-        image: vkData.photo_400_orig,
-      };
-
-      mainApi
-        .signin(user)
-        .then((userData) => {
-          localStorage.setItem("token", userData.access_token);
-          const user = {
-            is_logged: true,
-          };
-          dispatch(loginUserAction(user));
-          mainApi
-            .reEnter()
-            .then((res) => {
-              setLoginModal(false);
-              navigate("/profile");
-              dispatch(loginUserAction(res));
-            })
-            .catch(() => {
-              console.log("error");
-            });
-        })
-        .catch((error) => {
-          mainApi
-            .signup(user)
-            .then((userData) => {
-              localStorage.setItem("token", userData.access_token);
-              const user = {
-                is_logged: true,
-              };
-              dispatch(loginUserAction(user));
-              mainApi
-                .reEnter()
-                .then((res) => {
-                  setLoginModal(false);
-                  navigate("/profile");
-                  dispatch(loginUserAction(res));
-                })
-                .catch(() => {
-                  console.log("error");
-                });
-            })
-            .catch((error) => {
-              console.log("error: ", error);
-            });
-        });
-    }
-  }, [dispatch, navigate, setLoginModal, vkData]);
 
   useEffect(() => {
     if (TGData && TGData.id) {

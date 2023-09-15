@@ -60,8 +60,8 @@ function MainNavbar({ setLoginModal }) {
                 <NavLink to="/profile">
                   <img
                     src={
-                      userData && userData.image
-                        ? userData.image
+                      userData && userData.picture
+                        ? userData.picture
                         : profile_avatar
                     }
                     alt=""
