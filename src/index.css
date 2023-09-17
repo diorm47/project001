@@ -42,3 +42,12 @@ span {
   width: 44px !important;
   height: 43px !important;
 }
+
+/* Отключение желтого фона в Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #ffffff4d !important;
+}

@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/footer/footer";
 import LiveLength from "./components/live-length/live-length";
@@ -13,9 +13,13 @@ import ProfilePage from "./pages/profile-page/profile-page";
 import ShopPage from "./pages/shop-page/shop-page";
 import Topup from "./pages/topup/topup";
 import { loginUserAction } from "./redux/user-reducer";
+import SuccesAuthModal from "./components/sucess-auth-modal/success-auth-modal";
 
 function App() {
   const [loginModal, setLoginModal] = useState(false);
+  const [successLoginModal, setSuccessLoginModal] = useState(false);
+  const usersData = useSelector((state) => state.user.user);
+
   const [open, setOpen] = useState(sessionStorage.getItem("open"));
   const dispatch = useDispatch();
 
@@ -39,7 +43,8 @@ function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
-    if (code) {
+    const hash = window.location.hash.substring(1).split("=")[1];
+    if (code || hash) {
       setLoginModal(true);
     }
   }, []);
@@ -56,11 +61,17 @@ function App() {
     }
   }, [sessionStorage.getItem("open")]);
 
+  useEffect(() => {
+    if (usersData.password) {
+      setSuccessLoginModal(true);
+    }
+  }, [usersData]);
+
   return (
     <>
       {open ? (
         <>
-          {loginModal ? (
+          {loginModal || successLoginModal ? (
             <div className="modal_overlay" onClick={() => closeModals()}></div>
           ) : (
             ""
@@ -91,6 +102,11 @@ function App() {
             <Footer />
           </div>
           {loginModal ? <LoginAuth setLoginModal={setLoginModal} /> : ""}
+          {successLoginModal ? (
+            <SuccesAuthModal setSuccessLoginModal={setSuccessLoginModal} />
+          ) : (
+            ""
+          )}
         </>
       ) : (
         ""

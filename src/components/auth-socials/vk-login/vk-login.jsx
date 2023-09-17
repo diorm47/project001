@@ -1,15 +1,19 @@
 import { Config, Connect, ConnectEvents } from "@vkontakte/superappkit";
 import React, { useEffect } from "react";
-import { mainApi } from "../../utils/main-api";
 import vk_icon from "../../../assets/icons/auth-icons/vk-icon.png";
+import { mainApi } from "../../utils/main-api";
+import { useDispatch } from "react-redux";
+import { loginUserAction } from "../../../redux/user-reducer";
+import { useNavigate } from "react-router-dom";
 
-function VKFloatingLoginComponent({ setVkData }) {
+function VKFloatingLoginComponent({ setVkData, setLoginModal }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const authCode = urlParams.get("code");
-
-    if (authCode) {
-      fetchTokenAndUserData(authCode);
+    const token = window.location.hash.substring(1).split("=")[1];
+    if (token) {
+      fetchTokenAndUserData(token);
     }
   }, []);
 
@@ -17,14 +21,14 @@ function VKFloatingLoginComponent({ setVkData }) {
     mainApi
       .getTokenVK(code)
       .then((userData) => {
-        mainApi
-          .getVKUser(userData.access_token)
-          .then((userData) => {
-            setVkData(userData.response[0]);
-          })
-          .catch((error) => {
-            console.log("data", error);
-          });
+        localStorage.setItem("token", userData.access_token);
+        const is_logged = {
+          is_logged: true,
+        };
+        navigate("/");
+        dispatch(loginUserAction(is_logged));
+        dispatch(loginUserAction(userData.user));
+        setLoginModal(false);
       })
       .catch((error) => {
         console.log("data", error);
@@ -32,7 +36,7 @@ function VKFloatingLoginComponent({ setVkData }) {
   };
 
   const handleLogin = () => {
-    const vkAuthUrl = `https://oauth.vk.com/authorize?client_id=51740472&redirect_uri=${window.location.origin}&response_type=code&v=5.52`;
+    const vkAuthUrl = `https://oauth.vk.com/authorize?client_id=51744107&redirect_uri=http://localhost:80&display=page&response_type=token&v=5.131`;
 
     window.location.href = vkAuthUrl;
   };
@@ -40,8 +44,6 @@ function VKFloatingLoginComponent({ setVkData }) {
   const initVkWidget = () => {
     Config.init({
       appId: 51744107,
-      // appId: 51740472,
-
       appSettings: {
         agreements: "",
         promo: "",

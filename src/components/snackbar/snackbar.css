@@ -10,6 +10,7 @@
   background: #3d4ac0;
   bottom: 20px;
   left: 20px;
+  z-index: 111;
 }
 
 .snackbar_wrapper p {

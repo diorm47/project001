@@ -16,7 +16,6 @@ function TelegramAuthButton({
   onAuthCallback,
   redirectUrl,
   lang = "en",
-  additionalClasses = "",
 }) {
   const containerRef = useRef(null);
 

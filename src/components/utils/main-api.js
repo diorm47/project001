@@ -13,13 +13,11 @@ class MainApi {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
-
   _checkResponseStatus(response) {
     return response.ok
       ? response.json()
       : response.json().then((err) => Promise.reject(err.message));
   }
-
   async _sendRequest({
     endpoint,
     method = "GET",
@@ -41,21 +39,23 @@ class MainApi {
     return this._checkResponseStatus(res);
   }
 
-  async signup(userData) {
+  // Sign actions list
+  async authorizationAction(userData) {
     return this._sendRequest({
-      endpoint: "/signup",
+      endpoint: `/auth/legadrop`,
+      method: "POST",
+      body: userData,
+    });
+  }
+  async loginAction(userData) {
+    return this._sendRequest({
+      endpoint: `/login/legadrop`,
       method: "POST",
       body: userData,
     });
   }
 
-  async signin(userData) {
-    return this._sendRequest({
-      endpoint: "/signin",
-      method: "POST",
-      body: userData,
-    });
-  }
+  // Socials auth/login
   async authGoogleAction(userData) {
     return this._sendRequest({
       endpoint: `/auth/google`,
@@ -70,34 +70,35 @@ class MainApi {
       body: userData,
     });
   }
-  async getToken(userData) {
-    return this._sendRequest({
-      endpoint: `/get-mailru-token/?code=${userData}`,
-      method: "POST",
-      body: userData,
-    });
-  }
   async getTokenVK(userData) {
     return this._sendRequest({
-      endpoint: `/get-vk-token/?code=${userData}`,
+      endpoint: `/auth/vk/token/?access_token=${userData}`,
+      method: "POST",
+    });
+  }
+  async authTGAction(userData) {
+    return this._sendRequest({
+      endpoint: "/auth/telegram",
       method: "POST",
       body: userData,
     });
   }
-  async getVKUser(userData) {
+  async authMailruAction(userData) {
     return this._sendRequest({
-      endpoint: `/get-vk-user/?access_token=${userData}`,
-      method: "GET",
+      endpoint: `/auth/mailru`,
+      method: "POST",
+      body: userData,
     });
   }
-  async loginGoogle(userData) {
+  async authYandexAction(userData) {
     return this._sendRequest({
-      endpoint: "/register/google",
+      endpoint: `/auth/yandex`,
       method: "POST",
       body: userData,
     });
   }
 
+  // User me
   async reEnter() {
     return this._sendRequest({
       endpoint: "/user/me",
@@ -105,18 +106,29 @@ class MainApi {
     });
   }
 
-  async editUserData(userData) {
+  // update user data
+
+  async updateUserName(userData) {
     return this._sendRequest({
-      endpoint: "/users/me",
-      method: "PATCH",
+      endpoint: `/username`,
+      method: "PUT",
       body: userData,
       requiresToken: true,
     });
   }
-
-  async logoutUser() {
+  async updateUserEmail(userData) {
     return this._sendRequest({
-      endpoint: "/signout",
+      endpoint: `/email`,
+      method: "PUT",
+      body: userData,
+      requiresToken: true,
+    });
+  }
+  async updateUserPassword(userData) {
+    return this._sendRequest({
+      endpoint: `/password`,
+      method: "PUT",
+      body: userData,
       requiresToken: true,
     });
   }

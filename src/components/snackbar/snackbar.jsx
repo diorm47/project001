@@ -5,7 +5,7 @@ function Snacbar({ text }) {
   return (
     <>
       <div className="snackbar_wrapper">
-        <p>{text} !</p>
+        <p>{text}</p>
       </div>
     </>
   );

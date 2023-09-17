@@ -12,7 +12,7 @@ function Card({ data }) {
   return (
     <div className="card_wrapper" onClick={() => aboutItem(data)}>
       <div className="card_image">
-        <img src={data.image} alt="" />
+        <img src={data.image} alt="" title={`${data.item_name} - ${data.name}`} />
       </div>
       <div className="card_description">
         <div className="card_name">

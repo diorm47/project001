@@ -36,6 +36,7 @@
 }
 .user_avatar img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 .user_moneys {
@@ -167,4 +168,11 @@
 .profile_menu_list .active .profile_menu_list_item svg * {
   fill-opacity: 1;
   transition: all 0.4s ease;
+}
+
+.profile_menu_line {
+  width: 100%;
+  height: 1px;
+  background: #313665;
+  margin: 18px 0;
 }

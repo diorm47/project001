@@ -10,6 +10,7 @@ import { ReactComponent as HistoryIcon } from "../../assets/icons/profile-icons/
 import { ReactComponent as UpgradeIcon } from "../../assets/icons/profile-icons/upgrade.svg";
 import { ReactComponent as PartnersIcon } from "../../assets/icons/profile-icons/partners-icon.svg";
 import { ReactComponent as SettingsIcon } from "../../assets/icons/profile-icons/settings-icon.svg";
+import { ReactComponent as LogoutIcon } from "../../assets/icons/profile-icons/logout.svg";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Items from "./profile-menu-pages/items/items";
 import History from "./profile-menu-pages/history/history";
@@ -22,17 +23,17 @@ function ProfilePage() {
   const [userData, setUserData] = useState({});
   const usersData = useSelector((state) => state.user.user);
   React.useEffect(() => {
-    document.title = `Профиль ${usersData.name} | Legadrop - Рулетка для геншина`;
+    document.title = `Профиль ${usersData.username} | Legadrop - Рулетка для геншина`;
   }, []);
   const navigate = useNavigate();
   useEffect(() => {
     setUserData(usersData);
   }, [usersData]);
-  // useEffect(() => {
-  //   if (!usersData.is_logged) {
-  //     navigate("/");
-  //   }
-  // }, [navigate, usersData]);
+  useEffect(() => {
+    if (!usersData.is_logged) {
+      navigate("/");
+    }
+  }, [navigate, usersData]);
 
   const logout = () => {
     localStorage.clear();
@@ -125,7 +126,11 @@ function ProfilePage() {
               <p>Настройки</p>
             </div>
           </NavLink>
-          <button onClick={logout}>Выйти</button>
+          <div className="profile_menu_line"></div>
+          <div className="profile_menu_list_item" onClick={logout}>
+            <LogoutIcon />
+            <p>Выйти из аккаунта</p>
+          </div>
         </div>
       </div>
       <div className="profile_content">

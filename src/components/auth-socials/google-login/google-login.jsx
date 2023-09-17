@@ -15,7 +15,7 @@ const GoogleLoginModal = ({ authGoogle }) => {
         size="large"
         text="use"
         shape="rectangular"
-        // useOneTap={true}
+        useOneTap={true}
         cancel_on_tap_outside={true}
         auto_select={true}
         ux_mode="popup"

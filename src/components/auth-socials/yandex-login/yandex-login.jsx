@@ -4,7 +4,7 @@ import { ReactComponent as YandexIcon } from "../../../assets/icons/auth-icons/y
 const clientID = "5049f78cbe0b451d9a1beaa01cfc04b3";
 function extractTokenAndSendMessage() {
   const params = new URLSearchParams(window.location.hash.slice(1));
-  if (params.has("access_token")) {
+  if (params.has("access_token") && params.has("token_type")) {
     const access_token = params.get("access_token");
     window.opener.postMessage({ token: access_token }, window.location.origin);
     window.close();
