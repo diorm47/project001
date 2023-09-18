@@ -47,8 +47,8 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
   const loginUser = () => {
     if (userName && userPassword) {
       const user = {
-        username: userName,
-        email: userPassword,
+        email: userName,
+        password: userPassword,
       };
       mainApi
         .loginAction(user)
