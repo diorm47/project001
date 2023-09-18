@@ -36,7 +36,7 @@ function VKFloatingLoginComponent({ setVkData, setLoginModal }) {
   };
 
   const handleLogin = () => {
-    const vkAuthUrl = `https://oauth.vk.com/authorize?client_id=51744107&redirect_uri=http://localhost:80&display=page&response_type=token&v=5.131`;
+    const vkAuthUrl = `https://oauth.vk.com/authorize?client_id=51744107&redirect_uri=https://project001-black.vercel.app&display=page&response_type=token&v=5.131`;
 
     window.location.href = vkAuthUrl;
   };

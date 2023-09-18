@@ -7,8 +7,8 @@ import { useDispatch } from "react-redux";
 const MailRuOAuth = ({ setMailRuData, setLoginModal }) => {
   const dispatch = useDispatch();
 
-  // const redirect_url = `https://legadrop.vercel.app`;
-  const redirect_url = `http://localhost:3000`;
+  const redirect_url = `https://project001-black.vercel.app`;
+  // const redirect_url = `http://localhost:3000`;
 
   const handleLogin = () => {
     const state = Math.random().toString(36).substring(7);
