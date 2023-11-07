@@ -1,3 +1,140 @@
+.upgrade_block {
+  border-radius: 15px;
+  background: #242c54;
+  min-height: 480px;
+  margin-bottom: 40px;
+  padding: 38px 80px 63px;
+}
 .upgrade_wrapper {
-    
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.updating_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.updating_item_img {
+  width: 174px;
+  height: 174px;
+  margin-bottom: -20px;
+}
+
+.updating_bottom_img {
+  width: 240px;
+}
+
+.upgrade_wrapper p {
+  color: #7f8bad;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 22px;
+  line-height: 18px; /* 128.571% */
+}
+.updating_chance {
+  position: relative;
+  width: 294px;
+  height: 294px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -90px;
+}
+
+.updating_chance img {
+  width: 294px;
+  height: 294px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.updating_percent {
+  margin-top: -30px;
+}
+.updating_percent p {
+  color: #fff;
+
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 52px; /* 130% */
+  text-transform: uppercase;
+}
+
+.updating_percent span {
+  color: #fdfdfd;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px; /* 128.571% */
+  text-transform: uppercase;
+}
+
+.updating_item_to {
+  margin-bottom: -18px;
+}
+
+.update_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.upgrade_secondary_block {
+  display: flex;
+  align-items: start;
+  margin-bottom: 50px;
+  justify-content: space-between;
+}
+.upgrade_secondary_block_item {
+  padding: 20px;
+  border-radius: 15px;
+  background: #12152e;
+  width: 49%;
+}
+.upgrade_secondary_block_item_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.upgrade_secondary_block_item_title p {
+
+  color: #e0e6ff;
+  font-family: Rubik;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 105.882% */
+}
+
+.upgrade_secondary_items_wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.upgrade_secondary_items_wrapper .case_item {
+  padding: 8px 5px;
+  width: 131px;
+  height: 130px;
+  margin-bottom: 7px;
+}
+.upgrade_secondary_items_wrapper .case_item img {
+  width: 70px;
+}
+
+.upgrade_block_sort {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  cursor: pointer;
+}
+.upgrade_block_sort p {
+  margin: 0;
 }

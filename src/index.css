@@ -38,6 +38,7 @@ button {
 .page_template {
   width: 1200px;
   margin: 0 auto;
+  padding-top: 32px;
 }
 .tgme_widget_login.large button.tgme_widget_login_button {
   font-size: 0px !important;
@@ -53,4 +54,17 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: #ffffff4d !important;
+}
+
+.main_btn_temp {
+  padding: 16px 32px;
+  border-radius: 8px;
+  background: #69dd89;
+  border: none;
+  color: #191d3e;
+  font-family: Rubik;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 125% */
 }
