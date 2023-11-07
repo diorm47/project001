@@ -30,7 +30,12 @@
   transition: all 0.4s ease;
   color: #f7a34d;
 }
-
+.active
+.top_nav_left_item   p {
+  transition: all 0.4s ease;
+  color: #f7a34d;
+  fill: #f7a34d;
+}
 .top_nav_right_list {
   display: flex;
   align-items: center;

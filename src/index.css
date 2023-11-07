@@ -31,6 +31,9 @@ h1,
 span {
   -webkit-tap-highlight-color: transparent;
 }
+button {
+  cursor: pointer;
+}
 
 .page_template {
   width: 1200px;

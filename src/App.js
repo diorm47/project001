@@ -14,6 +14,8 @@ import ShopPage from "./pages/shop-page/shop-page";
 import Topup from "./pages/topup/topup";
 import { loginUserAction } from "./redux/user-reducer";
 import SuccesAuthModal from "./components/sucess-auth-modal/success-auth-modal";
+import Live from "./pages/live/live";
+import Upgrade from "./pages/upgrade/upgrade";
 
 function App() {
   const [loginModal, setLoginModal] = useState(false);
@@ -94,6 +96,8 @@ function App() {
                   element={<CasePage setLoginModal={setLoginModal} />}
                 />
                 <Route path="/shop" element={<ShopPage />} />
+                <Route path="/live" element={<Live />} />
+                <Route path="/upgrade" element={<Upgrade />} />
 
                 {/* <Route path="*" element={<NotFound />} /> */}
               </Routes>

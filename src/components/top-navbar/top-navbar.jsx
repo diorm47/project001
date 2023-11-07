@@ -30,7 +30,7 @@ function TopNavbar() {
               <p>FAQ</p>
             </div>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/live">
             <div className="top_nav_left_item">
               <p>Live выводы</p>
             </div>
