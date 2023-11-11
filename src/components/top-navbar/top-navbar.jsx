@@ -10,22 +10,22 @@ function TopNavbar() {
     <div className="top_nav">
       <div className="top_nav_wrapper">
         <div className="top_nav_left_list">
-          <NavLink to="/">
+          <NavLink to="/referals">
             <div className="top_nav_left_item">
               <p>Партнерская программа</p>
             </div>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/guarantees">
             <div className="top_nav_left_item">
               <p>Гарантии</p>
             </div>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/support">
             <div className="top_nav_left_item">
               <p>Поддержка</p>
             </div>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/faq">
             <div className="top_nav_left_item">
               <p>FAQ</p>
             </div>
