@@ -8,18 +8,22 @@ import { useSelector } from "react-redux";
 
 import { ReactComponent as Wallet } from "../../assets/icons/wallet-icon.svg";
 
+import { useState } from "react";
+import { useRef } from "react";
+import CaseOpening from "../../components/case-opening/case-opening";
+
 function CasePage({ setLoginModal }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const isLogged = useSelector((state) => state.user.user.is_logged);
-
   const navigate = useNavigate();
   const params = useParams();
   const item = data.find((i) => i.item_name === params.name);
   React.useEffect(() => {
     document.title = `${item.item_name} - ${item.name} - Legadrop`;
   }, []);
+
   return (
     <div className="page_template case_page">
       <div className="case_title">
@@ -31,8 +35,9 @@ function CasePage({ setLoginModal }) {
         </div>
         <h1>КЕЙС {item.item_name}</h1>
       </div>
-      <div className="about_item_bg">
-        <div className="about_item_content">
+      <CaseOpening />
+      {/*<div className="about_item_bg">
+         <div className="about_item_content">
           <img src={item.image} alt="" />
           <div className="unauthorized_message_wrapper">
             {!isLogged ? (
@@ -70,7 +75,7 @@ function CasePage({ setLoginModal }) {
               ""
             )}
 
-            {/* {!isLogged ? (
+            {!isLogged ? (
               <div className="open_case_block">
                 <div className="upgade_chances">
                   <div className="upgade_chances_items">
@@ -98,10 +103,10 @@ function CasePage({ setLoginModal }) {
               </div>
             ) : (
               ""
-            )} */}
+            )}
           </div>
-        </div>
-      </div>
+        </div> 
+      </div>*/}
       <div className="case_items_block">
         <h3>СОДЕРЖИМОЕ КЕЙСА</h3>
         <div className="case_items_content">
