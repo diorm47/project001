@@ -1,55 +1,83 @@
-.roulette-wrapper {
-  position: relative;
-  display: flex;
-  justify-content: center;
+.spin_result {
+  position: fixed;
+  background: #000000c2;
   width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 111;
+  display: flex;
+}
+.spin_result_wrapper {
   margin: 0 auto;
-  overflow: hidden;
+  margin-top: 200px;
 }
-
-.roulette-wrapper .selector {
-  width: 3px;
-  background: grey;
-  left: 50%;
-  height: 100%;
-  transform: translate(-50%, 0%);
+.spin_result_item_bg {
+  background: #0333ab;
+  border-radius: 50%;
+}
+.spin_result_item_image,
+.spin_result_wrapper {
+  position: relative;
+}
+.spin_result_item_bg {
   position: absolute;
-  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
-
-.roulette-wrapper .wheel {
-  display: flex;
-}
-
-.roulette-wrapper .wheel .row {
-  display: flex;
-}
-
-.roulette-wrapper .wheel .row .card {
-  height: 75px;
-  width: 75px;
-  margin: 3px;
-  border-radius: 8px;
-  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+.spin_result_item_image {
+  width: 300px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 1.5em;
+}
+.spin_result_item-image {
+  position: relative;
+  width: 180px;
 }
 
-.card.red {
-  background: #f95146;
+.spin_result_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.spin_result_item_description p {
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+}
+.spin_result_item_cost p {
+  text-align: center;
+  color: #ddff00;
+  margin-top: 5px;
 }
 
-.card.black {
-  background: #2d3035;
+.spin_result_item_id h2 {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 10px;
+  color: #26ff00;
+}
+.retry_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.retry_btn button {
+  margin-top: 30px;
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  border-radius: 8px;
+  background: #242c54;
+  font-family: "Rubik", sans-serif;
+  color: #fff;
 }
 
-.card.green {
-  background: #00c74d;
-}
-
-* {
-  box-sizing: border-box;
+.spin_result_item_description {
+  position: relative;
 }
