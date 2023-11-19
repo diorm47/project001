@@ -7,7 +7,7 @@ import { ReactComponent as GradientRight } from "../../assets/icons/case-opening
 import case_item_img from "../../assets/images/case-item.png";
 import sound from "../../assets/sound.mp3";
 import winnedAudio from "../../assets/winned.mp3";
-import loading from "../../assets/loading-gif-png-5.gif"
+import loading from "../../assets/loading-gif-png-5.gif";
 
 import useSound from "use-sound";
 import "react-roulette-pro/dist/index.css";
@@ -95,7 +95,27 @@ function CaseOpening() {
   const [playWinnedSound, { stop: stopWinnedSound }] = useSound(winnedAudio, {
     volume: 0.5,
   });
+  const [cardWidth, setCardWidth] = useState(183);
+  useEffect(() => {
+    const updateCardWidth = () => {
+      const item = document.querySelector(".case_opening_item");
+      if (item) {
+        setCardWidth(item.offsetWidth);
+      }
+    };
 
+    updateCardWidth();
+
+    const handleResize = () => {
+      updateCardWidth();
+      if (isSpinning) {
+        restartRoulette();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isSpinning]);
   const resetWheel = () => {
     if (wheelRef.current) {
       wheelRef.current.style.transition = "none";
@@ -126,8 +146,13 @@ function CaseOpening() {
     setIsSpinning(true);
 
     setWinnedPrize(case_items.filter((item) => item.id === selectedId)[0]);
-    const cardWidth = 183;
-    const viewportCenter = window.innerWidth / 2;
+
+    const wrapper = wheelRef.current;
+    if (!wrapper) {
+      return;
+    }
+
+    const viewportCenter = wrapper.offsetWidth / 2;
     const initialSpin = cardWidth * case_items.length * 2;
     const targetPosition = cardWidth * extendedIndex;
     const centeringOffset = cardWidth / 2;
@@ -137,7 +162,7 @@ function CaseOpening() {
     wheelRef.current.style.transition =
       "transform 10s cubic-bezier(0.15, 1, 0.40, 1)";
     wheelRef.current.style.transform = `translateX(-${
-      spinDistance + cardWidth + 30
+      spinDistance 
     }px)`;
 
     let previousCardEdge = null;
@@ -165,12 +190,16 @@ function CaseOpening() {
       setIsSpinning(false);
       clearInterval(interval);
 
-      const finalAdjustment =
-        initialSpin + targetPosition - viewportCenter + centeringOffset;
+      const selectedItem = wheelRef.current.children[extendedIndex + case_items.length * 2];
+
+      // Вычисляем центр выбранного элемента относительно его родителя
+      const selectedItemCenterPosition = selectedItem.offsetLeft + cardWidth / 2;
+    
+      // Рассчитываем коррекцию, чтобы центр элемента совпал с центром видимой области
+      const correction = viewportCenter - selectedItemCenterPosition;
+    
       wheelRef.current.style.transition = "transform 0.5s ease-out";
-      wheelRef.current.style.transform = `translateX(-${
-        finalAdjustment + 190
-      }px)`;
+      wheelRef.current.style.transform = `translateX(${correction}px)`;
       setWinnedPrizeBlock(true);
       playWinnedSound();
     }, 10000);
