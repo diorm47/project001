@@ -5,9 +5,7 @@ import { ReactComponent as BackIcon } from "../../assets/icons/back-icon.svg";
 import CaseItem from "../../components/case-item/case-item";
 import { data } from "../../components/data";
 import "./case-page.css";
-
 import { ReactComponent as Wallet } from "../../assets/icons/wallet-icon.svg";
-
 import CaseOpening from "../../components/case-opening/case-opening";
 
 function CasePage({ setLoginModal }) {
@@ -22,7 +20,11 @@ function CasePage({ setLoginModal }) {
   React.useEffect(() => {
     document.title = `${item.item_name} - ${item.name} - Legadrop`;
   }, []);
-  const [spinningProcess, setSpinningProcess] = useState(true);
+  const [spinningProcess, setSpinningProcess] = useState(false);
+
+  const spinRoulette = () => {
+    setSpinningProcess(true);
+  };
 
   return (
     <div className="page_template case_page">
@@ -36,13 +38,13 @@ function CasePage({ setLoginModal }) {
         <h1>КЕЙС {item.item_name}</h1>
       </div>
       {spinningProcess ? (
-        <CaseOpening />
+        <CaseOpening setSpinningProcess={setSpinningProcess} />
       ) : (
         <div className="about_item_bg">
           <div className="about_item_content">
             <img src={item.image} alt="" />
             <div className="unauthorized_message_wrapper">
-              {!isLogged ? (
+              {!isLogged & false ? (
                 <>
                   <div className="unauthorized_message">
                     <p>Вы не авторизованы!</p>
@@ -79,7 +81,7 @@ function CasePage({ setLoginModal }) {
                 ""
               )}
 
-              {isLogged & (isBalancEnough > item.real_price) ? (
+              {!isLogged ? (
                 <div className="open_case_block">
                   <div className="upgade_chances">
                     <div className="upgade_chances_items">
@@ -98,7 +100,10 @@ function CasePage({ setLoginModal }) {
                       <p>X5</p>
                     </div>
                   </div>
-                  <button className="nav_auth_btns open_case_btn">
+                  <button
+                    className="nav_auth_btns open_case_btn"
+                    onClick={() => spinRoulette()}
+                  >
                     ОТКРЫТЬ ЗА {item.real_price}₽
                   </button>
                   <button className="open_fast_btn">ОТКРЫТЬ БЫСТРО</button>

@@ -1,20 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./case-opening.css";
-import { ReactComponent as Marker } from "../../assets/icons/case_opening-marker.svg";
-import { ReactComponent as GifLoader } from "../../assets/icons/opening-loader.svg";
+import React, { useEffect, useRef, useState } from "react";
 import { ReactComponent as GradientLeft } from "../../assets/icons/case-opening-left-gr.svg";
 import { ReactComponent as GradientRight } from "../../assets/icons/case-opening-right-gr.svg";
+import { ReactComponent as Marker } from "../../assets/icons/case_opening-marker.svg";
 import case_item_img from "../../assets/images/case-item.png";
+import loading from "../../assets/loading-gif-png-5.gif";
 import sound from "../../assets/sound.mp3";
 import winnedAudio from "../../assets/winned.mp3";
-import loading from "../../assets/loading-gif-png-5.gif";
-
-import useSound from "use-sound";
+import "./case-opening.css";
 import "react-roulette-pro/dist/index.css";
-import { generateRandomNumber } from "../utils/utils";
-import spin_bg from "../../assets/images/updating-bg.png";
+import useSound from "use-sound";
 
-function CaseOpening() {
+function CaseOpening({ setSpinningProcess }) {
   const case_items = [
     {
       id: 1111,
@@ -96,6 +92,7 @@ function CaseOpening() {
     volume: 0.5,
   });
   const [cardWidth, setCardWidth] = useState(183);
+
   useEffect(() => {
     const updateCardWidth = () => {
       const item = document.querySelector(".case_opening_item");
@@ -141,68 +138,34 @@ function CaseOpening() {
     if (extendedIndex === -1) {
       return;
     }
-
     setWinnedPrizeBlock(false);
     setIsSpinning(true);
-
     setWinnedPrize(case_items.filter((item) => item.id === selectedId)[0]);
-
     const wrapper = wheelRef.current;
     if (!wrapper) {
       return;
     }
-
     const viewportCenter = wrapper.offsetWidth / 2;
     const initialSpin = cardWidth * case_items.length * 2;
     const targetPosition = cardWidth * extendedIndex;
     const centeringOffset = cardWidth / 2;
     const spinDistance =
       initialSpin + targetPosition - viewportCenter + centeringOffset;
-
     wheelRef.current.style.transition =
       "transform 10s cubic-bezier(0.15, 1, 0.40, 1)";
-    wheelRef.current.style.transform = `translateX(-${
-      spinDistance 
-    }px)`;
-
-    let previousCardEdge = null;
-    let interval = setInterval(() => {
-      const currentTransform = wheelRef.current.style.transform;
-      const currentX = parseFloat(
-        currentTransform.split("(")[1].split("px")[0]
-      );
-      const currentCardEdge = Math.abs(currentX % cardWidth);
-
-      if (
-        previousCardEdge !== null &&
-        ((previousCardEdge > currentCardEdge &&
-          previousCardEdge > cardWidth / 2) ||
-          (previousCardEdge < currentCardEdge &&
-            currentCardEdge >= cardWidth / 2))
-      ) {
-        play();
-      }
-
-      previousCardEdge = currentCardEdge;
-    }, 100);
-
+    wheelRef.current.style.transform = `translateX(-${spinDistance}px)`;
     setTimeout(() => {
       setIsSpinning(false);
-      clearInterval(interval);
-
-      const selectedItem = wheelRef.current.children[extendedIndex + case_items.length * 2];
-
-      // Вычисляем центр выбранного элемента относительно его родителя
-      const selectedItemCenterPosition = selectedItem.offsetLeft + cardWidth / 2;
-    
-      // Рассчитываем коррекцию, чтобы центр элемента совпал с центром видимой области
+      const selectedItem =
+        wheelRef.current.children[extendedIndex + case_items.length * 2];
+      const selectedItemCenterPosition =
+        selectedItem.offsetLeft + cardWidth / 2;
       const correction = viewportCenter - selectedItemCenterPosition;
-    
       wheelRef.current.style.transition = "transform 0.5s ease-out";
       wheelRef.current.style.transform = `translateX(${correction}px)`;
       setWinnedPrizeBlock(true);
       playWinnedSound();
-    }, 10000);
+    }, 8000);
   };
 
   const restartRoulette = () => {
@@ -210,6 +173,10 @@ function CaseOpening() {
     spinWheel();
     stopWinnedSound();
   };
+
+  useEffect(() => {
+    restartRoulette();
+  }, []);
 
   return (
     <>
@@ -251,7 +218,7 @@ function CaseOpening() {
             <div className="winned_block_actions">
               <div className="winned_block_actions_btns">
                 <div className="restart_roulette_btn">
-                  <button onClick={restartRoulette}>
+                  <button onClick={() => setSpinningProcess(false)}>
                     ПОПРОБОВАТЬ ЕЩЕ{" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -278,8 +245,8 @@ function CaseOpening() {
                       fill="none"
                     >
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M14.4696 2.09524V6.28573H12.9065V2.09524C12.9065 1.79747 12.6563 1.65413 12.4896 1.65413C12.4359 1.65445 12.3828 1.66569 12.3333 1.68721L4.06941 4.98446C3.51707 5.20498 3.16274 5.75635 3.16274 6.3849V7.12379C2.21448 7.87368 1.59961 9.07569 1.59961 10.432V6.3849C1.59961 5.07263 2.36034 3.90371 3.51707 3.44059L11.7914 0.132344C12.0207 0.0440858 12.2603 0 12.4896 0C13.5317 0 14.4696 0.89332 14.4696 2.09524ZM21.3992 13.7294V14.8321C21.3992 15.1298 21.1804 15.3724 20.8886 15.3835H19.3671C18.8148 15.3835 18.3146 14.9534 18.2729 14.38C18.2417 14.0381 18.3667 13.7183 18.5751 13.4978C18.7627 13.2883 19.0232 13.178 19.3046 13.178H20.8782C21.1804 13.189 21.3992 13.4316 21.3992 13.7294ZM20.3575 12.0201H19.2945C18.711 12.0201 18.1795 12.2627 17.7939 12.6817C17.2729 13.2221 17.0123 14.0271 17.2312 14.8652C17.4917 15.8908 18.4505 16.5413 19.4509 16.5413H20.3575C20.9307 16.5413 21.3996 17.0376 21.3996 17.6442V17.8537C21.3996 20.1364 19.6385 22 17.4813 22H5.51795C3.36074 22 1.59961 20.1364 1.59961 17.8537V10.432C1.59961 9.07569 2.21448 7.87368 3.16274 7.12379C3.81927 6.59441 4.63206 6.28581 5.51795 6.28581H17.4813C19.6385 6.28581 21.3996 8.14945 21.3996 10.4321V10.9173C21.3996 11.5239 20.9307 12.0201 20.3575 12.0201ZM6.28907 11.7996H13.5838C14.0111 11.7996 14.3654 11.4246 14.3654 10.9725C14.3654 10.5204 14.0111 10.1454 13.5838 10.1454H6.28916C5.86181 10.1454 5.50747 10.5204 5.50747 10.9725C5.50747 11.4246 5.86181 11.7996 6.28907 11.7996Z"
                         fill="#191D3E"
                       />
@@ -299,12 +266,6 @@ function CaseOpening() {
             </div>
           )}
         </div>
-
-        <input
-          type="text"
-          value={selectedId}
-          onChange={(e) => setSelectedId(Number(e.target.value))}
-        />
       </div>
     </>
   );
