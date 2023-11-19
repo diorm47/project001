@@ -198,10 +198,10 @@ function CaseOpening({ setSpinningProcess, caseItems, selectedId }) {
                         />
                       </div>
                       <div className="case_opening_item_description">
-                        <p>{item.name}{' '} кристаллов 💎</p>
+                        <p>{item.name} кристаллов 💎</p>
                       </div>
                       <div className="case_opening_item_cost">
-                        <p>{item.cost} ₽</p>
+                        <p>{(item.cost * 89.35).toFixed(2)} ₽</p>
                       </div>
                       <h2>{item.item_id}</h2>
                     </div>
@@ -238,7 +238,7 @@ function CaseOpening({ setSpinningProcess, caseItems, selectedId }) {
                 </div>
                 <div className="sell_prize_btn">
                   <button>
-                    Продать за {winnedPrize ? `${winnedPrize.cost} ₽` : ""}
+                    Продать за {winnedPrize ? `${(winnedPrize.cost * 89.35).toFixed(2)} ₽` : ""}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="23"
