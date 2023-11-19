@@ -7,6 +7,7 @@ import { data } from "../../components/data";
 import "./case-page.css";
 import { ReactComponent as Wallet } from "../../assets/icons/wallet-icon.svg";
 import CaseOpening from "../../components/case-opening/case-opening";
+import { mainApi } from "../../components/utils/main-api";
 
 function CasePage({ setLoginModal }) {
   useEffect(() => {
@@ -16,14 +17,46 @@ function CasePage({ setLoginModal }) {
   const isBalancEnough = useSelector((state) => state.user.user.balance);
   const navigate = useNavigate();
   const params = useParams();
-  const item = data.find((i) => i.item_name === params.name);
+  const [caseElement, setCaseElement] = useState();
+  const [caseItems, setCaseItems] = useState();
+  const [selectedId, setselectedId] = useState();
+
+  useEffect(() => {
+    mainApi
+      .getCaseItems(params.name)
+      .then((userData) => {
+        setCaseElement(userData);
+        setCaseItems(userData.items);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
+  }, []);
+
   React.useEffect(() => {
-    document.title = `${item.item_name} - ${item.name} - Legadrop`;
+    document.title = `${caseElement ? caseElement.name : ""}  - Legadrop`;
   }, []);
   const [spinningProcess, setSpinningProcess] = useState(false);
 
+  const rendomize = () => {
+    mainApi
+      .caseRandomizer({
+        user: {
+          uid: "Se3wfsh5z",
+        },
+        items: caseItems,
+      })
+      .then((userData) => {
+        setselectedId(userData.item_id);
+        setSpinningProcess(true);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
+  };
+
   const spinRoulette = () => {
-    setSpinningProcess(true);
+    rendomize();
   };
 
   return (
@@ -35,14 +68,21 @@ function CasePage({ setLoginModal }) {
             Назад
           </button>
         </div>
-        <h1>КЕЙС {item.item_name}</h1>
+        <h1>КЕЙС {caseElement?.name}</h1>
       </div>
       {spinningProcess ? (
-        <CaseOpening setSpinningProcess={setSpinningProcess} />
+        <CaseOpening
+          setSpinningProcess={setSpinningProcess}
+          caseItems={caseItems}
+          selectedId={selectedId}
+        />
       ) : (
         <div className="about_item_bg">
           <div className="about_item_content">
-            <img src={item.image} alt="" />
+            <img
+              src="https://legadrop.org/images/case/тестовый запуск.jpg"
+              alt=""
+            />
             <div className="unauthorized_message_wrapper">
               {!isLogged & false ? (
                 <>
@@ -62,7 +102,7 @@ function CasePage({ setLoginModal }) {
               ) : (
                 ""
               )}
-              {isLogged & (isBalancEnough < item.real_price) ? (
+              {/* {isLogged & (isBalancEnough < item.real_price) ? (
                 <>
                   <div className="unauthorized_message">
                     <p>
@@ -79,7 +119,7 @@ function CasePage({ setLoginModal }) {
                 </>
               ) : (
                 ""
-              )}
+              )} */}
 
               {!isLogged ? (
                 <div className="open_case_block">
@@ -104,7 +144,7 @@ function CasePage({ setLoginModal }) {
                     className="nav_auth_btns open_case_btn"
                     onClick={() => spinRoulette()}
                   >
-                    ОТКРЫТЬ ЗА {item.real_price}₽
+                    ОТКРЫТЬ ЗА 500₽
                   </button>
                   <button className="open_fast_btn">ОТКРЫТЬ БЫСТРО</button>
                 </div>

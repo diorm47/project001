@@ -9,8 +9,8 @@ function MainPage() {
   return (
     <div className="page_template home_page_wrapper">
       <CasesCharacters />
-      <CasesCharacters />
-      <CasesCharacters />
+      {/* <CasesCharacters />
+      <CasesCharacters /> */}
     </div>
   );
 }

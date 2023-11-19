@@ -107,7 +107,6 @@ class MainApi {
   }
 
   // update user data
-
   async updateUserName(userData) {
     return this._sendRequest({
       endpoint: `/username`,
@@ -130,6 +129,33 @@ class MainApi {
       method: "PUT",
       body: userData,
       requiresToken: true,
+    });
+  }
+  // Get all Cases
+  async getAllCases() {
+    return this._sendRequest({
+      endpoint: `/admin/cases`,
+      method: "GET",
+      // requiresToken: true,
+    });
+  }
+
+  // Get case Items
+  async getCaseItems(id) {
+    return this._sendRequest({
+      endpoint: `/admin/case/${id}/items`,
+      method: "GET",
+      // requiresToken: true,
+    });
+  }
+
+  // Get case Items
+  async caseRandomizer(data) {
+    return this._sendRequest({
+      endpoint: `/randomaizer/case/opening`,
+      method: "POST",
+      body: data,
+      // requiresToken: true,
     });
   }
 }

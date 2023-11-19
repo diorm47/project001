@@ -10,7 +10,7 @@ import "./case-opening.css";
 import "react-roulette-pro/dist/index.css";
 import useSound from "use-sound";
 
-function CaseOpening({ setSpinningProcess }) {
+function CaseOpening({ setSpinningProcess, caseItems, selectedId }) {
   const case_items = [
     {
       id: 1111,
@@ -76,20 +76,15 @@ function CaseOpening({ setSpinningProcess }) {
       rarity: 15,
     },
   ];
-  const extendedItems = [
-    ...case_items,
-    ...case_items,
-    ...case_items,
-    ...case_items,
-  ];
+  const extendedItems = [...caseItems, ...caseItems, ...caseItems];
   const wheelRef = useRef(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [winnedPrize, setWinnedPrize] = useState({});
   const [winnedPrizeBlock, setWinnedPrizeBlock] = useState(false);
-  const [selectedId, setSelectedId] = useState(2222);
+
   const [play, { stop }] = useSound(sound, { volume: 0.5 });
   const [playWinnedSound, { stop: stopWinnedSound }] = useSound(winnedAudio, {
-    volume: 0.5,
+    volume: 1,
   });
   const [cardWidth, setCardWidth] = useState(183);
 
@@ -133,14 +128,16 @@ function CaseOpening({ setSpinningProcess }) {
 
   const spinWheel = () => {
     const extendedIndex = extendedItems.findIndex(
-      (item) => item.id === selectedId
+      (item) => item.item_id === selectedId
     );
     if (extendedIndex === -1) {
       return;
     }
     setWinnedPrizeBlock(false);
     setIsSpinning(true);
-    setWinnedPrize(case_items.filter((item) => item.id === selectedId)[0]);
+    setWinnedPrize(
+      extendedItems.filter((item) => item.item_id === selectedId)[0]
+    );
     const wrapper = wheelRef.current;
     if (!wrapper) {
       return;
@@ -150,7 +147,7 @@ function CaseOpening({ setSpinningProcess }) {
     const targetPosition = cardWidth * extendedIndex;
     const centeringOffset = cardWidth / 2;
     const spinDistance =
-      initialSpin + targetPosition - viewportCenter + centeringOffset;
+      initialSpin + targetPosition - viewportCenter + centeringOffset + 1100;
     wheelRef.current.style.transition =
       "transform 10s cubic-bezier(0.15, 1, 0.40, 1)";
     wheelRef.current.style.transform = `translateX(-${spinDistance}px)`;
@@ -160,7 +157,7 @@ function CaseOpening({ setSpinningProcess }) {
         wheelRef.current.children[extendedIndex + case_items.length * 2];
       const selectedItemCenterPosition =
         selectedItem.offsetLeft + cardWidth / 2;
-      const correction = viewportCenter - selectedItemCenterPosition;
+      const correction = viewportCenter - selectedItemCenterPosition - 1100;
       wheelRef.current.style.transition = "transform 0.5s ease-out";
       wheelRef.current.style.transform = `translateX(${correction}px)`;
       setWinnedPrizeBlock(true);
@@ -184,27 +181,32 @@ function CaseOpening({ setSpinningProcess }) {
         <div className="case_opening_items_list">
           <div className="case_opening_items_wrapper">
             <div className="case_opening_items" ref={wheelRef}>
-              {extendedItems.map((item, index) => (
-                <div
-                  key={index}
-                  className={
-                    item.id % 2 == 0
-                      ? "case_opening_item case_opening_item_bg_firstly"
-                      : "case_opening_item case_opening_item_bg_secondary"
-                  }
-                >
-                  <div className="case_opening_item_img">
-                    <img src={item.image} alt="" />
-                  </div>
-                  <div className="case_opening_item_description">
-                    <p>{item.description}</p>
-                  </div>
-                  <div className="case_opening_item_cost">
-                    <p>{item.cost} ₽</p>
-                  </div>
-                  <h1>{item.id}</h1>
-                </div>
-              ))}
+              {extendedItems
+                ? extendedItems.map((item, index) => (
+                    <div
+                      key={index}
+                      className={
+                        item.id % 2 == 0
+                          ? "case_opening_item case_opening_item_bg_firstly"
+                          : "case_opening_item case_opening_item_bg_secondary"
+                      }
+                    >
+                      <div className="case_opening_item_img">
+                        <img
+                          src={`https://legadrop.org/${item.image}`}
+                          alt=""
+                        />
+                      </div>
+                      <div className="case_opening_item_description">
+                        <p>{item.name}{' '} кристаллов 💎</p>
+                      </div>
+                      <div className="case_opening_item_cost">
+                        <p>{item.cost} ₽</p>
+                      </div>
+                      <h2>{item.item_id}</h2>
+                    </div>
+                  ))
+                : ""}
             </div>
             <GradientLeft className="case_opening_left_gr" />
             <GradientRight className="case_opening_right_gr" />
@@ -257,10 +259,11 @@ function CaseOpening({ setSpinningProcess }) {
                   <button>Поделиться</button>
                 </div>
               </div>
+              <h2>{selectedId}</h2>
             </div>
           ) : (
             <div className="case_opening_process_btn">
-              <button onClick={() => spinWheel()}>
+              <button>
                 <p>ОТКРЫВАЕТСЯ</p> <img src={loading} alt="" />
               </button>
             </div>
