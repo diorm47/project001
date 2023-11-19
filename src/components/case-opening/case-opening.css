@@ -81,3 +81,40 @@
 .spin_result_item_description {
   position: relative;
 }
+
+.winned_block_actions_btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 19px;
+  margin-top: 30px;
+  margin-left: -55px;
+}
+.winned_block_actions button {
+  padding: 16px 32px;
+  border: none;
+  font-family: Rubik;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  color: #191d3e;
+  text-transform: uppercase;
+  border-radius: 8px;
+  line-height: 20px; /* 125% */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.restart_roulette_btn button {
+  background: var(--Positive, #69dd89);
+}
+.sell_prize_btn button {
+  background: #f7a34d;
+}
+.share_winned_process_btn button {
+  background: green;
+}
+.case_opening_process_btn img {
+  width: 25px;
+}

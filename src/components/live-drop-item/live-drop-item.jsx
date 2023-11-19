@@ -111,7 +111,102 @@ function LiveDropItem() {
           <p>330 кристаллов 💎</p>
         </div>
       </div>
-
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
+      <div className="live_drop_item item_1">
+        <div className="live_drop_icon">
+          <img src={crystal1} alt="" />
+        </div>
+        <div className="live_drop_item_descr">
+          <p>330 кристаллов 💎</p>
+        </div>
+      </div>
     </div>
   );
 }
