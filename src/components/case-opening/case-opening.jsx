@@ -10,7 +10,12 @@ import "./case-opening.css";
 import "react-roulette-pro/dist/index.css";
 import useSound from "use-sound";
 
-function CaseOpening({ setSpinningProcess, caseItems, selectedId }) {
+function CaseOpening({
+  setSpinningProcess,
+  caseItems,
+  selectedId,
+  extendedItems,
+}) {
   const case_items = [
     {
       id: 1111,
@@ -76,7 +81,7 @@ function CaseOpening({ setSpinningProcess, caseItems, selectedId }) {
       rarity: 15,
     },
   ];
-  const extendedItems = [...caseItems, ...caseItems, ...caseItems];
+
   const wheelRef = useRef(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [winnedPrize, setWinnedPrize] = useState({});
@@ -130,9 +135,11 @@ function CaseOpening({ setSpinningProcess, caseItems, selectedId }) {
     const extendedIndex = extendedItems.findIndex(
       (item) => item.item_id === selectedId
     );
+
     if (extendedIndex === -1) {
       return;
     }
+
     setWinnedPrizeBlock(false);
     setIsSpinning(true);
     setWinnedPrize(
@@ -203,7 +210,6 @@ function CaseOpening({ setSpinningProcess, caseItems, selectedId }) {
                       <div className="case_opening_item_cost">
                         <p>{(item.cost * 89.35).toFixed(2)} ₽</p>
                       </div>
-                      <h2>{item.item_id}</h2>
                     </div>
                   ))
                 : ""}
@@ -238,7 +244,10 @@ function CaseOpening({ setSpinningProcess, caseItems, selectedId }) {
                 </div>
                 <div className="sell_prize_btn">
                   <button>
-                    Продать за {winnedPrize ? `${(winnedPrize.cost * 89.35).toFixed(2)} ₽` : ""}
+                    Продать за{" "}
+                    {winnedPrize
+                      ? `${(winnedPrize.cost * 89.35).toFixed(2)} ₽`
+                      : ""}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="23"
@@ -259,7 +268,6 @@ function CaseOpening({ setSpinningProcess, caseItems, selectedId }) {
                   <button>Поделиться</button>
                 </div>
               </div>
-              <h2>{selectedId}</h2>
             </div>
           ) : (
             <div className="case_opening_process_btn">

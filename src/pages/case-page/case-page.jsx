@@ -18,8 +18,20 @@ function CasePage({ setLoginModal }) {
   const navigate = useNavigate();
   const params = useParams();
   const [caseElement, setCaseElement] = useState();
-  const [caseItems, setCaseItems] = useState();
+  const [caseItems, setCaseItems] = useState([]);
   const [selectedId, setselectedId] = useState();
+
+  const [extendedItems, setExtendedItems] = useState([]);
+  function extendItems(items) {
+    let tempExtendedItems = [];
+    const targetLength = 48;
+
+    while (tempExtendedItems.length < targetLength) {
+      tempExtendedItems = tempExtendedItems.concat(items);
+    }
+
+    return tempExtendedItems.slice(0, targetLength);
+  }
 
   useEffect(() => {
     mainApi
@@ -27,6 +39,7 @@ function CasePage({ setLoginModal }) {
       .then((userData) => {
         setCaseElement(userData);
         setCaseItems(userData.items);
+        setExtendedItems(extendItems(userData.items));
       })
       .catch((error) => {
         console.log("error: ", error);
@@ -75,6 +88,7 @@ function CasePage({ setLoginModal }) {
           setSpinningProcess={setSpinningProcess}
           caseItems={caseItems}
           selectedId={selectedId}
+          extendedItems={extendedItems}
         />
       ) : (
         <div className="about_item_bg">
@@ -84,7 +98,7 @@ function CasePage({ setLoginModal }) {
               alt=""
             />
             <div className="unauthorized_message_wrapper">
-              {!isLogged & false ? (
+              {!isLogged ? (
                 <>
                   <div className="unauthorized_message">
                     <p>Вы не авторизованы!</p>
@@ -121,7 +135,7 @@ function CasePage({ setLoginModal }) {
                 ""
               )} */}
 
-              {!isLogged ? (
+              {isLogged ? (
                 <div className="open_case_block">
                   <div className="upgade_chances">
                     <div className="upgade_chances_items">
@@ -159,24 +173,11 @@ function CasePage({ setLoginModal }) {
       <div className="case_items_block">
         <h3>СОДЕРЖИМОЕ КЕЙСА</h3>
         <div className="case_items_content">
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
-          <CaseItem />
+          {Array.isArray(caseItems) && caseItems.length > 0
+            ? caseItems.map((item) => (
+                <CaseItem key={item.item_id} item={item} />
+              ))
+            : ""}
         </div>
       </div>
     </div>
