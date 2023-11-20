@@ -39,12 +39,14 @@ function CasePage({ setLoginModal }) {
       .then((userData) => {
         setCaseElement(userData);
         setCaseItems(userData.items);
-        setExtendedItems(extendItems(userData.items));
+        if (userData.items.length > 1) {
+          setExtendedItems(extendItems(userData.items));
+        }
       })
       .catch((error) => {
         console.log("error: ", error);
       });
-  }, []);
+  }, [params.name]);
 
   React.useEffect(() => {
     document.title = `${caseElement ? caseElement.name : ""}  - Legadrop`;
@@ -98,7 +100,7 @@ function CasePage({ setLoginModal }) {
               alt=""
             />
             <div className="unauthorized_message_wrapper">
-              {!isLogged ? (
+              {/* {!isLogged ? (
                 <>
                   <div className="unauthorized_message">
                     <p>Вы не авторизованы!</p>
@@ -115,7 +117,7 @@ function CasePage({ setLoginModal }) {
                 </>
               ) : (
                 ""
-              )}
+              )} */}
               {/* {isLogged & (isBalancEnough < item.real_price) ? (
                 <>
                   <div className="unauthorized_message">
@@ -135,7 +137,7 @@ function CasePage({ setLoginModal }) {
                 ""
               )} */}
 
-              {isLogged ? (
+              {true ? (
                 <div className="open_case_block">
                   <div className="upgade_chances">
                     <div className="upgade_chances_items">
@@ -173,7 +175,7 @@ function CasePage({ setLoginModal }) {
       <div className="case_items_block">
         <h3>СОДЕРЖИМОЕ КЕЙСА</h3>
         <div className="case_items_content">
-          {Array.isArray(caseItems) && caseItems.length > 0
+          {Array.isArray(caseItems) && caseItems.length >= 1
             ? caseItems.map((item) => (
                 <CaseItem key={item.item_id} item={item} />
               ))
