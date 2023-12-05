@@ -8,6 +8,7 @@ import "./case-page.css";
 import { ReactComponent as Wallet } from "../../assets/icons/wallet-icon.svg";
 import CaseOpening from "../../components/case-opening/case-opening";
 import { mainApi } from "../../components/utils/main-api";
+import openfast_icon from "../../assets/icons/opencase-fast-icon.png";
 
 function CasePage({ setLoginModal }) {
   useEffect(() => {
@@ -24,7 +25,7 @@ function CasePage({ setLoginModal }) {
   const [extendedItems, setExtendedItems] = useState([]);
   function extendItems(items) {
     let tempExtendedItems = [];
-    const targetLength = 48;
+    const targetLength = 60;
 
     while (tempExtendedItems.length < targetLength) {
       tempExtendedItems = tempExtendedItems.concat(items);
@@ -77,7 +78,7 @@ function CasePage({ setLoginModal }) {
   return (
     <div className="page_template case_page">
       <div className="case_title">
-        <div className="back_button">
+        <div className="back_button grey_icon">
           <button onClick={() => navigate(-1)}>
             <BackIcon />
             Назад
@@ -95,10 +96,7 @@ function CasePage({ setLoginModal }) {
       ) : (
         <div className="about_item_bg">
           <div className="about_item_content">
-            <img
-              src="https://legadrop.org/images/case/тестовый запуск.jpg"
-              alt=""
-            />
+            <img className="case_page_case_img" src={`https://legadrop.org/${caseElement?.image}`} alt="" />
             <div className="unauthorized_message_wrapper">
               {/* {!isLogged ? (
                 <>
@@ -140,29 +138,31 @@ function CasePage({ setLoginModal }) {
               {true ? (
                 <div className="open_case_block">
                   <div className="upgade_chances">
-                    <div className="upgade_chances_items">
+                    <div className="upgade_chances_items grey_btn">
                       <p>X1</p>
                     </div>
-                    <div className="upgade_chances_items">
+                    <div className="upgade_chances_items grey_btn">
                       <p>X2</p>
                     </div>
-                    <div className="upgade_chances_items">
+                    <div className="upgade_chances_items grey_btn">
                       <p>X3</p>
                     </div>
-                    <div className="upgade_chances_items">
+                    <div className="upgade_chances_items grey_btn">
                       <p>X4</p>
                     </div>
-                    <div className="upgade_chances_items">
+                    <div className="upgade_chances_items grey_btn">
                       <p>X5</p>
                     </div>
                   </div>
                   <button
-                    className="nav_auth_btns open_case_btn"
+                    className="nav_auth_btns open_case_btn main_btn_green"
                     onClick={() => spinRoulette()}
                   >
                     ОТКРЫТЬ ЗА 500₽
                   </button>
-                  <button className="open_fast_btn">ОТКРЫТЬ БЫСТРО</button>
+                  <button className="open_fast_btn grey_icon">
+                    ОТКРЫТЬ БЫСТРО <img src={openfast_icon} alt="" />{" "}
+                  </button>
                 </div>
               ) : (
                 ""

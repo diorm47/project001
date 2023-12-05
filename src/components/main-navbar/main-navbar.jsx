@@ -52,11 +52,11 @@ function MainNavbar({ setLoginModal }) {
               <div className="nav_topup">
                 <p>{userData & userData.balance ? userData.balance : 0} ₽</p>
                 <NavLink to="/deposit">
-                  <button>ПОПОЛНИТЬ</button>
+                  <button className="main_btn_green">ПОПОЛНИТЬ</button>
                 </NavLink>
               </div>
 
-              <div className="nav_logged_user" title="Профиль">
+              <div className="nav_logged_user grey_icon" title="Профиль">
                 <NavLink to="/profile">
                   <img
                     src={
@@ -71,7 +71,7 @@ function MainNavbar({ setLoginModal }) {
             </div>
           ) : (
             <button
-              className="nav_auth_btns not_logined_btn"
+              className="nav_auth_btns not_logined_btn main_btn_green"
               onClick={() => setLoginModal(true)}
             >
               Войти

@@ -222,7 +222,7 @@ function Settings() {
               </div>
               <div className="userid_setting">
                 <p>ID: {usersData && usersData.id ? usersData.id : "-"}</p>
-                <CopyIcon onClick={copyID} title="Скопировать ID" />
+                <CopyIcon onClick={copyID} title="Скопировать ID" className="grey_icon" />
               </div>
             </div>
           </div>
@@ -246,6 +246,7 @@ function Settings() {
                   <OkeyIcon
                     onClick={setUserName}
                     title="Сохранить имя пользователья"
+                    className="grey_icon"
                   />
                 </>
               ) : (
@@ -254,6 +255,7 @@ function Settings() {
                   <EditIcon
                     onClick={() => setUpdatingName(true)}
                     title="Изменить имя пользователья"
+                    className="grey_icon"
                   />
                 </>
               )}
@@ -272,14 +274,14 @@ function Settings() {
                     value={updatingEmailValue}
                     onChange={(e) => setUpdatingEmailValue(e.target.value)}
                   />
-                  <OkeyIcon onClick={setUserEmail} title="Сохранить почту" />
+                  <OkeyIcon  className="grey_icon" onClick={setUserEmail} title="Сохранить почту" />
                 </>
               ) : (
                 <>
                   <p>{updatingEmailValue}</p>
                   <EditIcon
                     onClick={() => setUpdatingEmail(true)}
-                    title="Изменить почту"
+                    title="Изменить почту"  className="grey_icon"
                   />
                 </>
               )}
@@ -309,7 +311,7 @@ function Settings() {
                   <p className="default_user_password">******</p>
                   <EditIcon
                     onClick={() => setUpdatingPassword(true)}
-                    title="Изменить пароль"
+                    title="Изменить пароль"  className="grey_icon"
                   />
                 </>
               )}
@@ -325,7 +327,7 @@ function Settings() {
                   value={updatingPasswordValue2}
                   onChange={(e) => setUpdatingPasswordValue2(e.target.value)}
                 />
-                <OkeyIcon onClick={setUserPassword} title="Сохранить пароль" />
+                <OkeyIcon  className="grey_icon" onClick={setUserPassword} title="Сохранить пароль" />
               </div>
             </div>
           ) : (

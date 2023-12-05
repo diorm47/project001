@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
+import "react-roulette-pro/dist/index.css";
+import useSound from "use-sound";
 import { ReactComponent as GradientLeft } from "../../assets/icons/case-opening-left-gr.svg";
 import { ReactComponent as GradientRight } from "../../assets/icons/case-opening-right-gr.svg";
 import { ReactComponent as Marker } from "../../assets/icons/case_opening-marker.svg";
-import case_item_img from "../../assets/images/case-item.png";
 import loading from "../../assets/loading-gif-png-5.gif";
 import sound from "../../assets/sound.mp3";
 import winnedAudio from "../../assets/winned.mp3";
 import "./case-opening.css";
-import "react-roulette-pro/dist/index.css";
-import useSound from "use-sound";
 
 function CaseOpening({
   setSpinningProcess,
@@ -16,72 +15,6 @@ function CaseOpening({
   selectedId,
   extendedItems,
 }) {
-  const case_items = [
-    {
-      id: 1111,
-      description: "789 кристаллов 💎",
-      cost: "23",
-      image: case_item_img,
-      rarity: 11,
-    },
-    {
-      id: 2222,
-      description: "679 кристаллов 💎",
-      cost: "566",
-      image: case_item_img,
-      rarity: 12,
-    },
-    {
-      id: 3333,
-      description: "568 кристаллов 💎",
-      cost: "567",
-      image: case_item_img,
-      rarity: 13,
-    },
-    {
-      id: 4444,
-      description: "89 кристаллов 💎",
-      cost: "5678",
-      image: case_item_img,
-      rarity: 1,
-    },
-    {
-      id: 5555,
-      description: "23 кристаллов 💎",
-      cost: "5688",
-      image: case_item_img,
-      rarity: 13,
-    },
-    {
-      id: 6666,
-      description: "12 кристаллов 💎",
-      cost: "5688",
-      image: case_item_img,
-      rarity: 18,
-    },
-    {
-      id: 7777,
-      description: "665 кристаллов 💎",
-      cost: "5688",
-      image: case_item_img,
-      rarity: 12,
-    },
-    {
-      id: 8888,
-      description: "10 кристаллов 💎",
-      cost: "5644",
-      image: case_item_img,
-      rarity: 13,
-    },
-    {
-      id: 9999,
-      description: "340 кристаллов 💎",
-      cost: "5678",
-      image: case_item_img,
-      rarity: 15,
-    },
-  ];
-
   const wheelRef = useRef(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [winnedPrize, setWinnedPrize] = useState({});
@@ -150,26 +83,26 @@ function CaseOpening({
       return;
     }
     const viewportCenter = wrapper.offsetWidth / 2;
-    const initialSpin = cardWidth * case_items.length * 2;
+    const initialSpin = cardWidth * caseItems.length * 2;
     const targetPosition = cardWidth * extendedIndex;
     const centeringOffset = cardWidth / 2;
     const spinDistance =
-      initialSpin + targetPosition - viewportCenter + centeringOffset + 1100;
+      initialSpin + targetPosition - viewportCenter + centeringOffset;
     wheelRef.current.style.transition =
       "transform 10s cubic-bezier(0.15, 1, 0.40, 1)";
     wheelRef.current.style.transform = `translateX(-${spinDistance}px)`;
     setTimeout(() => {
       setIsSpinning(false);
       const selectedItem =
-        wheelRef.current.children[extendedIndex + case_items.length * 2];
+        wheelRef.current.children[extendedIndex + caseItems.length * 2];
       const selectedItemCenterPosition =
         selectedItem.offsetLeft + cardWidth / 2;
-      const correction = viewportCenter - selectedItemCenterPosition - 1100;
+      const correction = viewportCenter - selectedItemCenterPosition;
       wheelRef.current.style.transition = "transform 0.5s ease-out";
       wheelRef.current.style.transform = `translateX(${correction}px)`;
       setWinnedPrizeBlock(true);
       playWinnedSound();
-    }, 8000);
+    }, 9000);
   };
 
   const restartRoulette = () => {
@@ -210,6 +143,7 @@ function CaseOpening({
                       <div className="case_opening_item_cost">
                         <p>{(item.cost * 89.35).toFixed(2)} ₽</p>
                       </div>
+                      <h2>{item.item_id}</h2>
                     </div>
                   ))
                 : ""}
@@ -277,6 +211,7 @@ function CaseOpening({
             </div>
           )}
         </div>
+        <h2>{selectedId}</h2>
       </div>
     </>
   );

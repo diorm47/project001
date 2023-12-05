@@ -76,16 +76,16 @@ function Footer() {
             </div>
           </div>
           <div className="footer_socials">
-            <a href="#">
+            <a href="#" className="grey_icon">
               <YoutubeIcon />
             </a>
-            <a href="#">
+            <a href="#" className="grey_icon">
               <VkIcon />
             </a>
-            <a href="#">
+            <a href="#" className="grey_icon">
               <TikTokIcon />
             </a>
-            <a href="#">
+            <a href="#" className="grey_icon">
               <TGIcon />
             </a>
           </div>

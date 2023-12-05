@@ -98,11 +98,7 @@ function Topup() {
       img: card9,
       name: "union-pay",
     },
-    {
-      type: "Эл. кошельки",
-      img: card10,
-      name: "qiwi",
-    },
+
     {
       type: "Крипта",
       img: card11,
@@ -203,7 +199,7 @@ function Topup() {
               </p>
             </div>
 
-            <button className="topup_btn">
+            <button className="topup_btn orange_btn">
               ПОПОЛНИТЬ <Wallet />
             </button>
           </div>

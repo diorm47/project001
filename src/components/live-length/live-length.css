@@ -55,7 +55,7 @@
   margin-right: 2px;
   position: relative;
   overflow: hidden;
-  padding: 0 12px;
+  padding-left: 12px;
 }
 .best_drop_top_line {
   position: absolute;
@@ -76,7 +76,7 @@
   width: 100%;
   height: 100%;
   padding: 10px 0;
-  /* position: relative; */
+  transition: all 0.5s ease;
 }
 .best_drop_content div {
   height: 100%;
@@ -95,7 +95,7 @@
 
 .best_drop_content svg {
   position: absolute;
-  right: 0;
+  right: 0 ;
 }
 .best_drop_content div p:last-child {
   color: rgba(253, 243, 216, 0.5);
@@ -107,4 +107,17 @@
 
 .live_length_items {
   display: flex;
+}
+
+.best_drop:hover .best_drop_content {
+  transform: translateY(-100%);
+  transition: all 0.5s ease;
+
+}
+.best_drop:hover .live_drop_item_user {
+  transform: translateY(-106%);
+  transition: all 0.5s ease;
+}
+.best_drop .live_drop_item_user p {
+  color: #fbeecc;
 }

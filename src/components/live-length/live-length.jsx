@@ -1,11 +1,14 @@
 import React from "react";
 import "./live-length.css";
+import "../live-drop-item/live-drop-item.css";
 
 import { ReactComponent as MenuIcon } from "../../assets/icons/live-menu.svg";
 import { ReactComponent as LiveBestIcon } from "../../assets/icons/live-bests.svg";
 import { ReactComponent as BestDropIcon } from "../../assets/icons/best-drop.svg";
+import userImg from "../../assets/images/live-profile-photo.png";
 
 import LiveDropItem from "../live-drop-item/live-drop-item";
+import { NavLink } from "react-router-dom";
 
 function LiveLength() {
   return (
@@ -31,6 +34,17 @@ function LiveLength() {
               </div>
               <BestDropIcon />
             </div>
+
+            <NavLink to="/user">
+              <div className="live_drop_item_user">
+                <div className="live_drop_icon">
+                  <img src={userImg} alt="" />
+                </div>
+                <div className="live_drop_item_descr">
+                  <p>Alina Fontaine</p>
+                </div>
+              </div>
+            </NavLink>
           </div>
           <LiveDropItem />
         </div>

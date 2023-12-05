@@ -144,18 +144,33 @@
   gap: 10px;
 }
 .first_giveaway .participant_btn {
+  transition: all 0.4s ease;
   background: #975df8;
+}
+.first_giveaway .participant_btn:hover {
+  transition: all 0.4s ease;
+  background: #8044e8;
 }
 .secondary_giveaway .participant_btn {
   background: #e366f8;
   opacity: 0.5;
+  transition: all 0.4s ease;
+}
+.secondary_giveaway .participant_btn:hover {
+  background: #c33fda;
+  transition: all 0.4s ease;
 }
 
 .last_giveaway .participant_btn {
+  transition: all 0.4s ease;
   background: #ff4b55;
 }
+.last_giveaway .participant_btn:hover {
+  transition: all 0.4s ease;
+  background: #f1353f;
+}
 .cost_secondary_temp {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 .last_winners_btn {
   color: #fff;

@@ -32,7 +32,7 @@ function Upgrade() {
           </div>
         </div>
         <div className="update_btn">
-          <button className="main_btn_temp">ВОЗВЫСИТЬ</button>
+          <button className="main_btn_temp main_btn_green">ВОЗВЫСИТЬ</button>
         </div>
       </div>
       <div className="upgrade_secondary_block">
@@ -40,13 +40,13 @@ function Upgrade() {
           <div className="upgrade_secondary_block_item_title">
             <p>Ваш инвентарь</p>
           </div>
-          <div className="upgrade_secondary_items_wrapper">
+          {/* <div className="upgrade_secondary_items_wrapper">
             <CaseItem />
             <CaseItem />
             <CaseItem />
             <CaseItem />
             <CaseItem />
-          </div>
+          </div> */}
         </div>
         <div className="upgrade_secondary_block_item">
           <div className="upgrade_secondary_block_item_title">
@@ -64,7 +64,7 @@ function Upgrade() {
               </svg>
             </div>
           </div>
-          <div className="upgrade_secondary_items_wrapper">
+          {/* <div className="upgrade_secondary_items_wrapper">
             <CaseItem />
             <CaseItem />
             <CaseItem />
@@ -77,7 +77,7 @@ function Upgrade() {
             <CaseItem />
             <CaseItem />
             <CaseItem />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -17,6 +17,7 @@ import SuccesAuthModal from "./components/sucess-auth-modal/success-auth-modal";
 import Live from "./pages/live/live";
 import Upgrade from "./pages/upgrade/upgrade";
 import Giveaway from "./pages/giveaway/giveaway";
+import UserPage from "./pages/user-page/user-page";
 
 function App() {
   const [loginModal, setLoginModal] = useState(false);
@@ -101,6 +102,7 @@ function App() {
                 <Route path="/live" element={<Live />} />
                 <Route path="/upgrade" element={<Upgrade />} />
                 <Route path="/giveaway" element={<Giveaway />} />
+                <Route path="/user" element={<UserPage />} />
 
                 {/* <Route path="*" element={<NotFound />} /> */}
               </Routes>

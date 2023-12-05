@@ -1,5 +1,5 @@
 .live_drop_item {
-  padding: 10px 5px;
+  padding: 5px;
   border-radius: 10px;
   border-radius: 10px;
   text-align: center;
@@ -27,7 +27,6 @@
   );
 }
 .live_drop_items_list p {
-
   margin-top: -10px;
   white-space: nowrap;
   padding: 0 5px;
@@ -39,4 +38,37 @@
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
+}
+
+.live_drop_item_user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(20%);
+  transition: all 0.5s ease;
+  text-align: center;
+}
+.live_drop_item_user p {
+  margin-top: 1px;
+}
+.live_drop_item_content {
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.live_drop_item_user img {
+  margin-right: -8px;
+}
+
+.live_drop_item:hover .live_drop_item_user {
+  transform: translateY(-100%);
+  transition: all 0.5s ease;
+}
+.live_drop_item:hover .live_drop_item_content {
+  transform: translateY(-150%);
+  transition: all 0.5s ease;
+}
+
+.best_drop_content img {
+  margin: 0;
 }

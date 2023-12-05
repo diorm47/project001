@@ -33,12 +33,14 @@ span {
 }
 button {
   cursor: pointer;
+  border: none;
 }
 
 .page_template {
   width: 1200px;
   margin: 0 auto;
   padding-top: 32px;
+
 }
 .tgme_widget_login.large button.tgme_widget_login_button {
   font-size: 0px !important;
@@ -67,4 +69,34 @@ input:-webkit-autofill:active input:-webkit-autofill:active {
   font-style: normal;
   font-weight: 700;
   line-height: 20px; /* 125% */
+  transition: all 0.4s ease;
+}
+
+.main_btn_green {
+  transition: all 0.4s ease;
+}
+.main_btn_green:hover {
+  background: #9ffcc5;
+}
+.grey_btn {
+  transition: all 0.4s ease;
+}
+.grey_btn:hover {
+  transition: all 0.4s ease;
+  background: rgba(53, 63, 112, 0.314);
+}
+
+.grey_icon {
+  transition: all 0.4s ease;
+}
+.grey_icon:hover {
+  transition: all 0.4s ease;
+  opacity: 0.7;
+}
+.orange_btn {
+  transition: all 0.4s ease;
+}
+.orange_btn:hover {
+  transition: all 0.4s ease;
+  background: #e29403;
 }

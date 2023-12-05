@@ -71,7 +71,7 @@ function ProfilePage() {
             </div>
           </div>
           <NavLink to="/deposit">
-            <div className="replenish_wallet" title="Пополнение баланса">
+            <div className="replenish_wallet main_btn_green" title="Пополнение баланса">
               <Wallet />
             </div>
           </NavLink>
@@ -83,15 +83,15 @@ function ProfilePage() {
             <span>741936326</span>
           </div>
           <div className="user_id_actions">
-            <div title="Изменить UID">
+            <div title="Изменить UID" className="grey_icon">
               <EditIcon />
             </div>
-            <div title="Скопировать UID">
+            <div title="Скопировать UID" className="grey_icon">
               <CopyIcon />
             </div>
           </div>
         </div>
-        <div className="bonus_activation">
+        <div className="bonus_activation grey_icon">
           <p>Активировать бонус код</p>
         </div>
 

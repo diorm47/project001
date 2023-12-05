@@ -20,10 +20,10 @@ function AffiliateProgram() {
           <p>https://legadrop.net/Gli455</p>
         </div>
         <div className="user_id_actions ref_actions">
-          <div>
+          <div className="grey_icon">
             <CopyIcon />
           </div>
-          <div>
+          <div className="grey_icon">
             <EditIcon />
           </div>
         </div>
@@ -50,7 +50,7 @@ function AffiliateProgram() {
             <span>Доход</span>
           </div>
         </div>
-        <div className="ref_card ref_get_cash">
+        <div className="ref_card ref_get_cash orange_btn">
           <Icon4 />
           <p>ВЫВЕСТИ</p>
         </div>

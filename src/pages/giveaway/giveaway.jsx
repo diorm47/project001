@@ -109,7 +109,7 @@ function Giveaway() {
                 </div>
               </div>
             </div>
-            <button className="giveaway_btn show_more_giveaway">
+            <button className="giveaway_btn show_more_giveaway grey_icon">
               Последние победители
             </button>
           </div>
@@ -136,7 +136,10 @@ function Giveaway() {
               <div className="giveaway_top_item_line"></div>
               <div className="giveaway_top_item_actions">
                 <div className="giveaway_top_item_actions_text dfacjcc">
-                  <p className="giveaway_text_temp">При пополнение от <span className="cost_secondary_temp">250₽</span></p>
+                  <p className="giveaway_text_temp">
+                    При пополнение от{" "}
+                    <span className="cost_secondary_temp">250₽</span>
+                  </p>
                   <div className="giveaway_participants">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +181,7 @@ function Giveaway() {
                 </button>
               </div>
             </div>
-            <button className="giveaway_btn last_winners_btn">
+            <button className="giveaway_btn last_winners_btn ">
               Последние победители
             </button>
             <div className="giveaway_items_list">
@@ -222,7 +225,7 @@ function Giveaway() {
                 </div>
               </div>
             </div>
-            <button className="giveaway_btn show_more_giveaway">
+            <button className="giveaway_btn show_more_giveaway grey_icon">
               Последние победители
             </button>
           </div>
@@ -278,7 +281,7 @@ function Giveaway() {
                 </button>
               </div>
             </div>
-            <button className="giveaway_btn last_winners_btn">
+            <button className="giveaway_btn last_winners_btn ">
               Последние победители
             </button>
             <div className="giveaway_items_list">
@@ -322,7 +325,7 @@ function Giveaway() {
                 </div>
               </div>
             </div>
-            <button className="giveaway_btn show_more_giveaway">
+            <button className="giveaway_btn show_more_giveaway grey_icon">
               Последние победители
             </button>
           </div>

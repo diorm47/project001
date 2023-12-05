@@ -60,6 +60,11 @@
 .about_item_content img {
   max-width: 250px;
 }
+.case_page_case_img {
+  width: 320px;
+  height: 247px;
+  object-fit: cover;
+}
 
 .unauthorized_message {
   text-align: center;
