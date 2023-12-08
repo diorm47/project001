@@ -79,5 +79,6 @@
     width: 80px;
     height: 92px;
     margin-right: 4px;
+    flex: 0 0 auto;
   }
 }

@@ -32,7 +32,7 @@ function Items() {
             </div>
           </div>
           <div className="profile_best_img">
-            <img src={best_case} alt="" />
+            <img src={fav_case} alt="" />
           </div>
         </div>
       </div>

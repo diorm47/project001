@@ -1,10 +1,11 @@
 .profile_bests {
   display: flex;
   align-self: start;
+  gap: 9px;
 }
 
 .profile_best_item {
-  width: 50%;
+  width: 49%;
   height: 150px;
   padding: 12px 22px;
   border-radius: 10px;
@@ -12,9 +13,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.profile_best_item:first-child {
-  margin-right: 9px;
 }
 
 .profile_best_img {
@@ -113,7 +111,7 @@
   height: 24px;
   padding: 0 8px;
   border-radius: 8px;
-  margin-right: 8px;
+
   border-radius: 8px;
   background: #233553;
   display: flex;
@@ -143,12 +141,96 @@
 }
 
 .purple_item p {
-    color: #E1A3FF;
+  color: #e1a3ff;
 }
 .least_item {
-    background: #22294E;
-    color: #E1A3FF;
+  background: #22294e;
+  color: #e1a3ff;
 }
 .profile_item_action svg {
-    margin-right: 4px;
+  margin-right: 4px;
+}
+
+@media only screen and (max-width: 920px) {
+  .profile_best_item {
+    flex-direction: column;
+    height: auto;
+    justify-content: start;
+  }
+  .open_case_profile,
+  .case_price_profile {
+    display: none;
+  }
+  .profile_best_img {
+    width: 100%;
+  }
+  .profile_best_item_description p {
+    margin-bottom: 8px;
+  }
+  .profile_best_item_description {
+    text-align: center;
+  }
+  .profile_item_actions_list {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .profile_content,
+  .profile_menu {
+    padding: 16px;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .profile_page {
+    flex-direction: column;
+  }
+  .profile_menu,
+  .profile_content {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .profile_content {
+    margin-bottom: 32px;
+  }
+  .profile_best_item_description p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .profile_best_item:nth-child(2) .profile_best_item_description h4 {
+  color: #af9140;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .profile_item_action p {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .profile_items_list_item {
+    padding: 12px 8px;
+  }
+  .profile_best_item {
+    padding: 16px;
+  }
+  .profile_best_item_description p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    max-width: 131px;
+  }
+  .upgrade_list_item_des div, .history_item_descriptions  {
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+  .history_price {
+    text-align: left !important;
+  }
 }

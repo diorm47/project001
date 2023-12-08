@@ -63,6 +63,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
 }
 
 .ref_get_cash {
@@ -95,4 +98,10 @@
 
 .ref_descriptions p:first-child {
   margin-bottom: 18px;
+}
+
+@media only screen and (max-width: 480px) {
+ .ref_link_block {
+  width: 100%;
+ }
 }
