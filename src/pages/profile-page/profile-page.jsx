@@ -29,11 +29,11 @@ function ProfilePage() {
   useEffect(() => {
     setUserData(usersData);
   }, [usersData]);
-  useEffect(() => {
-    if (!usersData.is_logged) {
-      navigate("/");
-    }
-  }, [navigate, usersData]);
+  // useEffect(() => {
+  //   if (!usersData.is_logged) {
+  //     navigate("/");
+  //   }
+  // }, [navigate, usersData]);
 
   const logout = () => {
     localStorage.clear();
