@@ -72,3 +72,12 @@
 .best_drop_content img {
   margin: 0;
 }
+
+@media only screen and (max-width: 520px) {
+  .live_drop_item {
+    text-align: center;
+    width: 80px;
+    height: 92px;
+    margin-right: 4px;
+  }
+}

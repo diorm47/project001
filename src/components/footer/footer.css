@@ -79,9 +79,36 @@ footer {
 }
 
 .footer_socials {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .footer_socials a {
-    margin-left: 20px;
+  margin-left: 20px;
+}
+@media only screen and (max-width: 950px) {
+  .footer_wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .footer_top_stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 26px;
+  }
+  .footer_menu {
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .footer_top_stats {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer_wrapper  {
+    padding-top: 22px;
+  }
 }

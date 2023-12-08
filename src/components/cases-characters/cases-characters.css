@@ -23,3 +23,38 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
+
+@media only screen and (max-width: 1220px) {
+  .case_block_content {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .case_block_content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (max-width: 750px) {
+  .case_block_content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 520px) {
+  .case_item_card .card_image img {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .cases_block_title svg {
+    display: none;
+  }
+  .cases_block_title {
+    padding: 0;
+    padding-bottom: 16px;
+  }
+  .cases_block_title h1 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+  }
+}

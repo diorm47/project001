@@ -82,7 +82,7 @@ function App() {
           )}
 
           <div className="app_content">
-            <TopNavbar />
+            <TopNavbar setLoginModal={setLoginModal} />
             <LiveLength />
 
             <MainNavbar setLoginModal={setLoginModal} />

@@ -30,8 +30,7 @@
   transition: all 0.4s ease;
   color: #f7a34d;
 }
-.active
-.top_nav_left_item   p {
+.active .top_nav_left_item p {
   transition: all 0.4s ease;
   color: #f7a34d;
   fill: #f7a34d;
@@ -42,4 +41,38 @@
 }
 .top_nav_right_list div:last-child {
   margin-left: 14px;
+}
+
+.top_nav .main_logo,
+.top_nav .nav_profile {
+  display: none;
+}
+@media only screen and (max-width: 820px) {
+  .top_nav .top_nav_left_list,
+  .top_nav .top_nav_right_list {
+    display: none;
+  }
+  .top_nav .main_logo,
+  .top_nav .nav_profile {
+    display: flex;
+  }
+  .mob_menu_icon {
+    cursor: pointer;
+    margin-left: 8px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .main_logo_desctop {
+  display: none;
+  }
+  .main_logo_mobile {
+    display: block;
+  }
+  .best_drop, .left_live_buttons {
+    display: none;
+  }
+  .top_nav_wrapper {
+    padding: 8px 16px;
+  }
 }

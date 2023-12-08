@@ -3,6 +3,7 @@ import "./live.css";
 import avatar from "../../assets/images/live.png";
 import crystal from "../../assets/icons/crystal2.png";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 function Live() {
   const lives = [
@@ -216,10 +217,12 @@ function Live() {
               }
               key={index}
             >
-              <div className="live_user">
-                <img src={avatar} alt="" />
-                <p>{live.name}</p>
-              </div>
+              <NavLink to="/user">
+                <div className="live_user">
+                  <img src={avatar} alt="" />
+                  <p>{live.name}</p>
+                </div>
+              </NavLink>
               <div className="live_item">
                 <img src={crystal} alt="" />
                 <p>{live.item}</p>
