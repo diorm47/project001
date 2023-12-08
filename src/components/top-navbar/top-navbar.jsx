@@ -62,7 +62,8 @@ function TopNavbar({ setLoginModal }) {
           </NavLink>
         </div>
         <div className="nav_profile">
-          {userData && userData.is_logged ? (
+        {/* userData && userData.is_logged */}
+          {true ? (
             <div className="logged_user_profile">
               <div className="nav_topup">
                 <p>{userData & userData.balance ? userData.balance : 0} ₽</p>
