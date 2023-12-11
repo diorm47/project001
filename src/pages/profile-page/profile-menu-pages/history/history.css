@@ -84,3 +84,11 @@
 .status4 svg * {
     fill: #5D6685;
 }
+
+
+
+@media only screen and (max-width: 500px) {
+  .ticket_number, .history_item_descr, .history_price {
+   padding-bottom: 6px;
+  }
+}

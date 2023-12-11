@@ -127,6 +127,7 @@
 }
 .profile_item_actions_list {
   display: flex;
+  gap: 8px;
 }
 
 .green_item {

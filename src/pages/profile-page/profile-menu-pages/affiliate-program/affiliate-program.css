@@ -99,9 +99,25 @@
 .ref_descriptions p:first-child {
   margin-bottom: 18px;
 }
+@media only screen and (max-width: 550px) {
+  .ref_description_cards {
+    flex-direction: column;
+  }
+  .ref_card {
+    width: 100%;
+  }
+  .ref_description_cards {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}
 
 @media only screen and (max-width: 480px) {
  .ref_link_block {
   width: 100%;
+ }
+ .ref_descriptions {
+  padding: 0;
  }
 }

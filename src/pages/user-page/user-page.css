@@ -180,3 +180,56 @@
   padding: 15px 32px;
   width: auto;
 }
+
+@media only screen and (max-width: 1230px) {
+  .user_page_crystals {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .user_page_profile {
+    margin-right: 20px;
+  }
+}
+@media only screen and (max-width: 1014px) {
+  .user_page_top_drops .profile_best_item {
+    padding: 10px;
+  }
+  .user_page_crystals {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .profile_bests {
+    display: none;
+  }
+  .user_page_profile {
+    margin: 0;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 830px) {
+  .user_page_crystals {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (max-width: 610px) {
+  .user_page_crystals {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .user_page_middle_btns button {
+    width: auto;
+    padding: 12px 22px;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .user_page_middle_btns svg, .user_page_middle_btns div {
+  display: none;
+  }
+  .user_page_crystals {
+  gap: 10px;
+  }
+  .user_page_crystal {
+    width: 100%;
+  }
+  .user_page_profile img {
+    width: 64px;
+    height: 64px;
+  }
+}

@@ -193,3 +193,76 @@
 .topup_btn svg {
   margin-left: 10px;
 }
+
+@media only screen and (max-width: 1200px) {
+  .topup_content {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .topuping_content {
+    margin: 0;
+    width: auto;
+    max-width: 500px;
+    padding-bottom: 30px;
+  }
+  .topup_cards_list_wrapper {
+    width: auto;
+    max-width: 720px;
+  }
+}
+@media only screen and (max-width: 740px) {
+  .topup_cards_list_wrapper {
+    width: 100%;
+    max-width: 720px;
+  }
+  .topup_cards_list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .topup_cards_list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
+  .topuping_content {
+    width: 100%;
+  }
+  .topup_bonus {
+    padding: 0;
+  }
+  .topup_bonus img:first-child {
+    width: 100%;
+  }
+  .bonus_promocode_topup {
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .topup_filters {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .topup_cards_list_item {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .topup_filter_item {
+    margin: 0;
+    padding: 8px;
+  }
+  .topup_cards_list_item {
+    height: 60px;
+  }
+  .page_title h1 {
+    padding: 0;
+    margin: 0;
+    padding-bottom: 40px;
+  }
+}

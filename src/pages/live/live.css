@@ -95,3 +95,32 @@
   font-weight: 700;
   line-height: 20px; /* 125% */
 }
+
+@media only screen and (max-width: 700px) {
+  .live_table_item {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .live_table_item
+  .live_item:nth-child(1) {
+    order: 2;
+  }
+  .live_table_item
+  .live_item:nth-child(2) {
+    order: 3;
+  }
+  .live_wrapper  {
+    padding: 12px;
+  }
+  .live_table_titles {
+    display: none;
+  }
+  .colored_live_item {
+    padding: 18px 12px;
+    border-radius: 6px;
+  }
+  .live_title h1 {
+    margin: 0;
+    padding-bottom: 40px;
+  }
+}

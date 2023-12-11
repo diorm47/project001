@@ -42,7 +42,11 @@
 @media only screen and (max-width: 520px) {
   .case_item_card .card_image img {
     width: 100% !important;
-    height: 100% !important;
+    height: 135px !important;
+    object-fit: cover;
+  }
+  .card_image {
+    width: 100%;
   }
   .cases_block_title svg {
     display: none;

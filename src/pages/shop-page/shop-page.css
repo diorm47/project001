@@ -29,3 +29,13 @@
   font-weight: 400;
   line-height: 160%; /* 20.8px */
 }
+
+@media only screen and (max-width: 750px) { 
+  .about_shop_page {
+    width: 100%;
+  }
+  .shop_page_title h1 {
+    margin: 0;
+    padding-bottom: 20px;
+  }
+}

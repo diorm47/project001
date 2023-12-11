@@ -250,3 +250,22 @@
   font-weight: 700;
   line-height: 20px; /* 125% */
 }
+
+@media only screen and (max-width: 1150px) {
+  .giveaway_top_items {
+    flex-direction: column;
+    gap: 44px;
+  }
+  .giveaway_top_item_column {
+    width: 100%;
+  }
+  .page_top_link {
+    display: none;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .live_title h1 {
+    margin-bottom: 0;
+    padding-bottom: 40px;
+  }
+}
