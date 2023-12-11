@@ -44,31 +44,32 @@ function LoginModal({ setLoginModal, setAuthModalType }) {
     }, 700);
   });
 
-  const loginUser = () => {
+  const loginUser = async () => {
     if (userName && userPassword) {
-      const user = {
-        email: userName,
+      const formData = {
+        username: userName,
         password: userPassword,
       };
-      mainApi
-        .loginAction(user)
-        .then((userData) => {
-          if (userData.status !== 400) {
-            localStorage.setItem("token", userData.access_token);
-            const user = {
-              is_logged: true,
-            };
-            dispatch(loginUserAction(user));
-            snackbarActions(userData.detail);
-            setLoginModal(false);
-          } else {
-            snackbarActions(userData.detail);
-          }
-        })
-
-        .catch((error) => {
-          console.log("error: ", error);
+      const formBody = new URLSearchParams(formData).toString();
+      try {
+        const response = await fetch("https://legadrop.org/sign-in", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          },
+          body: formBody,
         });
+        const data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        const user = {
+          is_logged: true,
+        };
+        dispatch(loginUserAction(user));
+
+        setLoginModal(false);
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
   };
 

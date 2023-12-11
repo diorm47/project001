@@ -24,16 +24,16 @@ function ProfilePage() {
   const usersData = useSelector((state) => state.user.user);
   React.useEffect(() => {
     document.title = `Профиль ${usersData.username} | Legadrop - Рулетка для геншина`;
-  }, []);
+  }, [usersData]);
   const navigate = useNavigate();
   useEffect(() => {
     setUserData(usersData);
   }, [usersData]);
-  // useEffect(() => {
-  //   if (!usersData.is_logged) {
-  //     navigate("/");
-  //   }
-  // }, [navigate, usersData]);
+  useEffect(() => {
+    if (!usersData.is_logged) {
+      navigate("/");
+    }
+  }, [navigate, usersData]);
 
   const logout = () => {
     localStorage.clear();

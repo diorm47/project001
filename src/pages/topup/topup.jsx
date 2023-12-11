@@ -30,11 +30,11 @@ function Topup() {
   React.useEffect(() => {
     document.title = `Пополнение баланса - Legadrop`;
   }, []);
-  // useEffect(() => {
-  //   if (!usersData.is_logged) {
-  //     navigate("/");
-  //   }
-  // }, [navigate, usersData]);
+  useEffect(() => {
+    if (!usersData.is_logged) {
+      navigate("/");
+    }
+  }, [navigate, usersData]);
   const topup_filter = [
     {
       types: "Все",

@@ -4,7 +4,7 @@ const initialState = {
   user: {
     username: "",
     password: "",
-    is_logged: true,
+    is_logged: false,
     email: "",
     picture: "",
     email_verified: "",

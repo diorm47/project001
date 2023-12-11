@@ -41,14 +41,14 @@ class MainApi {
   // Sign actions list
   async authorizationAction(userData) {
     return this._sendRequest({
-      endpoint: `/auth/legadrop`,
+      endpoint: `/sign-up`,
       method: "POST",
       body: userData,
     });
   }
   async loginAction(userData) {
     return this._sendRequest({
-      endpoint: `/login/legadrop`,
+      endpoint: `/sign-in`,
       method: "POST",
       body: userData,
     });
@@ -108,7 +108,7 @@ class MainApi {
   // update user data
   async updateUserName(userData) {
     return this._sendRequest({
-      endpoint: `/username`,
+      endpoint: `/user/me/username`,
       method: "PUT",
       body: userData,
       requiresToken: true,
@@ -116,7 +116,7 @@ class MainApi {
   }
   async updateUserEmail(userData) {
     return this._sendRequest({
-      endpoint: `/email`,
+      endpoint: `/user/me/email`,
       method: "PUT",
       body: userData,
       requiresToken: true,
@@ -124,7 +124,7 @@ class MainApi {
   }
   async updateUserPassword(userData) {
     return this._sendRequest({
-      endpoint: `/password`,
+      endpoint: `/user/password`,
       method: "PUT",
       body: userData,
       requiresToken: true,

@@ -48,6 +48,16 @@ function Settings() {
   const autoFocusEmail = useAutoFocus(updatingEmail);
   const autoFocusPassword = useAutoFocus(updatingPassword);
 
+  const refresh = () => {
+    mainApi
+      .reEnter()
+      .then((res) => {
+        dispatch(loginUserAction(res));
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
   const snackbarActions = (snackText) => {
     setSnackbarVisible(true);
     setSnackbarText(snackText);
@@ -63,20 +73,15 @@ function Settings() {
     mainApi
       .updateUserName(user)
       .then((userData) => {
-        if (userData.status !== 400) {
-          snackbarActions(userData.detail);
-          mainApi
-            .reEnter()
-            .then((res) => {
-              dispatch(loginUserAction(res));
-            })
-            .catch((error) => {
-              console.log("error", error);
-            });
-          setUpdatingName(false);
-        } else {
-          snackbarActions(userData.detail);
-        }
+        mainApi
+          .reEnter()
+          .then((res) => {
+            setUpdatingName(false);
+            refresh();
+          })
+          .catch((error) => {
+            console.log("error", error);
+          });
       })
       .catch((error) => {
         console.log("error: ", error);
@@ -89,20 +94,8 @@ function Settings() {
     mainApi
       .updateUserEmail(user)
       .then((userData) => {
-        if (userData.status !== 400) {
-          snackbarActions(userData.detail);
-          mainApi
-            .reEnter()
-            .then((res) => {
-              dispatch(loginUserAction(res));
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-          setUpdatingEmail(false);
-        } else {
-          snackbarActions(userData.detail);
-        }
+        setUpdatingEmail(false);
+        refresh();
       })
       .catch((error) => {
         console.log(error);
@@ -117,14 +110,8 @@ function Settings() {
     mainApi
       .updateUserPassword(user)
       .then((userData) => {
-        if (userData.status !== 400) {
-          snackbarActions(userData.detail);
-          localStorage.setItem("token", userData.access_token);
-          setUpdatingPassword(false);
-        } else {
-          snackbarActions(userData.detail);
-          setErrorUpdatingPassword(true);
-        }
+        setUpdatingPassword(false);
+        refresh();
       })
       .catch((error) => {
         console.log("error: ", error);
@@ -142,8 +129,8 @@ function Settings() {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       };
       const bodyContent = new FormData();
-      bodyContent.append("picture", file);
-      fetch(`${mainApi._baseUrl}/picture`, {
+      bodyContent.append("image", file);
+      fetch(`${mainApi._baseUrl}/user/me/image`, {
         method: "PUT",
         body: bodyContent,
         headers: headersList,
@@ -152,15 +139,7 @@ function Settings() {
           return userData.json();
         })
         .then((userData) => {
-          snackbarActions(userData.detail);
-          mainApi
-            .reEnter()
-            .then((res) => {
-              dispatch(loginUserAction(res));
-            })
-            .catch((error) => {
-              console.log("error", error);
-            });
+          refresh();
         })
         .catch((error) => {
           console.log(error);
@@ -198,7 +177,14 @@ function Settings() {
         <div className="user_data_settings">
           <div className="user_data_setting_content">
             <div className="settings_user_img">
-              <img src={updatingImage || user_avatar} alt="" />
+              <img
+                src={
+                  `https://legadrop.org/${usersData.image}` ||
+                  updatingImage ||
+                  user_avatar
+                }
+                alt=""
+              />
               <label htmlFor="user_avatar_update">
                 <ImageIcon
                   className="set_user_image"
@@ -222,7 +208,11 @@ function Settings() {
               </div>
               <div className="userid_setting">
                 <p>ID: {usersData && usersData.id ? usersData.id : "-"}</p>
-                <CopyIcon onClick={copyID} title="Скопировать ID" className="grey_icon" />
+                <CopyIcon
+                  onClick={copyID}
+                  title="Скопировать ID"
+                  className="grey_icon"
+                />
               </div>
             </div>
           </div>
@@ -274,14 +264,19 @@ function Settings() {
                     value={updatingEmailValue}
                     onChange={(e) => setUpdatingEmailValue(e.target.value)}
                   />
-                  <OkeyIcon  className="grey_icon" onClick={setUserEmail} title="Сохранить почту" />
+                  <OkeyIcon
+                    className="grey_icon"
+                    onClick={setUserEmail}
+                    title="Сохранить почту"
+                  />
                 </>
               ) : (
                 <>
                   <p>{updatingEmailValue}</p>
                   <EditIcon
                     onClick={() => setUpdatingEmail(true)}
-                    title="Изменить почту"  className="grey_icon"
+                    title="Изменить почту"
+                    className="grey_icon"
                   />
                 </>
               )}
@@ -311,7 +306,8 @@ function Settings() {
                   <p className="default_user_password">******</p>
                   <EditIcon
                     onClick={() => setUpdatingPassword(true)}
-                    title="Изменить пароль"  className="grey_icon"
+                    title="Изменить пароль"
+                    className="grey_icon"
                   />
                 </>
               )}
@@ -327,7 +323,11 @@ function Settings() {
                   value={updatingPasswordValue2}
                   onChange={(e) => setUpdatingPasswordValue2(e.target.value)}
                 />
-                <OkeyIcon  className="grey_icon" onClick={setUserPassword} title="Сохранить пароль" />
+                <OkeyIcon
+                  className="grey_icon"
+                  onClick={setUserPassword}
+                  title="Сохранить пароль"
+                />
               </div>
             </div>
           ) : (
